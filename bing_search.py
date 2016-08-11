@@ -63,33 +63,13 @@ def set_memo(text):
 help_text="1.翻訳(英->日)\n[使い方]翻訳したい文字の前後に「翻訳」という文字を入れてください\n2.メモ\n"
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config.from_object('config')
 db = SQLAlchemy(app)
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    user_id = db.Column(db.Integer, unique=True)
-
-    def __init__(self, username, user_id):
-        self.username = username
-        self.user_id = user_id
-
-    def __repr__(self):
-        return '<User %r>' % self.username
-
-class Task(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    tasks = db.Column(db.String(80))
-    user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+#
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+# db = SQLAlchemy(app)
 
 
-    def __init__(self, tasks, user_id):
-        self.tasks = tasks
-        self.user_id = user_id
-
-    def __repr__(self):
-        return '<Task %r>' % self.tasks
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -137,5 +117,4 @@ if __name__ == '__main__':
     # list=['main_test']
     # df = pd.DataFrame(list, columns=["logs"])
     # df.to_csv( 'logs_main.csv', index=False)
-
     app.run(host = '0.0.0.0', port = 443, threaded = True, debug = True)
