@@ -2,4 +2,3 @@ bin/*
 include/*
 lib/*
 .DS_Store
-secret_bing_translate.csv
