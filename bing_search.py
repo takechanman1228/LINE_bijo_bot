@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 from microsofttranslator import Translator
 import pandas as pd
 from flask import request
@@ -59,56 +60,70 @@ def set_memo(text):
     translated_text = translator.translate(text, 'ja', 'en') #japanese to english
     return translated_text
 
-help_text="1.翻訳(英->日)\n2.メモ\n"
+help_text="1.翻訳(英->日)\n[使い方]翻訳したい文字の前後に「翻訳」という文字を入れてください\n2.メモ\n"
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    user_id = db.Column(db.Integer, unique=True)
+
+    def __init__(self, username, user_id):
+        self.username = username
+        self.user_id = user_id
+
+    def __repr__(self):
+        return '<User %r>' % self.username
+
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    tasks = db.Column(db.String(80))
+    user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+
+
+    def __init__(self, tasks, user_id):
+        self.tasks = tasks
+        self.user_id = user_id
+
+    def __repr__(self):
+        return '<Task %r>' % self.tasks
 
 @app.route("/callback", methods=['POST'])
 def callback():
 
 
     msgs = request.json['result']
-    # log_df = pd.DataFrame(logs_list, columns=["logs"])
-    # log_df.to_csv( 'logs_test.csv', index=False)
+
+    # me = User('user_'+str(msg['content']['from']), msg['content']['from'])
+    # db.session.add(me)
+    # db.session.commit()
 
     for msg in msgs:
         text = msg['content']['text']
-        # logs_list.append(text)
-        # for matcher, action in commands:
-        #     if matcher.search(text):
-        #         response = action(text)
-        #         break
-        # else:
-        #     response = 'コマネチ'
+
         if re.compile("翻訳|translate|訳し|訳す|ほんやく").match(text):
-        # if text.replace("翻訳|translate|訳し|訳す|ほんやく","",1):
 
             pre_translate_text=text.replace("翻訳","")
-            # pre_translate_text=text.translate(None, '翻訳')
             print("翻訳に反応")
             print(pre_translate_text)
             post_text(msg['content']['from'],get_translate(pre_translate_text))
-        elif re.compile("メモに登録").match(text):
-            print("メモに登録")
-            post_text(msg['content']['from'],"メモに登録しました")
         elif re.compile("メモ").match(text):
+            print("メモに登録")
+            text=text.replace("メモ","")
+            # DB追加
+            task = Task(text, msg['content']['from'])
+            db.session.add(task)
+            db.session.commit()
+            post_text(msg['content']['from'],"メモに登録しました")
+        elif re.compile("メモ見る").match(text):
             print("メモを参照")
             post_text(msg['content']['from'],"メモを参照")
         else:
             post_text(msg['content']['from'],help_text)
 
-        # 翻訳
-        # df=pd.read_csv("secret_bing_translate.csv", header=None)
-        # NAME_TRANS = df[0][0]
-        # KEY_TRANS = df[0][1]
-        # translator = Translator(NAME_TRANS, KEY_TRANS)
-        # # to_lang = request.form["to_lang"]
-        # # from_lang = request.form["from_lang"]
-        # translated_text = translator.translate(text, 'ja', 'en')
-        # post_text(msg['content']['from'],translated_text)
-
-        # log_df = pd.DataFrame(logs_list, columns=["logs"])
-        # log_df.to_csv( 'logs.csv', index=False)
         print(msgs)
         print(msg['content']['from'])
         print(pre_translate_text)
