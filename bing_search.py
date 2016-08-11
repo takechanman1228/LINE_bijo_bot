@@ -78,4 +78,4 @@ def hello():
 
 if __name__ == '__main__':
     histories = {}
-    app.run()
+    app.run(host = '0.0.0.0', port = 8001, threaded = True, debug = True)
