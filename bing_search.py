@@ -61,7 +61,7 @@ def set_memo(text):
     translated_text = translator.translate(text, 'ja', 'en') #japanese to english
     return translated_text
 
-help_text="1.翻訳(英->日)\n[使い方]「翻訳」という文字の後に翻訳した英文をいれてください\n2.「メモ見る」\n3.「メモ作成」"
+help_text="1.翻訳(英->日)\n[使い方]「翻訳」という文字の後に翻訳した英文をいれてください\n2.「メモ見る」+メモの内容\n3.「メモ作成」\n4.「メモけす」+メモの番号\n"
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/pre-registration'
@@ -73,11 +73,11 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
-    user_id = db.Column(db.String(80), unique=True)
+    user_code = db.Column(db.String(80), unique=True)
 
-    def __init__(self, username, user_id):
+    def __init__(self, username, user_code):
         self.username = username
-        self.user_id = user_id
+        self.user_code = user_code
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -88,12 +88,12 @@ class Task(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
 
 
-    def __init__(self, tasks, user_id):
+    def __init__(self, task, user_id):
         self.task = task
         self.user_id = user_id
 
     def __repr__(self):
-        return '<Task %r>' % self.tasks
+        return '<Task %r>' % self.task
 
 
 @app.route("/callback", methods=['POST'])
@@ -105,7 +105,7 @@ def callback():
     for msg in msgs:
 
         sender = msg['content']['from']
-        if not db.session.query(User).filter(User.user_id == sender).count():
+        if not db.session.query(User).filter(User.user_code == sender).count():
             reg = User('user_'+str(sender), sender)
             db.session.add(reg)
             db.session.commit()
@@ -115,36 +115,51 @@ def callback():
             print("ユーザー登録済み")
         text = msg['content']['text']
 
+        # メッセージ送信者のユーザーid
+        user_id= db.session.query(User).filter(User.user_code == sender).first().id
+
         if re.compile("翻訳|translate|訳し|訳す|ほんやく").match(text):
 
             pre_translate_text=text.replace("翻訳","")
             print("翻訳に反応")
             print(pre_translate_text)
-            post_text(msg['content']['from'],get_translate(pre_translate_text))
+            post_text(sender,get_translate(pre_translate_text))
         elif re.compile("メモ作成").match(text):
 
-            text=text.replace("メモ登録","")
-            user_id= db.session.query(User).filter(User.user_id == sender).first().id
+            text=text.replace("メモ作成","")
             # DB追加
             task = Task(text, user_id)
             db.session.add(task)
             db.session.commit()
             print("メモに登録完了")
-            post_text(msg['content']['from'],"メモに登録しました")
+            post_text(sender,"メモに登録しました")
         elif re.compile("メモ見る").match(text):
-            print("メモを参照")
+            print("メモを見る")
             text=text.replace("メモ見る","")
-            user_id= User.query.filter_by(User.user_id == sender).first().id
-            tasks = Task.query.filter_by(Task.user_id == user_id).first().task
-            memo_text=""
+            text_task=""
+            tasks = db.session.query(Task).filter(Task.user_id == user_id)
+            for idx, task_obj in enumerate(tasks):
+                text_task+=(str(idx+1) +":"+task_obj.task+"\n")
 
-            post_text(msg['content']['from'],"メモを参照"+str(tasks))
+            print(text_task)
+            post_text(sender,"メモの検索結果\n"+str(text_task))
+        elif re.compile("メモけす").match(text):
+            print("メモけす")
+            task_num_to_delete=int(text.replace("メモけす",""))
+
+            task_to_delete = db.session.query(Task).filter(Task.user_id == user_id)[task_num_to_delete-1]
+            task_deleted=task_to_delete.task
+            db.session.delete(task_to_delete)
+            db.session.commit()
+
+            print(task_to_delete)
+            post_text(sender,"メモを消去しました\n"+str(task_deleted))
         else:
-            post_text(msg['content']['from'],help_text)
+            post_text(sender,help_text)
 
         print(msgs)
-        print(msg['content']['from'])
-        print(pre_translate_text)
+        print(sender)
+        # print(pre_translate_text)
 
 
 
