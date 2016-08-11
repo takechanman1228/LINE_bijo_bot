@@ -1,1 +1,1 @@
-web: gunicorn bing_search:app --log-file=-
+web: gunicorn linebot:app --log-file=-

@@ -64,12 +64,9 @@ def set_memo(text):
 help_text="1.翻訳(英->日)\n[使い方]「翻訳」という文字の後に翻訳した英文をいれてください\n2.「メモ見る」+メモの内容\n3.「メモ作成」\n4.「メモけす」+メモの番号\n"
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/pre-registration'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
-#
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-# db = SQLAlchemy(app)
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
@@ -159,15 +156,11 @@ def callback():
 
         print(msgs)
         print(sender)
-        # print(pre_translate_text)
 
 
 
     return ''
-    # return render_template('logs.html', message=msgs)
 
 if __name__ == '__main__':
-    # list=['main_test']
-    # df = pd.DataFrame(list, columns=["logs"])
-    # df.to_csv( 'logs_main.csv', index=False)
+
     app.run(host = '0.0.0.0', port = 443, threaded = True, debug = True)
