@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from microsofttranslator import Translator
 import pandas as pd
+import os
 from flask import request
 import requests
 import json
@@ -60,15 +61,39 @@ def set_memo(text):
     translated_text = translator.translate(text, 'ja', 'en') #japanese to english
     return translated_text
 
-help_text="1.翻訳(英->日)\n[使い方]翻訳したい文字の前後に「翻訳」という文字を入れてください\n2.メモ\n"
+help_text="1.翻訳(英->日)\n[使い方]「翻訳」という文字の後に翻訳した英文をいれてください\n2.「メモ見る」\n3.「メモ作成」"
 
 app = Flask(__name__)
-app.config.from_object('config')
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/pre-registration'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 #
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 # db = SQLAlchemy(app)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    user_id = db.Column(db.String(80), unique=True)
 
+    def __init__(self, username, user_id):
+        self.username = username
+        self.user_id = user_id
+
+    def __repr__(self):
+        return '<User %r>' % self.username
+
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    task = db.Column(db.String(80))
+    user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+
+
+    def __init__(self, tasks, user_id):
+        self.task = task
+        self.user_id = user_id
+
+    def __repr__(self):
+        return '<Task %r>' % self.tasks
 
 
 @app.route("/callback", methods=['POST'])
@@ -77,11 +102,17 @@ def callback():
 
     msgs = request.json['result']
 
-    # me = User('user_'+str(msg['content']['from']), msg['content']['from'])
-    # db.session.add(me)
-    # db.session.commit()
-
     for msg in msgs:
+
+        sender = msg['content']['from']
+        if not db.session.query(User).filter(User.user_id == sender).count():
+            reg = User('user_'+str(sender), sender)
+            db.session.add(reg)
+            db.session.commit()
+            print("ユーザー登録完了",str(sender))
+
+        else:
+            print("ユーザー登録済み")
         text = msg['content']['text']
 
         if re.compile("翻訳|translate|訳し|訳す|ほんやく").match(text):
@@ -90,17 +121,24 @@ def callback():
             print("翻訳に反応")
             print(pre_translate_text)
             post_text(msg['content']['from'],get_translate(pre_translate_text))
-        elif re.compile("メモ").match(text):
-            print("メモに登録")
-            text=text.replace("メモ","")
+        elif re.compile("メモ作成").match(text):
+
+            text=text.replace("メモ登録","")
+            user_id= db.session.query(User).filter(User.user_id == sender).first().id
             # DB追加
-            task = Task(text, msg['content']['from'])
+            task = Task(text, user_id)
             db.session.add(task)
             db.session.commit()
+            print("メモに登録完了")
             post_text(msg['content']['from'],"メモに登録しました")
         elif re.compile("メモ見る").match(text):
             print("メモを参照")
-            post_text(msg['content']['from'],"メモを参照")
+            text=text.replace("メモ見る","")
+            user_id= User.query.filter_by(User.user_id == sender).first().id
+            tasks = Task.query.filter_by(Task.user_id == user_id).first().task
+            memo_text=""
+
+            post_text(msg['content']['from'],"メモを参照"+str(tasks))
         else:
             post_text(msg['content']['from'],help_text)
 
