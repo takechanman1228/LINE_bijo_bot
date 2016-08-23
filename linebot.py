@@ -24,6 +24,7 @@ def post_event( to, content):
         'eventType': "138311608800106203", # Fixed value
         'content': content
     }
+    print(content)
     r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
 
 def post_text( to, text ):
@@ -32,6 +33,76 @@ def post_text( to, text ):
         'toType':1,
         'text':text,
     }
+    post_event(to, content)
+
+def post_rich_text(to):
+    content = {
+        'contentType':12,
+        'toType':1,
+        "contentMetadata": {
+            "DOWNLOAD_URL": "http://example.com/bot/images/12345",
+            "SPEC_REV": "1",
+            "ALT_TEXT": "Please visit our homepage and the item page you wish.",
+            "MARKUP_JSON":
+            {
+              "canvas": {
+                "width": 1040,
+                "height": 1040,
+                "initialScene": "scene1"
+              },
+              "images": {
+                "image1": {
+                  "x": 0,
+                  "y": 0,
+                  "w": 1040,
+                  "h": 1040
+                }
+              },
+              "actions": {
+                "openHomepage": {
+                  "type": "web",
+                  "text": "Open our homepage.",
+                  "params": {
+                    "linkUri": "http://your.server.name/"
+                  }
+                },
+                "sayHello": {
+                  "type": "sendMessage",
+                  "text": "Say hello.",
+                  "params": {
+                    "text": "Hello, Brown!"
+                  }
+                }
+              },
+              "scenes": {
+                "scene1": {
+                  "draws": [
+                    {
+                      "image": "image1",
+                      "x": 0,
+                      "y": 0,
+                      "w": 1040,
+                      "h": 1040
+                    }
+                  ],
+                  "listeners": [
+                    {
+                      "type": "touch",
+                      "params": [0, 0, 1040, 350],
+                      "action": "openHomepage"
+                    },
+                    {
+                      "type": "touch",
+                      "params": [0, 350, 1040, 350],
+                      "action": "sayHello"
+                    }
+                  ]
+                }
+              }
+            }# end copy
+        }
+    }
+
     post_event(to, content)
 
 def get_translate(text):
@@ -152,7 +223,7 @@ def callback():
             print(task_to_delete)
             post_text(sender,"メモを消去しました\n"+str(task_deleted))
         else:
-            post_text(sender,help_text)
+            post_rich_text(sender)
 
         print(msgs)
         print(sender)
