@@ -9,6 +9,7 @@ import json
 import re
 
 LINEBOT_API_EVENT ='https://trialbot-api.line.me/v1/events'
+LINEBOT_API_IMAHE_VIDEO = 'https://trialbot-api.line.me/v1/bot/message/'
 LINE_HEADERS = {
     'Content-type': 'application/json; charset=UTF-8',
     'X-Line-ChannelID':'1469904360', # Channel ID
@@ -27,6 +28,32 @@ def post_event( to, content):
     print(content)
     r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
 
+# http://line.github.io/line-bot-api-doc/ja/api/message_content/get.html
+def get_image(messageId):
+    image_endpoint = LINEBOT_API_IMAHE_VIDEO+messageId+'/content'
+    binary_img_response = requests.get(image_endpoint, headers=LINE_HEADERS)
+    print(image_endpoint)
+
+    # binary dataをjpegにする必要あり
+
+
+
+def post_image( to, originalContentUrl, previewImageUrl):
+    msg = {
+      'to':[to],
+      'toChannel':1383378250, # Fixed  value
+      'eventType':"138311608800106203", # Fixed  value
+      'content':{
+        'contentType':2, # 画像は2
+        'toType':1,
+        'originalContentUrl':originalContentUrl,
+        'previewImageUrl':previewImageUrl
+      }
+    }
+    print("oumu_image")
+    print(msg)
+    r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
+
 def post_text( to, text ):
     content = {
         'contentType':1,
@@ -34,6 +61,8 @@ def post_text( to, text ):
         'text':text,
     }
     post_event(to, content)
+
+
 
 def post_rich_text(to):
     content = {
@@ -173,6 +202,7 @@ def callback():
     for msg in msgs:
 
         sender = msg['content']['from']
+        content_id = msg['content']['id']
         if not db.session.query(User).filter(User.user_code == sender).count():
             reg = User('user_'+str(sender), sender)
             db.session.add(reg)
@@ -183,8 +213,11 @@ def callback():
             print("ユーザー登録済み")
         text = msg['content']['text']
 
+
         # メッセージ送信者のユーザーid
         user_id= db.session.query(User).filter(User.user_code == sender).first().id
+        print("content_id")
+        print(content_id)
 
         if text == "text":
             image = msg['content']['text']
@@ -231,6 +264,8 @@ def callback():
 
             # post_rich_text(sender) #TODO:リッチテキスト
             print("該当なし")
+            get_image('4804782161918')
+            post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
 
 
         print(msgs)
