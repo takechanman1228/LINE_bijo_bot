@@ -185,11 +185,13 @@ def callback():
 
         # メッセージ送信者のユーザーid
         user_id= db.session.query(User).filter(User.user_code == sender).first().id
-        image = msg['content']['image']
-        print(image)
 
+        if text == "text":
+            image = msg['content']['text']
+            print("image")
+            print(image)
 
-        if re.compile("翻訳|translate|訳し|訳す|ほんやく").match(text):
+        elif re.compile("翻訳|translate|訳し|訳す|ほんやく").match(text):
 
             pre_translate_text=text.replace("翻訳","")
             print("翻訳に反応")
@@ -226,6 +228,7 @@ def callback():
             print(task_to_delete)
             post_text(sender,"メモを消去しました\n"+str(task_deleted))
         else:
+
             # post_rich_text(sender) #TODO:リッチテキスト
             print("該当なし")
 
