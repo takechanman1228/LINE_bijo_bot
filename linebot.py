@@ -64,6 +64,67 @@ def post_text( to, text ):
     post_event(to, content)
 
 
+def post_vote_message(to):
+    MARKUP_JSON={
+                  'scenes': {
+                    'scene1': {
+                      'listeners': [
+                        {
+                          'type': 'touch',
+                          'action': 'action1',
+                          'params': [
+                            0,
+                            0,
+                            520,
+                            1040
+                          ]
+                        }
+                      ],
+                      'draws': [
+                        {
+                          'h': 520,
+                          'w': 1040,
+                          'y': 0,
+                          'x': 0,
+                          'image': 'image1'
+                        }
+                      ]
+                    }
+                  },
+                  'actions': {
+                    'action1': {
+                      'params': {
+                        'text': '投票！'
+                      },
+                      'type': 'sendMessage'
+                    }
+                  },
+                  'images': {
+                    'image1': {
+                      'h': 520,
+                      'w': 1040,
+                      'y': 0,
+                      'x': 0
+                    }
+                  },
+                  'canvas': {
+                    'height': 520,
+                    'width': 1040,
+                    'initialScene': 'scene1'
+                  }
+                }
+    content = {
+        'contentType':12,
+        'toType':1,
+        'contentMetadata': {
+            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/vote',
+            'SPEC_REV': '1',
+            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'MARKUP_JSON':json.dumps(MARKUP_JSON)
+
+            }# end copy
+        }
+    post_event(to,content)
 
 def post_rich_message(to):
     MARKUP_JSON={
@@ -348,7 +409,7 @@ def callback():
             # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
             # post_rich_message(sender)
-            post_2col_rich_message(sender)
+            post_vote_message(sender)
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
             if content_type==2:
