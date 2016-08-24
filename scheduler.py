@@ -44,6 +44,68 @@ def post_text( to, text ):
     }
     post_event(to, content)
 
+def post_rich_message(to):
+    MARKUP_JSON={
+                  'scenes': {
+                    'scene1': {
+                      'listeners': [
+                        {
+                          'type': 'touch',
+                          'action': 'action1',
+                          'params': [
+                            0,
+                            0,
+                            1040,
+                            1040
+                          ]
+                        }
+                      ],
+                      'draws': [
+                        {
+                          'h': 1040,
+                          'w': 1040,
+                          'y': 0,
+                          'x': 0,
+                          'image': 'image1'
+                        }
+                      ]
+                    }
+                  },
+                  'actions': {
+                    'action1': {
+                      'params': {
+                        'linkUri': 'http://www.google.com'
+                      },
+                      'type': 'web'
+                    }
+                  },
+                  'images': {
+                    'image1': {
+                      'h': 1040,
+                      'w': 1040,
+                      'y': 0,
+                      'x': 0
+                    }
+                  },
+                  'canvas': {
+                    'height': 1040,
+                    'width': 1040,
+                    'initialScene': 'scene1'
+                  }
+                }
+    content = {
+        'contentType':12,
+        'toType':1,
+        'contentMetadata': {
+            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/',
+            'SPEC_REV': '1',
+            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'MARKUP_JSON':json.dumps(MARKUP_JSON)
+
+            }# end copy
+        }
+    post_event(to,content)
+
 
 def job():
 
@@ -52,12 +114,14 @@ def job():
     # hello()
     users=User.query.all()
     now = datetime.now()
-    now_string=str(now.hour)+"時"+str(now.minute)+"分"
+    now_string=str(now.hour+9)+"時"+str(now.minute)+"分"
     for user in users:
 
         user_id=user.user_code
         print(user_id)
-        post_text(user_id,now_string+"です．ココアをのむと気持ちがおちつくよ")
+        post_text(user_id,now_string+"です．東工大志望のおきなくんは数学を勉強しているよ！")
+        post_rich_message(user_id)
+
 
 
 

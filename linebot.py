@@ -226,7 +226,7 @@ def callback():
         print(content_id)
 
         # ユーザーの状態
-        status = db.session.query(User).first().user_status
+        status = db.session.query(User).filter(User.user_code == sender).user_status
         # user_status=this_user.user_status
         print("ユーザーの状態")
         print(status)
@@ -275,34 +275,53 @@ def callback():
 
             print(task_to_delete)
             post_text(sender,"メモを消去しました\n"+str(task_deleted))
-        else:
+        # else:
 
             # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
-            if content_type==2:
-                post_text(sender,"写真おくってくれてありがとう！みんなに君のがんばりを紹介するかも！")
-                status=0
-            elif status ==0:
-                # print("statusが存在")
-                # print(status)
-                post_text(sender,"どうだったー?\n")
-                status=1
+        elif content_type==2:
+            post_text(sender,"写真おくってくれてありがとう！みんなに君のがんばりを紹介するかも！")
+            status=0
+            this_user= db.session.query(User).filter(User.user_code == sender).first()
+            this_user.user_status=status
+            db.session.add(this_user)
+            db.session.commit()
+            print("2だったけどいまは")
+            print(status)
+        elif status ==0:
+            # print("statusが存在")
+            # print(status)
+            post_text(sender,"どうだったー?\n")
+            status=1
+            this_user= db.session.query(User).filter(User.user_code == sender).first()
+            this_user.user_status=status
+            db.session.add(this_user)
+            db.session.commit()
+            print("0だったけどいまは")
+            print(status)
+        elif status==1:
+            post_text(sender,"おつかれさまー！\nよかったら写真もおくってね！")
+            status =2
+            this_user= db.session.query(User).filter(User.user_code == sender).first()
+            this_user.user_status=status
+            db.session.add(this_user)
+            db.session.commit()
+            print("1だったけどいまは")
+            print(status)
+        elif status==2:
+            post_text(sender,"")
+            status =0
+            print("2だったけどいまは")
+            print(status)
 
-            elif status==1:
-                post_text(sender,"おつかれさまー！\nよかったら写真もおくってね！")
-                status =2
-            elif status==2:
-                post_text(sender,"")
-                status =0
 
 
-
-        this_user= db.session.query(User).filter(User.user_code == sender).first()
-        this_user.user_status=status
-        db.session.add(this_user)
-        db.session.commit()
+        # this_user= db.session.query(User).filter(User.user_code == sender).first()
+        # this_user.user_status=status
+        # db.session.add(this_user)
+        # db.session.commit()
         print(msgs)
         print(sender)
 
