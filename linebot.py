@@ -55,6 +55,12 @@ def post_image( to, originalContentUrl, previewImageUrl):
     print(msg)
     r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
 
+# 検索してきて，画像を取得
+def post_query_image(to, query):
+
+
+    post_image(to, )
+
 def post_text( to, text ):
     content = {
         'contentType':1,
@@ -327,8 +333,8 @@ def callback():
 
     msgs = request.json['result']
 
-    # 0:初期
-    # 1:
+    # 0:初期問痔をだす
+    # 1:成功した
     # status=0
 
     for msg in msgs:
@@ -412,21 +418,21 @@ def callback():
             post_vote_message(sender)
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
-            if content_type==2:
-                post_text(sender,"写真おくってくれてありがとう！みんなに君のがんばりを紹介するかも！")
-                status=0
-                this_user= db.session.query(User).filter(User.user_code == sender).first()
-                this_user.user_status=status
-                db.session.add(this_user)
-                db.session.commit()
-                print("2だったけどいまは")
-                print(status)
-            # elif status ==0:
-            else:
+            # if content_type==2:
+            #     post_text(sender,"写真おくってくれてありがとう！みんなに君のがんばりを紹介するかも！")
+            #     status=0
+            #     this_user= db.session.query(User).filter(User.user_code == sender).first()
+            #     this_user.user_status=status
+            #     db.session.add(this_user)
+            #     db.session.commit()
+            #     print("2だったけどいまは")
+            #     print(status)
+            if status ==0:
+            # else:
                 # print("statusが存在")
                 # print(status)
                 # post_text(sender,"どうだったー?\n")
-                post_text(sender,"おつかれさまー！\nよかったら写真もおくってね！")
+                post_text(sender,"5+3は？")
                 status=1
                 this_user= db.session.query(User).filter(User.user_code == sender).first()
                 this_user.user_status=status
@@ -434,20 +440,15 @@ def callback():
                 db.session.commit()
                 print("0だったけどいまは")
                 print(status)
-            # elif status==1:
-            #     post_text(sender,"おつかれさまー！\nよかったら写真もおくってね！")
-            #     status =2
-            #     this_user= db.session.query(User).filter(User.user_code == sender).first()
-            #     this_user.user_status=status
-            #     db.session.add(this_user)
-            #     db.session.commit()
-            #     print("1だったけどいまは")
-            #     print(status)
-            # elif status==2:
-            #     post_text(sender,"")
-            #     status =0
-            #     print("2だったけどいまは")
-            #     print(status)
+            elif status==1:
+                post_text(sender,"正解")
+                status =2
+                this_user= db.session.query(User).filter(User.user_code == sender).first()
+                this_user.user_status=status
+                db.session.add(this_user)
+                db.session.commit()
+                print("1だったけどいまは")
+                print(status)
 
 
 
@@ -458,7 +459,7 @@ def callback():
         print(msgs)
         print(sender)
 
-        print(datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
+        # print(datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
 
 
 
