@@ -16,14 +16,6 @@ LINE_HEADERS = {
 }
 
 
-def post_text( to, text ):
-    content = {
-        'contentType':1,
-        'toType':1,
-        'text':text,
-    }
-    post_event(to, content)
-
 def post_event( to, content):
     msg = {
         'to': [to],
@@ -35,12 +27,22 @@ def post_event( to, content):
     print(content)
     r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
 
+
+def post_text( to, text ):
+    content = {
+        'contentType':1,
+        'toType':1,
+        'text':text,
+    }
+    post_event(to, content)
+
+
 def job():
 
     print("I'm working...")
 
     # hello()
-    post_text('u206d25c2ea6bd87c17655609a1c37cb8',"時報だよ")
+    post_text('u7d8c4b981b6d3b93ff38bb89f6d1c5ae',"17:00です．姿勢にきをつけましょう")
 
 schedule.every(1).minutes.do(job)
 
