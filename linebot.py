@@ -65,75 +65,77 @@ def post_text( to, text ):
 
 
 
-def post_rich_text(to):
+def post_rich_message(to):
+    MARKUP_JSON={
+                  'scenes': {
+                    'scene1': {
+                      'listeners': [
+                        {
+                          'type': 'touch',
+                          'action': 'action1',
+                          'params': [
+                            0,
+                            0,
+                            1040,
+                            1040
+                          ]
+                        }
+                      ],
+                      'draws': [
+                        {
+                          'h': 1040,
+                          'w': 1040,
+                          'y': 0,
+                          'x': 0,
+                          'image': 'image1'
+                        }
+                      ]
+                    }
+                  },
+                  'actions': {
+                    'action1': {
+                      'params': {
+                        'linkUri': 'http://www.google.com'
+                      },
+                      'type': 'web'
+                    }
+                  },
+                  'images': {
+                    'image1': {
+                      'h': 1040,
+                      'w': 1040,
+                      'y': 0,
+                      'x': 0
+                    }
+                  },
+                  'canvas': {
+                    'height': 1040,
+                    'width': 1040,
+                    'initialScene': 'scene1'
+                  }
+                }
     content = {
         'contentType':12,
         'toType':1,
-        "contentMetadata": {
-            "DOWNLOAD_URL": "http://example.com/bot/images/12345",
-            "SPEC_REV": "1",
-            "ALT_TEXT": "Please visit our homepage and the item page you wish.",
-            "MARKUP_JSON":
-            {
-              "canvas": {
-                "width": 1040,
-                "height": 1040,
-                "initialScene": "scene1"
-              },
-              "images": {
-                "image1": {
-                  "x": 0,
-                  "y": 0,
-                  "w": 1040,
-                  "h": 1040
-                }
-              },
-              "actions": {
-                "openHomepage": {
-                  "type": "web",
-                  "text": "Open our homepage.",
-                  "params": {
-                    "linkUri": "http://your.server.name/"
-                  }
-                },
-                "sayHello": {
-                  "type": "sendMessage",
-                  "text": "Say hello.",
-                  "params": {
-                    "text": "Hello, Brown!"
-                  }
-                }
-              },
-              "scenes": {
-                "scene1": {
-                  "draws": [
-                    {
-                      "image": "image1",
-                      "x": 0,
-                      "y": 0,
-                      "w": 1040,
-                      "h": 1040
-                    }
-                  ],
-                  "listeners": [
-                    {
-                      "type": "touch",
-                      "params": [0, 0, 1040, 350],
-                      "action": "openHomepage"
-                    },
-                    {
-                      "type": "touch",
-                      "params": [0, 350, 1040, 350],
-                      "action": "sayHello"
-                    }
-                  ]
-                }
-              }
+        'contentMetadata': {
+            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/',
+            'SPEC_REV': '1',
+            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'MARKUP_JSON':json.dumps(MARKUP_JSON)
+
             }# end copy
         }
-    }
+    post_event(to,content)
 
-    post_event(to, content)
+    # msg = {
+    #   'to':[to],
+    #   'toChannel':1383378250, # Fixed  value
+    #   'eventType':'138311608800106203', # Fixed  value
+    #   'content':content
+    # }
+    # print("rich message")
+    # print(content)
+    # r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
 
 def get_translate(text):
 
@@ -239,7 +241,10 @@ def callback():
             image = msg['content']['text']
             print("image")
             print(image)
-
+        elif re.compile('rich').match(text):
+            # rich message
+            print('rich')
+            post_rich_message(sender)
         elif re.compile("翻訳|translate|訳し|訳す|ほんやく").match(text):
 
             pre_translate_text=text.replace("翻訳","")
