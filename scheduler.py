@@ -51,11 +51,13 @@ def job():
 
     # hello()
     users=User.query.all()
+    now = datetime.now()
+    now_string=str(now.hour)+"時"+str(now.minute)+"分"
     for user in users:
 
         user_id=user.user_code
         print(user_id)
-        post_text(user_id,"時間です．姿勢にきをつけましょう")
+        post_text(user_id,now_string+"です．ココアをのむと気持ちがおちつくよ")
 
 
 
