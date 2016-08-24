@@ -1,6 +1,7 @@
 import requests
 from PIL import Image
-from io import StringIO
+# from io import StringIO
+import io
 # from StringIO import StringIO
 # import Image
 
@@ -14,9 +15,9 @@ LINE_HEADERS = {
 }
 binary_img_response=requests.get('https://trialbot-api.line.me/v1/bot/message/4803763273444/content', headers=LINE_HEADERS)
 
-f = open("write.txt","w")
-f.write(binary_img_response.text)
-f.close()
+# f = open("write.txt","w")
+# f.write(binary_img_response.text)
+# f.close()
 # i = Image.open(StringIO(binary_img_response.content))
 # Image.save()
 # print()
@@ -27,3 +28,15 @@ f.close()
 # image = Image.frombuffer('L', (100, 50), binary_img_response.text)
 # image.show()
 # image.save('img.jpg', 'JPEG', quality=100, optimize=True)
+
+tempBuff = io.StringIO()
+tempBuff.write(binary_img_response.text)
+tempBuff.seek(0)
+img=Image.open(tempBuff)
+img.save('img.jpg', 'JPEG', quality=100, optimize=True)
+
+#
+# print(type(binary_img_response.text))
+# stream = io.StringIO(binary_img_response.text)
+# image = Image.open(stream)
+image.save('img.jpg', 'JPEG', quality=100, optimize=True)

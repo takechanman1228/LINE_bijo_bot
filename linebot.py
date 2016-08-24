@@ -29,7 +29,7 @@ def post_event( to, content):
     r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
 
 # http://line.github.io/line-bot-api-doc/ja/api/message_content/get.html
-def get_image(messageId):
+def save_image(messageId):
     image_endpoint = LINEBOT_API_IMAHE_VIDEO+messageId+'/content'
     binary_img_response = requests.get(image_endpoint, headers=LINE_HEADERS)
     print(image_endpoint)
@@ -199,6 +199,10 @@ def callback():
 
     msgs = request.json['result']
 
+    # 0:初期
+    # 1:
+    # status=0
+
     for msg in msgs:
 
         sender = msg['content']['from']
@@ -264,12 +268,25 @@ def callback():
 
             # post_rich_text(sender) #TODO:リッチテキスト
             print("該当なし")
-            get_image('4804782161918')
-            post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
+            # get_image('4804782161918')
+            # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
+            if 'status' in locals() or 'status' in globals():
+                print("statusが存在")
+                print(status)
 
+                if status==1:
+                    post_text(sender,"おつかれさまー！\nよかったら写真もおくってね！")
+                    status =2
+                else:
+                    post_text(sender,"おつかれさまー！")
+
+            else:
+                post_text(sender,"なにを学んだー?\n")
+                status=1
 
         print(msgs)
         print(sender)
+
 
 
 
@@ -278,3 +295,5 @@ def callback():
 if __name__ == '__main__':
 
     app.run(host = '0.0.0.0', port = 443, threaded = True, debug = True)
+    global status
+    status = 0
