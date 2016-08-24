@@ -155,6 +155,9 @@ def set_memo(text):
     translated_text = translator.translate(text, 'ja', 'en') #japanese to english
     return translated_text
 
+def hello():
+    print("hello")
+
 help_text="1.翻訳(英->日)\n[使い方]「翻訳」という文字の後に翻訳した英文をいれてください\n2.「メモ見る」+メモの内容\n3.「メモ作成」\n4.「メモけす」+メモの番号\n"
 
 app = Flask(__name__)
@@ -284,12 +287,15 @@ def callback():
             elif status ==0:
                 # print("statusが存在")
                 # print(status)
-                post_text(sender,"なにを学んだー?\n")
+                post_text(sender,"どうだったー?\n")
                 status=1
 
             elif status==1:
                 post_text(sender,"おつかれさまー！\nよかったら写真もおくってね！")
                 status =2
+            elif status==2:
+                post_text(sender,"")
+                status =0
 
 
 

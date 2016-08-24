@@ -4,7 +4,8 @@ import linebot
 
 def job():
     print("I'm working...")
-    print(LINE_HEADERS)
+    hello()
+    post_text('u206d25c2ea6bd87c17655609a1c37cb8',"時報だよ")
 
 schedule.every(1).minutes.do(job)
 
