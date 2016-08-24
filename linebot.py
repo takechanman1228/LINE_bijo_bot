@@ -145,7 +145,7 @@ def post_2col_rich_message(to):
                         ],
                         "draws": [
                           {
-                            "h": 1040,
+                            "h": 520,
                             "w": 1040,
                             "y": 0,
                             "x": 0,
@@ -157,27 +157,27 @@ def post_2col_rich_message(to):
                     "actions": {
                       "action1": {
                         "params": {
-                          "text": "Hello!!"
+                          "text": "No"
                         },
                         "type": "sendMessage"
                       },
                       "action0": {
                         "params": {
-                          "linkUri": "https://www.yahoo.com"
+                          "text": "Yes"
                         },
-                        "type": "web"
+                        "type": "sendMessage"
                       }
                     },
                     "images": {
                       "image1": {
-                        "h": 1040,
+                        "h": 520,
                         "w": 1040,
                         "y": 0,
                         "x": 0
                       }
                     },
                     "canvas": {
-                      "height": 1040,
+                      "height": 520,
                       "width": 1040,
                       "initialScene": "scene1"
                     }
@@ -187,7 +187,7 @@ def post_2col_rich_message(to):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static',
+            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/yn',
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
@@ -347,7 +347,7 @@ def callback():
 
             # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
-            post_rich_message(sender)
+            # post_rich_message(sender)
             post_2col_rich_message(sender)
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
