@@ -7,6 +7,7 @@ from flask import request
 import requests
 import json
 import re
+from datetime import datetime
 
 LINEBOT_API_EVENT ='https://trialbot-api.line.me/v1/events'
 LINEBOT_API_IMAHE_VIDEO = 'https://trialbot-api.line.me/v1/bot/message/'
@@ -302,6 +303,8 @@ def callback():
         db.session.commit()
         print(msgs)
         print(sender)
+
+        print(datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
 
 
 
