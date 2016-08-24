@@ -209,6 +209,7 @@ def callback():
 
         sender = msg['content']['from']
         content_id = msg['content']['id']
+        content_type = msg['content']['contentType'] #1:text 2:image 3:video
         if not db.session.query(User).filter(User.user_code == sender).count():
             reg = User('user_'+str(sender), sender)
             db.session.add(reg)
@@ -277,10 +278,13 @@ def callback():
         else:
 
             # post_rich_text(sender) #TODO:リッチテキスト
-            print("該当なし")
+            print("メイン")
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
-            if status ==0:
+            if content_type==2:
+                post_text(sender,"写真おくってくれてありがとう！みんなに君のがんばりを紹介するかも！")
+                status=0
+            elif status ==0:
                 # print("statusが存在")
                 # print(status)
                 post_text(sender,"なにを学んだー?\n")
@@ -290,9 +294,7 @@ def callback():
                 post_text(sender,"おつかれさまー！\nよかったら写真もおくってね！")
                 status =2
 
-            elif status==2:
-                post_text(sender,"おつかれさまー！")
-                status=0
+
 
         this_user= db.session.query(User).filter(User.user_code == sender).first()
         this_user.user_status=status
