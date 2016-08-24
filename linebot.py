@@ -171,10 +171,12 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
     user_code = db.Column(db.String(80), unique=True)
+    user_status = db.Column(db.Integer)
 
     def __init__(self, username, user_code):
         self.username = username
         self.user_code = user_code
+        self.user_status = 0
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -216,12 +218,20 @@ def callback():
         else:
             print("ユーザー登録済み")
         text = msg['content']['text']
+        # user_status=User.user_status
+
 
 
         # メッセージ送信者のユーザーid
         user_id= db.session.query(User).filter(User.user_code == sender).first().id
         print("content_id")
         print(content_id)
+
+        # ユーザーの状態
+        status = db.session.query(User).first().user_status
+        # user_status=this_user.user_status
+        print("ユーザーの状態")
+        print(status)
 
         if text == "text":
             image = msg['content']['text']
@@ -270,20 +280,24 @@ def callback():
             print("該当なし")
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
-            if 'status' in locals() or 'status' in globals():
-                print("statusが存在")
-                print(status)
-
-                if status==1:
-                    post_text(sender,"おつかれさまー！\nよかったら写真もおくってね！")
-                    status =2
-                else:
-                    post_text(sender,"おつかれさまー！")
-
-            else:
+            if status ==0:
+                # print("statusが存在")
+                # print(status)
                 post_text(sender,"なにを学んだー?\n")
                 status=1
 
+            elif status==1:
+                post_text(sender,"おつかれさまー！\nよかったら写真もおくってね！")
+                status =2
+
+            elif status==2:
+                post_text(sender,"おつかれさまー！")
+                status=0
+
+        this_user= db.session.query(User).filter(User.user_code == sender).first()
+        this_user.user_status=status
+        db.session.add(this_user)
+        db.session.commit()
         print(msgs)
         print(sender)
 
@@ -295,5 +309,5 @@ def callback():
 if __name__ == '__main__':
 
     app.run(host = '0.0.0.0', port = 443, threaded = True, debug = True)
-    global status
-    status = 0
+    # global status
+    # status = 0
