@@ -226,7 +226,7 @@ def callback():
         print(content_id)
 
         # ユーザーの状態
-        status = db.session.query(User).filter(User.user_code == sender).user_status
+        status = db.session.query(User).filter(User.user_code == sender).first().user_status
         # user_status=this_user.user_status
         print("ユーザーの状態")
         print(status)
