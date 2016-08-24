@@ -5,6 +5,14 @@ import requests
 import json
 import re
 from datetime import datetime
+from linebot import User
+from flask_sqlalchemy import SQLAlchemy
+import os
+
+
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+# db = SQLAlchemy(app)
 
 LINEBOT_API_EVENT ='https://trialbot-api.line.me/v1/events'
 LINEBOT_API_IMAHE_VIDEO = 'https://trialbot-api.line.me/v1/bot/message/'
@@ -42,7 +50,14 @@ def job():
     print("I'm working...")
 
     # hello()
-    post_text('u7d8c4b981b6d3b93ff38bb89f6d1c5ae',"17:00です．姿勢にきをつけましょう")
+    users=User.query.all()
+    for user in users:
+
+        user_id=user.user_code
+        print(user_id)
+        post_text(user_id,"時間です．姿勢にきをつけましょう")
+
+
 
 schedule.every(1).minutes.do(job)
 
