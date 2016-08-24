@@ -118,7 +118,7 @@ def post_rich_message(to):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/',
+            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static',
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
@@ -279,6 +279,7 @@ def callback():
 
             # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
+            post_rich_message(sender)
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
             if content_type==2:
