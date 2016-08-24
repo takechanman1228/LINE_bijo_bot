@@ -127,15 +127,6 @@ def post_rich_message(to):
         }
     post_event(to,content)
 
-    # msg = {
-    #   'to':[to],
-    #   'toChannel':1383378250, # Fixed  value
-    #   'eventType':'138311608800106203', # Fixed  value
-    #   'content':content
-    # }
-    # print("rich message")
-    # print(content)
-    # r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
 
 def get_translate(text):
 
