@@ -23,7 +23,7 @@ def post_event( to, content):
         'to': [to],
         # 'to': u7d8c4b981b6d3b93ff38bb89f6d1c5ae,
         'toChannel': 1383378250, # Fixed  value
-        'eventType': "138311608800106203", # Fixed value
+        'eventType': '138311608800106203', # Fixed value
         'content': content
     }
     print(content)
@@ -41,21 +41,22 @@ def post_sticker( to,STKID,STKPKGID,STKVER):
       msg ={
         'to':[to],
         'toChannel':1383378250, # Fixed  value
-        'eventType':"138311608800106203", # Fixed  value
-        "contentMetadata":{
-          "STKID":STKID,
-          "STKPKGID":STKPKGID,
-          "STKVER":STKVER
+        'eventType':'138311608800106203', # Fixed  value
+        'contentTyoe': 8,
+        'contentMetadata':{
+          'STKID':STKID,
+          'STKPKGID':STKPKGID,
+          'STKVER':STKVER
         }
       }
-        r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
+      r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
 
 
 def post_image( to, originalContentUrl, previewImageUrl):
     msg = {
       'to':[to],
       'toChannel':1383378250, # Fixed  value
-      'eventType':"138311608800106203", # Fixed  value
+      'eventType':'138311608800106203', # Fixed  value
       'content':{
         'contentType':2, # 画像は2
         'toType':1,
@@ -63,7 +64,7 @@ def post_image( to, originalContentUrl, previewImageUrl):
         'previewImageUrl':previewImageUrl
       }
     }
-    print("oumu_image")
+    print('oumu_image')
     print(msg)
     r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
 
@@ -207,57 +208,57 @@ def post_rich_message(to):
 
 def post_yes_no_rich(to):
     MARKUP_JSON = {
-                    "scenes": {
-                      "scene1": {
-                        "listeners": [
+                    'scenes': {
+                      'scene1': {
+                        'listeners': [
                           {
-                            "type": "touch",
-                            "action": "action0",
-                            "params": [0, 0, 520, 1040]
+                            'type': 'touch',
+                            'action': 'action0',
+                            'params': [0, 0, 520, 1040]
                           },
                           {
-                            "type": "touch",
-                            "action": "action1",
-                            "params": [520, 0, 520, 1040]
+                            'type': 'touch',
+                            'action': 'action1',
+                            'params': [520, 0, 520, 1040]
                           }
                         ],
-                        "draws": [
+                        'draws': [
                           {
-                            "h": 520,
-                            "w": 1040,
-                            "y": 0,
-                            "x": 0,
-                            "image": "image1"
+                            'h': 520,
+                            'w': 1040,
+                            'y': 0,
+                            'x': 0,
+                            'image': 'image1'
                           }
                         ]
                       }
                     },
-                    "actions": {
-                      "action1": {
-                        "params": {
-                          "text": "No"
+                    'actions': {
+                      'action1': {
+                        'params': {
+                          'text': 'No'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                      "action0": {
-                        "params": {
-                          "text": "Yes"
+                      'action0': {
+                        'params': {
+                          'text': 'Yes'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       }
                     },
-                    "images": {
-                      "image1": {
-                        "h": 520,
-                        "w": 1040,
-                        "y": 0,
-                        "x": 0
+                    'images': {
+                      'image1': {
+                        'h': 520,
+                        'w': 1040,
+                        'y': 0,
+                        'x': 0
                       }
                     },
-                    "canvas": {
-                      "height": 520,
-                      "width": 1040,
-                      "initialScene": "scene1"
+                    'canvas': {
+                      'height': 520,
+                      'width': 1040,
+                      'initialScene': 'scene1'
                     }
                   }
 
@@ -276,213 +277,213 @@ def post_yes_no_rich(to):
 
 
     MARKUP_JSON4 = {
-                    "scenes": {
-                      "scene1": {
-                        "listeners": [
+                    'scenes': {
+                      'scene1': {
+                        'listeners': [
                           {
-                            "type": "touch",
-                            "action": "action0",
-                            "params": [0, 0, 520, 520]
+                            'type': 'touch',
+                            'action': 'action0',
+                            'params': [0, 0, 520, 520]
                           },
                           {
-                            "type": "touch",
-                            "action": "action1",
-                            "params": [520, 0, 520, 520]
+                            'type': 'touch',
+                            'action': 'action1',
+                            'params': [520, 0, 520, 520]
                           },
                           {
-                            "type": "touch",
-                            "action": "action2",
-                            "params": [0, 520, 520, 520]
+                            'type': 'touch',
+                            'action': 'action2',
+                            'params': [0, 520, 520, 520]
                           },
                           {
-                            "type": "touch",
-                            "action": "action3",
-                            "params": [520, 520, 520, 520]
+                            'type': 'touch',
+                            'action': 'action3',
+                            'params': [520, 520, 520, 520]
                           }
                         ],
-                        "draws": [
+                        'draws': [
                           {
-                            "h": 1040,
-                            "w": 1040,
-                            "y": 0,
-                            "x": 0,
-                            "image": "image1"
+                            'h': 1040,
+                            'w': 1040,
+                            'y': 0,
+                            'x': 0,
+                            'image': 'image1'
                           }
                         ]
                       }
                     },
-                    "actions": {
-                      "action1": {
-                        "params": {
-                          "text": "1"
+                    'actions': {
+                      'action1': {
+                        'params': {
+                          'text': '1'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                      "action0": {
-                        "params": {
-                          "text": "2"
+                      'action0': {
+                        'params': {
+                          'text': '2'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                        "action2": {
-                        "params": {
-                          "text": "3"
+                        'action2': {
+                        'params': {
+                          'text': '3'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                      "action3": {
-                        "params": {
-                          "text": "4"
+                      'action3': {
+                        'params': {
+                          'text': '4'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       }
                     },
-                    "images": {
-                      "image1": {
-                        "h": 1040,
-                        "w": 1040,
-                        "y": 0,
-                        "x": 0
+                    'images': {
+                      'image1': {
+                        'h': 1040,
+                        'w': 1040,
+                        'y': 0,
+                        'x': 0
                       }
                     },
-                    "canvas": {
-                      "height": 1040,
-                      "width": 1040,
-                      "initialScene": "scene1"
+                    'canvas': {
+                      'height': 1040,
+                      'width': 1040,
+                      'initialScene': 'scene1'
                     }
                   }
 
 def post_9col_rich_message(to, json_custom):
     MARKUP_JSON9 = {
-                    "scenes": {
-                      "scene1": {
-                        "listeners": [
+                    'scenes': {
+                      'scene1': {
+                        'listeners': [
                           {
-                            "type": "touch",
-                            "action": "action0",
-                            "params": [0, 0, 346, 346]
+                            'type': 'touch',
+                            'action': 'action0',
+                            'params': [0, 0, 346, 346]
                           },
                           {
-                            "type": "touch",
-                            "action": "action1",
-                            "params": [346, 0, 346, 346]
+                            'type': 'touch',
+                            'action': 'action1',
+                            'params': [346, 0, 346, 346]
                           },
                           {
-                            "type": "touch",
-                            "action": "action2",
-                            "params": [692, 0, 346, 346]
+                            'type': 'touch',
+                            'action': 'action2',
+                            'params': [692, 0, 346, 346]
                           },
                           {
-                            "type": "touch",
-                            "action": "action3",
-                            "params": [0, 346, 346, 346]
+                            'type': 'touch',
+                            'action': 'action3',
+                            'params': [0, 346, 346, 346]
                           },
                           {
-                            "type": "touch",
-                            "action": "action4",
-                            "params": [346, 346, 346, 346]
+                            'type': 'touch',
+                            'action': 'action4',
+                            'params': [346, 346, 346, 346]
                           },
                           {
-                            "type": "touch",
-                            "action": "action5",
-                            "params": [692, 346, 346, 346]
+                            'type': 'touch',
+                            'action': 'action5',
+                            'params': [692, 346, 346, 346]
                           },
                           {
-                            "type": "touch",
-                            "action": "action6",
-                            "params": [0, 692, 346, 346]
+                            'type': 'touch',
+                            'action': 'action6',
+                            'params': [0, 692, 346, 346]
                           },
                           {
-                            "type": "touch",
-                            "action": "action7",
-                            "params": [346, 692, 346, 346]
+                            'type': 'touch',
+                            'action': 'action7',
+                            'params': [346, 692, 346, 346]
                           },
                           {
-                            "type": "touch",
-                            "action": "action8",
-                            "params": [692, 692, 346, 346]
+                            'type': 'touch',
+                            'action': 'action8',
+                            'params': [692, 692, 346, 346]
                           }
                         ],
-                        "draws": [
+                        'draws': [
                           {
-                            "h": 1040,
-                            "w": 1040,
-                            "y": 0,
-                            "x": 0,
-                            "image": "image1"
+                            'h': 1040,
+                            'w': 1040,
+                            'y': 0,
+                            'x': 0,
+                            'image': 'image1'
                           }
                         ]
                       }
                     },
-                    "actions": {
-                      "action1": {
-                        "params": {
-                          "text": "2"
+                    'actions': {
+                      'action1': {
+                        'params': {
+                          'text': '2'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                      "action0": {
-                        "params": {
-                          "text": "1"
+                      'action0': {
+                        'params': {
+                          'text': '1'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                        "action2": {
-                        "params": {
-                          "text": "3"
+                        'action2': {
+                        'params': {
+                          'text': '3'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                      "action3": {
-                        "params": {
-                          "text": "4"
+                      'action3': {
+                        'params': {
+                          'text': '4'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                      "action4": {
-                        "params": {
-                          "text": "5"
+                      'action4': {
+                        'params': {
+                          'text': '5'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                      "action5": {
-                        "params": {
-                          "text": "6"
+                      'action5': {
+                        'params': {
+                          'text': '6'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                        "action6": {
-                        "params": {
-                          "text": "7"
+                        'action6': {
+                        'params': {
+                          'text': '7'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                      "action7": {
-                        "params": {
-                          "text": "8"
+                      'action7': {
+                        'params': {
+                          'text': '8'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                      "action8": {
-                        "params": {
-                          "text": "9"
+                      'action8': {
+                        'params': {
+                          'text': '9'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       }
 
                     },
-                    "images": {
-                      "image1": {
-                        "h": 1040,
-                        "w": 1040,
-                        "y": 0,
-                        "x": 0
+                    'images': {
+                      'image1': {
+                        'h': 1040,
+                        'w': 1040,
+                        'y': 0,
+                        'x': 0
                       }
                     },
-                    "canvas": {
-                      "height": 1040,
-                      "width": 1040,
-                      "initialScene": "scene1"
+                    'canvas': {
+                      'height': 1040,
+                      'width': 1040,
+                      'initialScene': 'scene1'
                     }
                   }
     content = {
@@ -500,79 +501,79 @@ def post_9col_rich_message(to, json_custom):
 
 def post_4col_rich_message(to):
     MARKUP_JSON4 = {
-                    "scenes": {
-                      "scene1": {
-                        "listeners": [
+                    'scenes': {
+                      'scene1': {
+                        'listeners': [
                           {
-                            "type": "touch",
-                            "action": "action0",
-                            "params": [0, 0, 520, 520]
+                            'type': 'touch',
+                            'action': 'action0',
+                            'params': [0, 0, 520, 520]
                           },
                           {
-                            "type": "touch",
-                            "action": "action1",
-                            "params": [520, 0, 520, 520]
+                            'type': 'touch',
+                            'action': 'action1',
+                            'params': [520, 0, 520, 520]
                           },
                           {
-                            "type": "touch",
-                            "action": "action2",
-                            "params": [0, 520, 520, 520]
+                            'type': 'touch',
+                            'action': 'action2',
+                            'params': [0, 520, 520, 520]
                           },
                           {
-                            "type": "touch",
-                            "action": "action3",
-                            "params": [520, 520, 520, 520]
+                            'type': 'touch',
+                            'action': 'action3',
+                            'params': [520, 520, 520, 520]
                           }
                         ],
-                        "draws": [
+                        'draws': [
                           {
-                            "h": 1040,
-                            "w": 1040,
-                            "y": 0,
-                            "x": 0,
-                            "image": "image1"
+                            'h': 1040,
+                            'w': 1040,
+                            'y': 0,
+                            'x': 0,
+                            'image': 'image1'
                           }
                         ]
                       }
                     },
-                    "actions": {
-                      "action1": {
-                        "params": {
-                          "text": "1"
+                    'actions': {
+                      'action1': {
+                        'params': {
+                          'text': '1'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                      "action0": {
-                        "params": {
-                          "text": "2"
+                      'action0': {
+                        'params': {
+                          'text': '2'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                        "action2": {
-                        "params": {
-                          "text": "3"
+                        'action2': {
+                        'params': {
+                          'text': '3'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       },
-                      "action3": {
-                        "params": {
-                          "text": "4"
+                      'action3': {
+                        'params': {
+                          'text': '4'
                         },
-                        "type": "sendMessage"
+                        'type': 'sendMessage'
                       }
                     },
-                    "images": {
-                      "image1": {
-                        "h": 1040,
-                        "w": 1040,
-                        "y": 0,
-                        "x": 0
+                    'images': {
+                      'image1': {
+                        'h': 1040,
+                        'w': 1040,
+                        'y': 0,
+                        'x': 0
                       }
                     },
-                    "canvas": {
-                      "height": 1040,
-                      "width": 1040,
-                      "initialScene": "scene1"
+                    'canvas': {
+                      'height': 1040,
+                      'width': 1040,
+                      'initialScene': 'scene1'
                     }
                   }
     content = {
@@ -592,7 +593,7 @@ def post_4col_rich_message(to):
 
 def get_translate(text):
 
-    df=pd.read_csv("secret_bing_translate.csv", header=None)
+    df=pd.read_csv('secret_bing_translate.csv', header=None)
     NAME_TRANS = df[0][0]
     KEY_TRANS = df[0][1]
     translator = Translator(NAME_TRANS, KEY_TRANS)
@@ -601,7 +602,7 @@ def get_translate(text):
 
 def get_memo(text):
 
-    df=pd.read_csv("secret_bing_translate.csv", header=None)
+    df=pd.read_csv('secret_bing_translate.csv', header=None)
     NAME_TRANS = df[0][0]
     KEY_TRANS = df[0][1]
     translator = Translator(NAME_TRANS, KEY_TRANS)
@@ -610,7 +611,7 @@ def get_memo(text):
 
 def set_memo(text):
 
-    df=pd.read_csv("secret_bing_translate.csv", header=None)
+    df=pd.read_csv('secret_bing_translate.csv', header=None)
     NAME_TRANS = df[0][0]
     KEY_TRANS = df[0][1]
     translator = Translator(NAME_TRANS, KEY_TRANS)
@@ -619,135 +620,135 @@ def set_memo(text):
 
 def post_woman_rich_message(to, woman_obj):
     MARKUP_JSON9 = {
-                "scenes": {
-                  "scene1": {
-                    "listeners": [
+                'scenes': {
+                  'scene1': {
+                    'listeners': [
                       {
-                        "type": "touch",
-                        "action": "action0",
-                        "params": [0, 0, 346, 346]
+                        'type': 'touch',
+                        'action': 'action0',
+                        'params': [0, 0, 346, 346]
                       },
                       {
-                        "type": "touch",
-                        "action": "action1",
-                        "params": [346, 0, 346, 346]
+                        'type': 'touch',
+                        'action': 'action1',
+                        'params': [346, 0, 346, 346]
                       },
                       {
-                        "type": "touch",
-                        "action": "action2",
-                        "params": [692, 0, 346, 346]
+                        'type': 'touch',
+                        'action': 'action2',
+                        'params': [692, 0, 346, 346]
                       },
                       {
-                        "type": "touch",
-                        "action": "action3",
-                        "params": [0, 346, 346, 346]
+                        'type': 'touch',
+                        'action': 'action3',
+                        'params': [0, 346, 346, 346]
                       },
                       {
-                        "type": "touch",
-                        "action": "action4",
-                        "params": [346, 346, 346, 346]
+                        'type': 'touch',
+                        'action': 'action4',
+                        'params': [346, 346, 346, 346]
                       },
                       {
-                        "type": "touch",
-                        "action": "action5",
-                        "params": [692, 346, 346, 346]
+                        'type': 'touch',
+                        'action': 'action5',
+                        'params': [692, 346, 346, 346]
                       },
                       {
-                        "type": "touch",
-                        "action": "action6",
-                        "params": [0, 692, 346, 346]
+                        'type': 'touch',
+                        'action': 'action6',
+                        'params': [0, 692, 346, 346]
                       },
                       {
-                        "type": "touch",
-                        "action": "action7",
-                        "params": [346, 692, 346, 346]
+                        'type': 'touch',
+                        'action': 'action7',
+                        'params': [346, 692, 346, 346]
                       },
                       {
-                        "type": "touch",
-                        "action": "action8",
-                        "params": [692, 692, 346, 346]
+                        'type': 'touch',
+                        'action': 'action8',
+                        'params': [692, 692, 346, 346]
                       }
                     ],
-                    "draws": [
+                    'draws': [
                       {
-                        "h": 1040,
-                        "w": 1040,
-                        "y": 0,
-                        "x": 0,
-                        "image": "image1"
+                        'h': 1040,
+                        'w': 1040,
+                        'y': 0,
+                        'x': 0,
+                        'image': 'image1'
                       }
                     ]
                   }
                 },
-                "actions": {
-                  "action1": {
-                    "params": {
-                      "text": woman_obj.comment2
+                'actions': {
+                  'action1': {
+                    'params': {
+                      'text': woman_obj.comment2
                     },
-                    "type": "sendMessage"
+                    'type': 'sendMessage'
                   },
-                  "action0": {
-                    "params": {
-                      "text": woman_obj.comment1
+                  'action0': {
+                    'params': {
+                      'text': woman_obj.comment1
                     },
-                    "type": "sendMessage"
+                    'type': 'sendMessage'
                   },
-                    "action2": {
-                    "params": {
-                      "text": woman_obj.comment3
+                    'action2': {
+                    'params': {
+                      'text': woman_obj.comment3
                     },
-                    "type": "sendMessage"
+                    'type': 'sendMessage'
                   },
-                  "action3": {
-                    "params": {
-                      "text": woman_obj.comment4
+                  'action3': {
+                    'params': {
+                      'text': woman_obj.comment4
                     },
-                    "type": "sendMessage"
+                    'type': 'sendMessage'
                   },
-                  "action4": {
-                    "params": {
-                      "text": woman_obj.comment5
+                  'action4': {
+                    'params': {
+                      'text': woman_obj.comment5
                     },
-                    "type": "sendMessage"
+                    'type': 'sendMessage'
                   },
-                  "action5": {
-                    "params": {
-                      "text": woman_obj.comment6
+                  'action5': {
+                    'params': {
+                      'text': woman_obj.comment6
                     },
-                    "type": "sendMessage"
+                    'type': 'sendMessage'
                   },
-                    "action6": {
-                    "params": {
-                      "text": woman_obj.comment7
+                    'action6': {
+                    'params': {
+                      'text': woman_obj.comment7
                     },
-                    "type": "sendMessage"
+                    'type': 'sendMessage'
                   },
-                  "action7": {
-                    "params": {
-                      "text": woman_obj.comment8
+                  'action7': {
+                    'params': {
+                      'text': woman_obj.comment8
                     },
-                    "type": "sendMessage"
+                    'type': 'sendMessage'
                   },
-                  "action8": {
-                    "params": {
-                      "text": woman_obj.comment9
+                  'action8': {
+                    'params': {
+                      'text': woman_obj.comment9
                     },
-                    "type": "sendMessage"
+                    'type': 'sendMessage'
                   }
 
                 },
-                "images": {
-                  "image1": {
-                    "h": 1040,
-                    "w": 1040,
-                    "y": 0,
-                    "x": 0
+                'images': {
+                  'image1': {
+                    'h': 1040,
+                    'w': 1040,
+                    'y': 0,
+                    'x': 0
                   }
                 },
-                "canvas": {
-                  "height": 1040,
-                  "width": 1040,
-                  "initialScene": "scene1"
+                'canvas': {
+                  'height': 1040,
+                  'width': 1040,
+                  'initialScene': 'scene1'
                 }
               }
 
@@ -855,7 +856,7 @@ class Woman(db.Model):
     def __repr__(self):
         return '<Woman %r>' % self.username
 
-@app.route("/callback", methods=['POST'])
+@app.route('/callback', methods=['POST'])
 def callback():
 
 
@@ -871,15 +872,15 @@ def callback():
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video
     if content_type == 8:
-              post_sticker(sender,"100","1","100")
+              post_sticker(sender,'100','1','100')
     else:
         if not db.session.query(User).filter(User.user_code == sender).count():
             reg = User('user_'+str(sender), sender)
             db.session.add(reg)
             db.session.commit()
-            print("ユーザー登録完了",str(sender))
+            print('ユーザー登録完了',str(sender))
         else:
-            print("ユーザー登録済み")
+            print('ユーザー登録済み')
             text = msg['content']['text']
             # user_status=User.user_status
 
@@ -887,57 +888,57 @@ def callback():
 
         # メッセージ送信者のユーザーid
         user_id= db.session.query(User).filter(User.user_code == sender).first().id
-        print("content_id")
+        print('content_id')
         print(content_id)
 
         # ユーザーの状態
         this_user = db.session.query(User).filter(User.user_code == sender).first()
         status = this_user.user_status
         # user_status=this_user.user_status
-        print("ユーザーの状態")
+        print('ユーザーの状態')
         print(status)
 
-        if text == "text":
+        if text == 'text':
             image = msg['content']['text']
-            print("image")
+            print('image')
             print(image)
         elif re.compile('rich').match(text):
             # rich message
             print('rich')
             post_rich_message(sender)
-        elif re.compile("翻訳|translate|訳し|訳す|ほんやく").match(text):
+        elif re.compile('翻訳|translate|訳し|訳す|ほんやく').match(text):
 
-            pre_translate_text=text.replace("翻訳","")
-            print("翻訳に反応")
+            pre_translate_text=text.replace('翻訳','')
+            print('翻訳に反応')
             print(pre_translate_text)
             post_text(sender,get_translate(pre_translate_text))
 
-        elif re.compile("location_").match(text):
-            location_id=int(text.replace("location_",""))
-            post_text(sender,"よく起きれたね！すごいね！")
+        elif re.compile('location_').match(text):
+            location_id=int(text.replace('location_',''))
+            post_text(sender,'よく起きれたね！すごいね！')
 
-        elif re.compile("メモ作成").match(text):
+        elif re.compile('メモ作成').match(text):
 
-            text=text.replace("メモ作成","")
+            text=text.replace('メモ作成','')
             # DB追加
             task = Task(text, user_id)
             db.session.add(task)
             db.session.commit()
-            print("メモに登録完了")
-            post_text(sender,"メモに登録しました")
-        elif re.compile("メモ見る").match(text):
-            print("メモを見る")
-            text=text.replace("メモ見る","")
-            text_task=""
+            print('メモに登録完了')
+            post_text(sender,'メモに登録しました')
+        elif re.compile('メモ見る').match(text):
+            print('メモを見る')
+            text=text.replace('メモ見る','')
+            text_task=''
             tasks = db.session.query(Task).filter(Task.user_id == user_id)
             for idx, task_obj in enumerate(tasks):
-                text_task+=(str(idx+1) +":"+task_obj.task+"\n")
+                text_task+=(str(idx+1) +':'+task_obj.task+'\n')
 
             print(text_task)
-            post_text(sender,"メモの検索結果\n"+str(text_task))
-        elif re.compile("メモけす").match(text):
-            print("メモけす")
-            task_num_to_delete=int(text.replace("メモけす",""))
+            post_text(sender,'メモの検索結果\n'+str(text_task))
+        elif re.compile('メモけす').match(text):
+            print('メモけす')
+            task_num_to_delete=int(text.replace('メモけす',''))
 
             task_to_delete = db.session.query(Task).filter(Task.user_id == user_id)[task_num_to_delete-1]
             task_deleted=task_to_delete.task
@@ -945,10 +946,10 @@ def callback():
             db.session.commit()
 
             print(task_to_delete)
-            post_text(sender,"メモを消去しました\n"+str(task_deleted))
+            post_text(sender,'メモを消去しました\n'+str(task_deleted))
         else:
 
-            print("メイン")
+            print('メイン')
             promlems = db.session.query(Problem2).all()
             for idx, problem_obj in enumerate(promlems):
                 print(problem_obj.problem)
@@ -960,10 +961,10 @@ def callback():
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
-                print("0->1 ")
+                print('0->1 ')
             elif status==1:
                 # if :
-                post_text(sender,"いいですね")
+                post_text(sender,'いいですね')
 
 
                 post_text(sender,promlems[1].problem)
@@ -973,11 +974,11 @@ def callback():
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
-                print("1->2")
+                print('1->2')
                 print(status)
 
             elif status==2:
-                post_text(sender,"いいですね")
+                post_text(sender,'いいですね')
 
                 post_text(sender,promlems[2].problem)
                 post_yes_no_rich(sender)
@@ -986,12 +987,12 @@ def callback():
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
-                print("2->3")
+                print('2->3')
                 print(status)
 
             elif status==3:
-                post_text(sender,"いいですね．美女をご紹介します．")
-                post_text(sender,"好きな場所をタップしてください")
+                post_text(sender,'いいですね．美女をご紹介します．')
+                post_text(sender,'好きな場所をタップしてください')
                 woman_all = db.session.query(Woman).all()
                 woman_obj = woman_all[0]
                 for idx, problem_obj in enumerate(promlems):
@@ -1006,7 +1007,7 @@ def callback():
                 db.session.commit()
             # elif status==4:
                 # TODO:ここでタップされた場所を表す投稿内容をうけとってそれに応じたメッセージ表示
-                # post_text(sender,"よく起きれたね！すごいね！")
+                # post_text(sender,'よく起きれたね！すごいね！')
                 #
                 # status =0
                 # this_user.user_status=status
