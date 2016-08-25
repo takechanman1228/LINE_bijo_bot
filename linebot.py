@@ -853,18 +853,18 @@ class Woman(db.Model):
     comment9 = db.Column(db.String(120))
     # MARKUP_JSON9 = db.Column(db.String(120))
 
-    def __init__(self,username,womanurl,comment1,comment2,comment3,comment4,comment5,comment6,comment7,comment8,comment9):
+    def __init__(self,username,womanurl):
         self.username = username
         self.womanurl = womanurl
-        self.comment1 = comment1
-        self.comment2 = comment2
-        self.comment3 = comment3
-        self.comment4 = comment4
-        self.comment5 = comment5
-        self.comment6 = comment6
-        self.comment7 = comment7
-        self.comment8 = comment8
-        self.comment9 = comment9
+        self.comment1 = "location_1"
+        self.comment2 = "location_2"
+        self.comment3 = "location_3"
+        self.comment4 = "location_4"
+        self.comment5 = "location_5"
+        self.comment6 = "location_6"
+        self.comment7 = "location_7"
+        self.comment8 = "location_8"
+        self.comment9 = "location_9"
 
     def __repr__(self):
         return '<Woman %r>' % self.username
@@ -917,7 +917,7 @@ def callback():
 
         if content_type==10:
             # content_displayname = msg['content']['contentMetadata']['displayName']
-            post_text(sender,"「ヘルプ」といれたらヘルプがでるよ")
+            post_text(sender,"スタンプをおすとヘルプがでるよ")
 
         elif content_type == 8:
             print("スタンプ")
