@@ -692,6 +692,7 @@ class Woman(db.Model):
     comment7 = db.Column(db.String(120))
     comment8 = db.Column(db.String(120))
     comment9 = db.Column(db.String(120))
+    MARKUP_JSON9 = db.Column(db.String(120))
 
     def __init__(self,username,womanurl,comment1,comment2,comment3,comment4,comment5,comment6,comment7,comment8,comment9):
         self.username = username
