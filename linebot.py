@@ -341,7 +341,7 @@ def post_yes_no_rich(to):
                     }
                   }
 
-def post_9col_rich_message(to):
+def post_9col_rich_message(to, json_custom):
     MARKUP_JSON9 = {
                     "scenes": {
                       "scene1": {
@@ -481,7 +481,7 @@ def post_9col_rich_message(to):
             'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/woman_test',
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
-            'MARKUP_JSON':json.dumps(MARKUP_JSON9)
+            'MARKUP_JSON':json.dumps(json_custom)
 
             }# end copy
         }
@@ -960,7 +960,11 @@ def callback():
 
             elif status==3:
                 post_text(sender,"いいですね．美女をご紹介します")
-                post_9col_rich_message(sender)
+                woman_obj = db.session.query(Woman).all().first()
+                for idx, problem_obj in enumerate(promlems):
+                    print(problem_obj.problem)
+
+                post_9col_rich_message(sender, woman_obj.MARKUP_JSON9)
 
                 status =0
                 this_user.user_status=status
