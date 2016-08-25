@@ -756,6 +756,10 @@ def callback():
 
             # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
+            promlems = db.session.query(Problem2).all()
+            # promlems = db.session.query(Problems2).filter(Problems2.user_id == user_id)
+            for idx, problem_obj in enumerate(promlems):
+                print(problem_obj.problem)
             # post_rich_message(sender)
             # post_9col_rich_message(sender)
             # get_image('4804782161918')
@@ -776,12 +780,13 @@ def callback():
             # db.session.add(problem)
             # db.session.commit()
 
+
             if status ==0:
             # else:
                 # print("statusが存在")
                 # print(status)
                 # post_text(sender,"どうだったー?\n")
-                post_text(sender,"1回目 5+3は？")
+                post_text(sender,promlems[0].problem)
                 status=1
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 #
@@ -804,7 +809,7 @@ def callback():
                 print("1だったけどいまは")
                 print(status)
             elif status==2:
-                post_text(sender,"2回目 5+3は？")
+                post_text(sender,promlems[1].problem)
                 status =3
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 # this_user=db.session.query(User).filter(User.user_code == sender).first()
