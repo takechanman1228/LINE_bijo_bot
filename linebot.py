@@ -607,55 +607,55 @@ class Woman(db.Model):
                     "actions": {
                       "action1": {
                         "params": {
-                          "text": "2"
+                          "text": comment2
                         },
                         "type": "sendMessage"
                       },
                       "action0": {
                         "params": {
-                          "text": "1"
+                          "text": comment1
                         },
                         "type": "sendMessage"
                       },
                         "action2": {
                         "params": {
-                          "text": "3"
+                          "text": comment3
                         },
                         "type": "sendMessage"
                       },
                       "action3": {
                         "params": {
-                          "text": "4"
+                          "text": comment4
                         },
                         "type": "sendMessage"
                       },
                       "action4": {
                         "params": {
-                          "text": "5"
+                          "text": comment5
                         },
                         "type": "sendMessage"
                       },
                       "action5": {
                         "params": {
-                          "text": "6"
+                          "text": comment6
                         },
                         "type": "sendMessage"
                       },
                         "action6": {
                         "params": {
-                          "text": "7"
+                          "text": comment7
                         },
                         "type": "sendMessage"
                       },
                       "action7": {
                         "params": {
-                          "text": "8"
+                          "text": comment8
                         },
                         "type": "sendMessage"
                       },
                       "action8": {
                         "params": {
-                          "text": "9"
+                          "text": comment9
                         },
                         "type": "sendMessage"
                       }
@@ -790,7 +790,7 @@ def callback():
             print(task_to_delete)
             post_text(sender,"メモを消去しました\n"+str(task_deleted))
         else:
-            woman = Woman(username,'https://translate-application.herokuapp.com/static/9',"username","2","3","4","5","6","7","8","9")
+            woman = Woman(username,'https://internship2016.herokuapp.com/static/9',"username","a","b","d","5","6","7","8","9")
 
             # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
