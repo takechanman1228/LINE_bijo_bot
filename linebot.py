@@ -42,7 +42,7 @@ def post_sticker( to,STKID,STKPKGID,STKVER):
         'to':[to],
         'toChannel':1383378250, # Fixed  value
         'eventType':"138311608800106203", # Fixed  value
-        "contentMetadata"={
+        "contentMetadata":{
           "STKID":STKID,
           "STKPKGID":STKPKGID,
           "STKVER":STKVER
