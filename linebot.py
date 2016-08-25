@@ -1035,6 +1035,9 @@ def callback():
                 # TODO:問題をランダムに
                 # random_i=random.randint(0,5)
                 # post_text(sender,promlems[nanmonme].problem)
+                post_text(sender,"じりりりりじりりりり")
+                post_text(sender,"8時です起きて！！！")
+                post_text(sender,"あなたが気持ちよく目覚めるのをサポートします")
                 post_text(sender,"あなたの今日の好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
