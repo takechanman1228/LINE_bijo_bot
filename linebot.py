@@ -971,7 +971,8 @@ def callback():
 
             elif status==3:
                 post_text(sender,"いいですね．美女をご紹介します")
-                woman_obj = db.session.query(Woman).all().first()
+                woman_all = db.session.query(Woman).all()
+                woman_obj = woman_all[0]
                 for idx, problem_obj in enumerate(promlems):
                     print(problem_obj.problem)
 
