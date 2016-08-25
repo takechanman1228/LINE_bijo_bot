@@ -246,20 +246,20 @@ def post_yes_no_rich(to):
                     "actions": {
                       "action1": {
                         "params": {
-                          "text": "No"
+                          "text": "いいえ"
                         },
                         "type": "sendMessage"
                       },
                       "action0": {
                         "params": {
-                          "text": "Yes"
+                          "text": "はい"
                         },
                         "type": "sendMessage"
                       }
                     },
                     "images": {
                       "image1": {
-                        "h": 1040,
+                        "h": 130,
                         "w": 1040,
                         "y": 0,
                         "x": 0
