@@ -785,7 +785,7 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
+    username = db.Column(db.String(80))
     user_code = db.Column(db.String(80), unique=True)
     user_status = db.Column(db.Integer)
     user_completed_status = db.Column(db.Integer)
@@ -1032,7 +1032,8 @@ def callback():
             if status ==0:
                 # TODO:問題をランダムに
                 # random_i=random.randint(0,5)
-                post_text(sender,promlems[nanmonme].problem)
+                # post_text(sender,promlems[nanmonme].problem)
+                post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
                 status=1
                 this_user.user_status=status
@@ -1046,7 +1047,8 @@ def callback():
             elif status==1:
                 post_text(sender,"いいですね")
                 # TODO:問題をランダムに
-                post_text(sender,promlems[nanmonme].problem)
+                # post_text(sender,promlems[nanmonme].problem)
+                post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
 
                 status = 2
@@ -1064,7 +1066,8 @@ def callback():
                 post_text(sender,"いいですね")
                 # TODO:問題をランダムに
 
-                post_text(sender,promlems[nanmonme].problem)
+                # post_text(sender,promlems[nanmonme].problem)
+                post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
 
                 status =3
