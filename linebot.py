@@ -479,7 +479,7 @@ class Problem(db.Model):
     problem = db.Column(db.String(80))
     answer= db.Column(db.Integer)
 
-    def __init__(self, task, user_id):
+    def __init__(self, problem, answer):
         self.problem = problem
         self.answer = answer
 
@@ -487,12 +487,12 @@ class Problem(db.Model):
         return '<Problems %r>' % self.problem
 
 # Yes/Noの問題
-class Problems2(db.Model):
+class Problem2(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     problem = db.Column(db.String(80))
     answer= db.Column(db.Integer)
 
-    def __init__(self, task, user_id):
+    def __init__(self, problem, answer):
         self.problem = problem
         self.answer = answer
 
@@ -601,7 +601,8 @@ def callback():
             #     print("2だったけどいまは")
             #     print(status)
 
-            problems = db.session.query(Problem).filter(Problem.id == 1)
+
+            # problems = db.session.query(Problem).filter(Problem.id == 1)
             problem = Problem("3+5は?", "8")
             db.session.add(problem)
             db.session.commit()
