@@ -400,7 +400,7 @@ def post_9col_rich_message(to):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/yn',
+            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/9',
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON9)
@@ -606,7 +606,9 @@ def callback():
                 # post_text(sender,"どうだったー?\n")
                 post_text(sender,"5+3は？")
                 status=1
-                this_user= db.session.query(User).filter(User.user_code == sender).first()
+                # this_user= db.session.query(User).filter(User.user_code == sender).first()
+                #
+                this_user=User.query.filter_by(User.user_code == sender).first()
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
@@ -614,8 +616,10 @@ def callback():
                 print(status)
             elif status==1:
                 post_text(sender,"正解")
-                status =2
-                this_user= db.session.query(User).filter(User.user_code == sender).first()
+                status =0
+                # this_user= db.session.query(User).filter(User.user_code == sender).first()
+                this_user=User.query.filter_by(User.user_code == sender).first()
+
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
