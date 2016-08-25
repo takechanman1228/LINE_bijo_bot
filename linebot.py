@@ -859,9 +859,9 @@ def callback():
         sender = msg['content']['from']
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video 10:友達追加
-        content_type = msg['content']['contentType']
-        # if content_type==10:
-
+        # content_type = msg['content']['contentType']
+        if content_type==10:
+            post_text(to,"this is tutorial")
         if not db.session.query(User).filter(User.user_code == sender).count():
             reg = User('user_'+str(sender), sender)
             db.session.add(reg)
