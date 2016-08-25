@@ -254,7 +254,7 @@ def post_yes_no_rich(to):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/yn',
+            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/yes_no',
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
