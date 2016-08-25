@@ -608,7 +608,7 @@ def callback():
                 status=1
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 #
-                this_user=db.session.query.filter_by(user_code == sender).first()
+                this_user=db.users.filter_by(user_code == sender).first()
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
@@ -618,7 +618,7 @@ def callback():
                 post_text(sender,"正解")
                 status =0
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                this_user=db.session.query.filter_by(user_code == sender).first()
+                this_user=db.users.filter_by(user_code == sender).first()
 
                 this_user.user_status=status
                 db.session.add(this_user)
@@ -629,7 +629,7 @@ def callback():
                 post_text(sender,"正解")
                 status =0
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                this_user=db.session.query.filter_by(user_code == sender).first()
+                this_user=db.users.filter_by(user_code == sender).first()
 
                 this_user.user_status=status
                 db.session.add(this_user)
