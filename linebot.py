@@ -514,7 +514,6 @@ class Woman(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
     womanurl = db.Column(db.String(120))
-    character = db.Column(db.[String[80],String[80],String[80]])
     comment1 = db.Column(db.String(120))
     comment2 = db.Column(db.String(120))
     comment3 = db.Column(db.String(120))
@@ -528,7 +527,6 @@ class Woman(db.Model):
     def __init__(self,username,womanurl,comment1,comment2,comment3,comment4,comment5,comment6,comment7,comment8,comment9)
         self.username = username
         self.beauty = beauty
-        self.character = character
         self.comment1 = comment1
         self.comment2 = comment2
         self.comment3 = comment3
@@ -541,8 +539,6 @@ class Woman(db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
-    def character(hobby1,hobby2,hobby3)
-        return beauty + {"hobby1","hobby2","hobby3"}
     def MARKUP_JSON9
         var = {
                     "scenes": {
