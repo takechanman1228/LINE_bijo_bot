@@ -328,13 +328,13 @@ def post_9col_rich_message(to):
                     "actions": {
                       "action1": {
                         "params": {
-                          "text": "1"
+                          "text": "2"
                         },
                         "type": "sendMessage"
                       },
                       "action0": {
                         "params": {
-                          "text": "2"
+                          "text": "1"
                         },
                         "type": "sendMessage"
                       },
@@ -615,6 +615,17 @@ def callback():
                 print("0だったけどいまは")
                 print(status)
             elif status==1:
+                post_text(sender,"正解")
+                status =0
+                # this_user= db.session.query(User).filter(User.user_code == sender).first()
+                this_user=User.query.filter_by(User.user_code == sender).first()
+
+                this_user.user_status=status
+                db.session.add(this_user)
+                db.session.commit()
+                print("1だったけどいまは")
+                print(status)
+            elif status==2:
                 post_text(sender,"正解")
                 status =0
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
