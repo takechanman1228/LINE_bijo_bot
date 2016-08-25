@@ -588,7 +588,7 @@ def callback():
             # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
             # post_rich_message(sender)
-            post_9col_rich_message(sender)
+            # post_9col_rich_message(sender)
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
             # if content_type==2:
@@ -625,7 +625,7 @@ def callback():
                 print(status)
             elif status==1:
                 post_text(sender,"正解")
-                status =0
+                status =2
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
@@ -636,7 +636,7 @@ def callback():
                 print(status)
             elif status==2:
                 post_text(sender,"2回目 5+3は？")
-                status =0
+                status =3
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
@@ -648,7 +648,7 @@ def callback():
 
             elif status==3:
                 post_text(sender,"正解")
-                status =0
+                status =4
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
@@ -660,7 +660,7 @@ def callback():
 
             elif status==4:
                 post_text(sender,"3回目 5+3は？")
-                status =0
+                status =5
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
@@ -673,7 +673,7 @@ def callback():
 
             elif status==5:
                 post_text(sender,"正解")
-                status =0
+                status =6
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
@@ -682,6 +682,10 @@ def callback():
                 db.session.commit()
                 print("1だったけどいまは")
                 print(status)
+            elif status == 6:
+                post_text(sender,"3問連続正解")
+                post_9col_rich_message(sender)
+
 
             # elif status==6:
             #     post_text(sender,"正解")
