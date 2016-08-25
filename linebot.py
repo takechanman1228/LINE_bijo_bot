@@ -764,21 +764,6 @@ def callback():
             # post_9col_rich_message(sender)
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
-            # if content_type==2:
-            #     post_text(sender,"写真おくってくれてありがとう！みんなに君のがんばりを紹介するかも！")
-            #     status=0
-            #     this_user= db.session.query(User).filter(User.user_code == sender).first()
-            #     this_user.user_status=status
-            #     db.session.add(this_user)
-            #     db.session.commit()
-            #     print("2だったけどいまは")
-            #     print(status)
-
-
-            # problems = db.session.query(Problem).filter(Problem.id == 1)
-            # problem = Problem("3+5は?", "8")
-            # db.session.add(problem)
-            # db.session.commit()
 
 
             if status ==0:
@@ -792,16 +777,12 @@ def callback():
             elif status==1:
                 # if :
                 post_text(sender,"いいですね")
-                status = 2
 
-                this_user.user_status=status
-                db.session.add(this_user)
-                db.session.commit()
-            # elif status==2:
+
                 post_text(sender,promlems[1].problem)
                 post_yes_no_rich(sender)
-                # status =3
 
+                status = 2
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
@@ -810,28 +791,22 @@ def callback():
 
             elif status==2:
                 post_text(sender,"いいですね")
-                # status =4
 
-                this_user.user_status=status
-                db.session.add(this_user)
-                db.session.commit()
-
-            # elif status==4:
                 post_text(sender,promlems[2].problem)
                 post_yes_no_rich(sender)
-                status =3
 
+                status =3
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
                 print("2->3")
                 print(status)
 
-
+            elif status==3:
                 post_text(sender,"いいですね．美女をご紹介します")
                 post_9col_rich_message(sender)
-                status =0
 
+                status =0
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
