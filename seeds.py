@@ -5,7 +5,7 @@ from linebot import Woman, Problem2, User
 # User.query.delete()
 
 db.create_all()
-db.session.add(Woman("美女モデル","https://translate-application.herokuapp.com/static/woman_test","location_1","location_2","location_3","location_4","location_5","location_6","location_7","location_8","location_9"))
+db.session.add(Woman("美女モデル","https://internship2016.herokuapp.com/static/woman_test","location_1","location_2","location_3","location_4","location_5","location_6","location_7","location_8","location_9"))
 db.session.commit()
 
 

@@ -123,7 +123,7 @@ def post_vote_message(to):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/vote',
+            'DOWNLOAD_URL': 'https://internship2016.herokuapp.com/static/vote',
             'SPEC_REV': '1',
             'ALT_TEXT': '美女がおたずねです',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
@@ -185,7 +185,7 @@ def post_rich_message(to):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static',
+            'DOWNLOAD_URL': 'https://internship2016.herokuapp.com/static',
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
@@ -254,7 +254,7 @@ def post_yes_no_rich(to):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/yn',
+            'DOWNLOAD_URL': 'https://internship2016.herokuapp.com/static/yn',
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
@@ -478,7 +478,7 @@ def post_9col_rich_message(to, json_custom):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/woman_test',
+            'DOWNLOAD_URL': 'https://internship2016.herokuapp.com/static/woman_test',
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(json_custom)
@@ -568,7 +568,7 @@ def post_4col_rich_message(to):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/9',
+            'DOWNLOAD_URL': 'https://internship2016.herokuapp.com/static/9',
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON9)
