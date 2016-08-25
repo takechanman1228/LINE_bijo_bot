@@ -1031,6 +1031,15 @@ def callback():
             print("翻訳に反応")
             print(pre_translate_text)
             post_text(sender,get_translate(pre_translate_text))
+
+        elif re.compile("location_").match(text):
+            location_id=int(text.replace("location_",""))
+            post_text(sender,"よく起きれたね！すごいね！")
+            #
+            # status =0
+            # this_user.user_status=status
+            # db.session.add(this_user)
+            # db.session.commit()
         elif re.compile("メモ作成").match(text):
 
             text=text.replace("メモ作成","")
@@ -1105,7 +1114,8 @@ def callback():
                 print(status)
 
             elif status==3:
-                post_text(sender,"いいですね．美女をご紹介します")
+                post_text(sender,"いいですね．美女をご紹介します．")
+                post_text(sender,"好きな場所をタップしてください")
                 woman_all = db.session.query(Woman).all()
                 woman_obj = woman_all[0]
                 for idx, problem_obj in enumerate(promlems):
@@ -1118,6 +1128,15 @@ def callback():
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
+            # elif status==4:
+                # TODO:ここでタップされた場所を表す投稿内容をうけとってそれに応じたメッセージ表示
+                # post_text(sender,"よく起きれたね！すごいね！")
+                #
+                # status =0
+                # this_user.user_status=status
+                # db.session.add(this_user)
+                # db.session.commit()
+
 
         print(msgs)
         print(sender)
