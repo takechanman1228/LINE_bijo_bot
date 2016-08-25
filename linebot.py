@@ -563,7 +563,8 @@ def post_4col_rich_message(to):
                       "width": 1040,
                       "initialScene": "scene1"
                     }
-                  }    content = {
+                  }
+    content = {
         'contentType':12,
         'toType':1,
         'contentMetadata': {
@@ -840,8 +841,8 @@ def callback():
 
 
             elif status==5:
-                post_text(sender,"正解")
-                status =6
+                post_text(sender,"3問連続正解")
+                status =0
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
@@ -850,9 +851,7 @@ def callback():
                 db.session.commit()
                 print("1だったけどいまは")
                 print(status)
-            elif status == 6:
-                post_text(sender,"3問連続正解")
-                post_9col_rich_message(sender)
+
 
 
             # elif status==6:
