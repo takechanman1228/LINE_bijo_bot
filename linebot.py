@@ -603,16 +603,16 @@ def callback():
 
 
             # problems = db.session.query(Problem).filter(Problem.id == 1)
-            problem = Problem("3+5は?", "8")
-            db.session.add(problem)
-            db.session.commit()
+            # problem = Problem("3+5は?", "8")
+            # db.session.add(problem)
+            # db.session.commit()
 
             if status ==0:
             # else:
                 # print("statusが存在")
                 # print(status)
                 # post_text(sender,"どうだったー?\n")
-                post_text(sender,"5+3は？")
+                post_text(sender,"1回目 5+3は？")
                 status=1
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 #
@@ -635,7 +635,7 @@ def callback():
                 print("1だったけどいまは")
                 print(status)
             elif status==2:
-                post_text(sender,"5+3は？")
+                post_text(sender,"2回目 5+3は？")
                 status =0
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 # this_user=db.session.query(User).filter(User.user_code == sender).first()
@@ -659,7 +659,7 @@ def callback():
                 print(status)
 
             elif status==4:
-                post_text(sender,"5+3は？")
+                post_text(sender,"3回目 5+3は？")
                 status =0
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 # this_user=db.session.query(User).filter(User.user_code == sender).first()
