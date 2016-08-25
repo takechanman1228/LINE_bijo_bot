@@ -789,12 +789,15 @@ class User(db.Model):
     user_code = db.Column(db.String(80), unique=True)
     user_status = db.Column(db.Integer)
     user_completed_status = db.Column(db.Integer)
+    nanmonme = db.Column(db.Integer)
+    waiting = db.Column(db.Integer)
 
     def __init__(self, username, user_code):
         self.username = username
         self.user_code = user_code
         self.user_status = 0
         self.user_completed_status = 0
+        self.nanmonme = 0
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -911,6 +914,8 @@ def callback():
         this_user = db.session.query(User).filter(User.user_code == sender).first()
         status = this_user.user_status
         completed_status = this_user.user_completed_status
+        nanmonme = this_user.nanmonme
+        waiting = this_user.waiting
 
         print("ユーザーの状態")
         print(status)
@@ -1009,23 +1014,47 @@ def callback():
             for idx, problem_obj in enumerate(promlems):
                 print(problem_obj.problem)
 
+            questions = ["A.大人っぽい B.幼い","A.黒髪 B.茶髪","A.癒やし B.元気","A.かわいい B.きれい","A.アウトドア B.インドア","A.ロング B.ショート"]
+            reply_a = ["大人っぽい人いいですよね！",
+            "黒髪いいですのう",
+            "癒やし分かります！",
+            "かわいいは正義",
+            "アウトドア、健康ですね〜",
+            "ロングいいですね〜"]
+
+            reply_b = ["ロリいいですよね！",
+            "ブラウン可愛いですよね",
+            "元気が一番！",
+            "ゴージャスですね！",
+            "家の居心地最高〜〜",
+            "ショート、似合う人本当に似合いますよね！"]
+
             if status ==0:
                 # TODO:問題をランダムに
-                post_text(sender,promlems[0].problem)
+                # random_i=random.randint(0,5)
+                post_text(sender,promlems[nanmonme].problem)
                 post_yes_no_rich(sender)
                 status=1
                 this_user.user_status=status
+                if nanmonme==5:
+                    this_user.nanmonme=0
+                else:
+                    this_user.nanmonme=nanmonme+1
                 db.session.add(this_user)
                 db.session.commit()
                 print("0->1 ")
             elif status==1:
                 post_text(sender,"いいですね")
                 # TODO:問題をランダムに
-                post_text(sender,promlems[1].problem)
+                post_text(sender,promlems[nanmonme].problem)
                 post_yes_no_rich(sender)
 
                 status = 2
                 this_user.user_status=status
+                if nanmonme==5:
+                    this_user.nanmonme=0
+                else:
+                    this_user.nanmonme=nanmonme+1
                 db.session.add(this_user)
                 db.session.commit()
                 print("1->2")
@@ -1035,11 +1064,16 @@ def callback():
                 post_text(sender,"いいですね")
                 # TODO:問題をランダムに
 
-                post_text(sender,promlems[2].problem)
+                post_text(sender,promlems[nanmonme].problem)
                 post_yes_no_rich(sender)
 
                 status =3
                 this_user.user_status=status
+
+                if nanmonme==5:
+                    this_user.nanmonme=0
+                else:
+                    this_user.nanmonme=nanmonme+1
                 db.session.add(this_user)
                 db.session.commit()
                 print("2->3")
