@@ -13,9 +13,9 @@ LINEBOT_API_EVENT ='https://trialbot-api.line.me/v1/events'
 LINEBOT_API_IMAHE_VIDEO = 'https://trialbot-api.line.me/v1/bot/message/'
 LINE_HEADERS = {
     'Content-type': 'application/json; charset=UTF-8',
-    'X-Line-ChannelID':'1469904360', # Channel ID
-    'X-Line-ChannelSecret':'cadb3352a866e7811c1a5d8d655e3f91', # Channel secre
-    'X-Line-Trusted-User-With-ACL':'u48d6abf59024909b4a3eae290539188e' # MID (of Channel)
+    'X-Line-ChannelID':'1475553245', # Channel ID
+    'X-Line-ChannelSecret':'e1142eedb58469b23f0a4a881df4c95e', # Channel secre
+    'X-Line-Trusted-User-With-ACL':'u779a6f828f45684ec738c32bbdbd44ac' # MID (of Channel)
 }
 
 def post_event( to, content):
