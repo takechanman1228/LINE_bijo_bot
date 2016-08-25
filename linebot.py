@@ -1033,6 +1033,7 @@ def callback():
                 # TODO:問題をランダムに
                 # random_i=random.randint(0,5)
                 # post_text(sender,promlems[nanmonme].problem)
+                post_text(sender,"あなたの今日の好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
                 status=1
@@ -1045,13 +1046,14 @@ def callback():
                 db.session.commit()
                 print("0->1 ")
             elif status==1:
-                post_text(sender,"いいですね")
-                if text=="はい":
+                # post_text(sender,"いいですね")
+                if text=="A":
                     post_text(sender,reply_a[nanmonme-1])
                 elif text=="B":
                     post_text(sender,reply_b[nanmonme-1])
                 # TODO:問題をランダムに
                 # post_text(sender,promlems[nanmonme].problem)
+                post_text(sender,"あなたの今日の好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
 
@@ -1067,14 +1069,15 @@ def callback():
                 print(status)
 
             elif status==2:
-                post_text(sender,"いいですね")
-                if text=="はい":
+                # post_text(sender,"いいですね")
+                if text=="A":
                     post_text(sender,reply_a[nanmonme-1])
                 elif text=="B":
                     post_text(sender,reply_b[nanmonme-1])
                 # TODO:問題をランダムに
 
                 # post_text(sender,promlems[nanmonme].problem)
+                post_text(sender,"あなたの今日の好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
 
@@ -1091,14 +1094,14 @@ def callback():
                 print(status)
 
             elif status==3:
-                if text=="はい":
+                if text=="A":
                     post_text(sender,reply_a[nanmonme-1])
                 elif text=="B":
                     post_text(sender,reply_b[nanmonme-1])
 
-                post_text(sender,user_name+"さん．美女をご紹介します．")
+                post_text(sender,user_name+"さんにぴったりの美女をご紹介します．")
 
-                post_text(sender,"好きな場所をタップしてください")
+                post_text(sender,"好きな場所をタップして，美女からあなただけのメッセージをもらおう！")
                 woman_all = db.session.query(Woman).all()
                 woman_obj = woman_all[0]
                 for idx, problem_obj in enumerate(promlems):
