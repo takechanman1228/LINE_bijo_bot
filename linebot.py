@@ -474,7 +474,7 @@ class Task(db.Model):
         return '<Task %r>' % self.task
 
 # 数字の問題
-class Problems(db.Model):
+class Problem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     problem = db.Column(db.String(80))
     answer= db.Column(db.Integer)
@@ -533,7 +533,8 @@ def callback():
         print(content_id)
 
         # ユーザーの状態
-        status = db.session.query(User).filter(User.user_code == sender).first().user_status
+        this_user = db.session.query(User).filter(User.user_code == sender).first()
+        status = this_user.user_status
         # user_status=this_user.user_status
         print("ユーザーの状態")
         print(status)
@@ -599,6 +600,12 @@ def callback():
             #     db.session.commit()
             #     print("2だったけどいまは")
             #     print(status)
+
+            problems = db.session.query(Problem).filter(Problem.id == 1)
+            problem = Problem("3+5は?", "8")
+            db.session.add(problem)
+            db.session.commit()
+
             if status ==0:
             # else:
                 # print("statusが存在")
@@ -608,7 +615,7 @@ def callback():
                 status=1
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
                 #
-                this_user=db.session.query(User).filter(User.user_code == sender).first()
+                # this_user=db.session.query(User).filter(User.user_code == sender).first()
                 #  db.session.query(User).filter(User.user_code == sender).first().user_status
                 this_user.user_status=status
                 db.session.add(this_user)
@@ -619,7 +626,7 @@ def callback():
                 post_text(sender,"正解")
                 status =0
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                this_user=db.session.query(User).filter(User.user_code == sender).first()
+                # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
                 this_user.user_status=status
                 db.session.add(this_user)
@@ -630,7 +637,7 @@ def callback():
                 post_text(sender,"正解")
                 status =0
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                this_user=db.session.query(User).filter(User.user_code == sender).first()
+                # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
                 this_user.user_status=status
                 db.session.add(this_user)
