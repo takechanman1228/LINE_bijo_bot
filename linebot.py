@@ -341,144 +341,12 @@ def post_2col_rich_message(to):
                     }
                   }
 
-def post_9col_rich_message(to):
-    MARKUP_JSON9 = {
-                    "scenes": {
-                      "scene1": {
-                        "listeners": [
-                          {
-                            "type": "touch",
-                            "action": "action0",
-                            "params": [0, 0, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action1",
-                            "params": [346, 0, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action2",
-                            "params": [692, 0, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action3",
-                            "params": [0, 346, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action4",
-                            "params": [346, 346, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action5",
-                            "params": [692, 346, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action6",
-                            "params": [0, 692, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action7",
-                            "params": [346, 692, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action8",
-                            "params": [692, 692, 346, 346]
-                          }
-                        ],
-                        "draws": [
-                          {
-                            "h": 1040,
-                            "w": 1040,
-                            "y": 0,
-                            "x": 0,
-                            "image": "image1"
-                          }
-                        ]
-                      }
-                    },
-                    "actions": {
-                      "action1": {
-                        "params": {
-                          "text": "2"
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action0": {
-                        "params": {
-                          "text": "1"
-                        },
-                        "type": "sendMessage"
-                      },
-                        "action2": {
-                        "params": {
-                          "text": "3"
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action3": {
-                        "params": {
-                          "text": "4"
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action4": {
-                        "params": {
-                          "text": "5"
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action5": {
-                        "params": {
-                          "text": "6"
-                        },
-                        "type": "sendMessage"
-                      },
-                        "action6": {
-                        "params": {
-                          "text": "7"
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action7": {
-                        "params": {
-                          "text": "8"
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action8": {
-                        "params": {
-                          "text": "9"
-                        },
-                        "type": "sendMessage"
-                      }
-
-                    },
-                    "images": {
-                      "image1": {
-                        "h": 1040,
-                        "w": 1040,
-                        "y": 0,
-                        "x": 0
-                      }
-                    },
-                    "canvas": {
-                      "height": 1040,
-                      "width": 1040,
-                      "initialScene": "scene1"
-                    }
-                  }
+def post_9col_rich_message(to, womanurl,MARKUP_JSON9):
     content = {
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/9',
+            'DOWNLOAD_URL': womanurl,
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON9)
@@ -641,6 +509,176 @@ class Task(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.task
 
+class Woman(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    womanurl = db.Column(db.String(120))
+    character = db.Column(db.[String[80],String[80],String[80]])
+    comment1 = db.Column(db.String(120))
+    comment2 = db.Column(db.String(120))
+    comment3 = db.Column(db.String(120))
+    comment4 = db.Column(db.String(120))
+    comment5 = db.Column(db.String(120))
+    comment6 = db.Column(db.String(120))
+    comment7 = db.Column(db.String(120))
+    comment8 = db.Column(db.String(120))
+    comment9 = db.Column(db.String(120))
+
+    def __init__(self,username,womanurl,comment1,comment2,comment3,comment4,comment5,comment6,comment7,comment8,comment9)
+        self.username = username
+        self.beauty = beauty
+        self.character = character
+        self.comment1 = comment1
+        self.comment2 = comment2
+        self.comment3 = comment3
+        self.comment4 = comment4
+        self.comment5 = comment5
+        self.comment6 = comment6
+        self.comment7 = comment7
+        self.comment8 = comment8
+        self.comment9 = comment9
+    def __repr__(self):
+        return '<User %r>' % self.username
+
+    def character(hobby1,hobby2,hobby3)
+        return beauty + {"hobby1","hobby2","hobby3"}
+    def MARKUP_JSON9
+        var = {
+                    "scenes": {
+                      "scene1": {
+                        "listeners": [
+                          {
+                            "type": "touch",
+                            "action": "action0",
+                            "params": [0, 0, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action1",
+                            "params": [346, 0, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action2",
+                            "params": [692, 0, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action3",
+                            "params": [0, 346, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action4",
+                            "params": [346, 346, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action5",
+                            "params": [692, 346, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action6",
+                            "params": [0, 692, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action7",
+                            "params": [346, 692, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action8",
+                            "params": [692, 692, 346, 346]
+                          }
+                        ],
+                        "draws": [
+                          {
+                            "h": 1040,
+                            "w": 1040,
+                            "y": 0,
+                            "x": 0,
+                            "image": "image1"
+                          }
+                        ]
+                      }
+                    },
+                    "actions": {
+                      "action1": {
+                        "params": {
+                          "text": "2"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action0": {
+                        "params": {
+                          "text": "1"
+                        },
+                        "type": "sendMessage"
+                      },
+                        "action2": {
+                        "params": {
+                          "text": "3"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action3": {
+                        "params": {
+                          "text": "4"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action4": {
+                        "params": {
+                          "text": "5"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action5": {
+                        "params": {
+                          "text": "6"
+                        },
+                        "type": "sendMessage"
+                      },
+                        "action6": {
+                        "params": {
+                          "text": "7"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action7": {
+                        "params": {
+                          "text": "8"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action8": {
+                        "params": {
+                          "text": "9"
+                        },
+                        "type": "sendMessage"
+                      }
+
+                    },
+                    "images": {
+                      "image1": {
+                        "h": 1040,
+                        "w": 1040,
+                        "y": 0,
+                        "x": 0
+                      }
+                    },
+                    "canvas": {
+                      "height": 1040,
+                      "width": 1040,
+                      "initialScene": "scene1"
+                    }
+                  }
+        return var
+
+
+
 # 数字の問題
 class Problem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -752,11 +790,12 @@ def callback():
             print(task_to_delete)
             post_text(sender,"メモを消去しました\n"+str(task_deleted))
         else:
+            woman = Woman(username,'https://translate-application.herokuapp.com/static/9',"username","2","3","4","5","6","7","8","9")
 
             # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
             # post_rich_message(sender)
-            # post_9col_rich_message(sender)
+            post_9col_rich_message(sender)
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
             # if content_type==2:
@@ -775,84 +814,84 @@ def callback():
             # db.session.add(problem)
             # db.session.commit()
 
-            if status ==0:
-            # else:
-                # print("statusが存在")
-                # print(status)
-                # post_text(sender,"どうだったー?\n")
-                post_text(sender,"1回目 5+3は？")
-                status=1
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                #
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
-                #  db.session.query(User).filter(User.user_code == sender).first().user_status
-                this_user.user_status=status
-                db.session.add(this_user)
-                db.session.commit()
-                print("0だったけどいまは")
-                print(status)
-            elif status==1:
-                post_text(sender,"正解")
-                status =2
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
+            # if status ==0:
+            # # else:
+            #     # print("statusが存在")
+            #     # print(status)
+            #     # post_text(sender,"どうだったー?\n")
+            #     post_text(sender,"1回目 5+3は？")
+            #     status=1
+            #     # this_user= db.session.query(User).filter(User.user_code == sender).first()
+            #     #
+            #     # this_user=db.session.query(User).filter(User.user_code == sender).first()
+            #     #  db.session.query(User).filter(User.user_code == sender).first().user_status
+            #     this_user.user_status=status
+            #     db.session.add(this_user)
+            #     db.session.commit()
+            #     print("0だったけどいまは")
+            #     print(status)
+            # elif status==1:
+            #     post_text(sender,"正解")
+            #     status =2
+            #     # this_user= db.session.query(User).filter(User.user_code == sender).first()
+            #     # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
-                this_user.user_status=status
-                db.session.add(this_user)
-                db.session.commit()
-                print("1だったけどいまは")
-                print(status)
-            elif status==2:
-                post_text(sender,"2回目 5+3は？")
-                status =3
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
+            #     this_user.user_status=status
+            #     db.session.add(this_user)
+            #     db.session.commit()
+            #     print("1だったけどいまは")
+            #     print(status)
+            # elif status==2:
+            #     post_text(sender,"2回目 5+3は？")
+            #     status =3
+            #     # this_user= db.session.query(User).filter(User.user_code == sender).first()
+            #     # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
-                this_user.user_status=status
-                db.session.add(this_user)
-                db.session.commit()
-                print("1だったけどいまは")
-                print(status)
+            #     this_user.user_status=status
+            #     db.session.add(this_user)
+            #     db.session.commit()
+            #     print("1だったけどいまは")
+            #     print(status)
 
-            elif status==3:
-                post_text(sender,"正解")
-                status =4
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
+            # elif status==3:
+            #     post_text(sender,"正解")
+            #     status =4
+            #     # this_user= db.session.query(User).filter(User.user_code == sender).first()
+            #     # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
-                this_user.user_status=status
-                db.session.add(this_user)
-                db.session.commit()
-                print("1だったけどいまは")
-                print(status)
+            #     this_user.user_status=status
+            #     db.session.add(this_user)
+            #     db.session.commit()
+            #     print("1だったけどいまは")
+            #     print(status)
 
-            elif status==4:
-                post_text(sender,"3回目 5+3は？")
-                status =5
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
+            # elif status==4:
+            #     post_text(sender,"3回目 5+3は？")
+            #     status =5
+            #     # this_user= db.session.query(User).filter(User.user_code == sender).first()
+            #     # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
-                this_user.user_status=status
-                db.session.add(this_user)
-                db.session.commit()
-                print("1だったけどいまは")
-                print(status)
+            #     this_user.user_status=status
+            #     db.session.add(this_user)
+            #     db.session.commit()
+            #     print("1だったけどいまは")
+            #     print(status)
 
 
-            elif status==5:
-                post_text(sender,"正解")
-                status =6
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
+            # elif status==5:
+            #     post_text(sender,"正解")
+            #     status =6
+            #     # this_user= db.session.query(User).filter(User.user_code == sender).first()
+            #     # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
-                this_user.user_status=status
-                db.session.add(this_user)
-                db.session.commit()
-                print("1だったけどいまは")
-                print(status)
-            elif status == 6:
-                post_text(sender,"3問連続正解")
-                post_9col_rich_message(sender)
+            #     this_user.user_status=status
+            #     db.session.add(this_user)
+            #     db.session.commit()
+            #     print("1だったけどいまは")
+            #     print(status)
+            # elif status == 6:
+            #     post_text(sender,"3問連続正解")
+            #     post_9col_rich_message(sender)
 
 
             # elif status==6:
