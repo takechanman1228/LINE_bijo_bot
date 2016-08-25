@@ -754,17 +754,10 @@ def callback():
             post_text(sender,"メモを消去しました\n"+str(task_deleted))
         else:
 
-            # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
             promlems = db.session.query(Problem2).all()
-            # promlems = db.session.query(Problems2).filter(Problems2.user_id == user_id)
             for idx, problem_obj in enumerate(promlems):
                 print(problem_obj.problem)
-            # post_rich_message(sender)
-            # post_9col_rich_message(sender)
-            # get_image('4804782161918')
-            # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
-
 
             if status ==0:
                 post_text(sender,promlems[0].problem)
@@ -811,29 +804,9 @@ def callback():
                 db.session.add(this_user)
                 db.session.commit()
 
-
-
-            # elif status==6:
-            #     post_text(sender,"正解")
-            #     status =0
-            #     # this_user= db.session.query(User).filter(User.user_code == sender).first()
-            #     # this_user=db.session.query(User).filter(User.user_code == sender).first()
-            #
-            #     this_user.user_status=status
-            #     db.session.add(this_user)
-            #     db.session.commit()
-            #     print("1だったけどいまは")
-            #     print(status)
-
-
-        # this_user= db.session.query(User).filter(User.user_code == sender).first()
-        # this_user.user_status=status
-        # db.session.add(this_user)
-        # db.session.commit()
         print(msgs)
         print(sender)
 
-        # print(datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
 
 
 
