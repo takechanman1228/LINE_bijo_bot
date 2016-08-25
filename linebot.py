@@ -1048,7 +1048,7 @@ def callback():
                 post_text(sender,"いいですね")
                 if text=="はい":
                     post_text(sender,reply_a[nanmonme-1])
-                else  text=="いいえ":
+                elif text=="いいえ":
                     post_text(sender,reply_b[nanmonme-1])
                 # TODO:問題をランダムに
                 # post_text(sender,promlems[nanmonme].problem)
@@ -1070,7 +1070,7 @@ def callback():
                 post_text(sender,"いいですね")
                 if text=="はい":
                     post_text(sender,reply_a[nanmonme-1])
-                else  text=="いいえ":
+                elif text=="いいえ":
                     post_text(sender,reply_b[nanmonme-1])
                 # TODO:問題をランダムに
 
@@ -1093,7 +1093,7 @@ def callback():
             elif status==3:
                 if text=="はい":
                     post_text(sender,reply_a[nanmonme-1])
-                else  text=="いいえ":
+                elif text=="いいえ":
                     post_text(sender,reply_b[nanmonme-1])
 
                 post_text(sender,user_name+"さん．美女をご紹介します．")
