@@ -858,17 +858,15 @@ def callback():
         sender = msg['content']['from']
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video
-        if content_type == 10
-          post_text(sender,"tutorial")
-        else
-          if not db.session.query(User).filter(User.user_code == sender).count():
-                reg = User('user_'+str(sender), sender)
-                db.session.add(reg)
-                db.session.commit()
-                print("ユーザー登録完了",str(sender))
-
-          else:
-                print("ユーザー登録済み")
+        if content_type == 10:
+            post_text(sender,"tutorial")
+        if not db.session.query(User).filter(User.user_code == sender).count():
+            reg = User('user_'+str(sender), sender)
+            db.session.add(reg)
+            db.session.commit()
+            print("ユーザー登録完了",str(sender))
+        else:
+            print("ユーザー登録済み")
             text = msg['content']['text']
             # user_status=User.user_status
 
