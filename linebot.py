@@ -263,6 +263,153 @@ def post_2col_rich_message(to):
         }
     post_event(to,content)
 
+def post_9col_rich_message(to):
+    MARKUP_JSON9 = {
+                    "scenes": {
+                      "scene1": {
+                        "listeners": [
+                          {
+                            "type": "touch",
+                            "action": "action0",
+                            "params": [0, 0, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action1",
+                            "params": [346, 0, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action2",
+                            "params": [692, 0, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action3",
+                            "params": [0, 346, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action4",
+                            "params": [346, 346, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action5",
+                            "params": [692, 346, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action6",
+                            "params": [0, 692, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action7",
+                            "params": [346, 692, 346, 346]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action8",
+                            "params": [692, 692, 346, 346]
+                          }
+                        ],
+                        "draws": [
+                          {
+                            "h": 1040,
+                            "w": 1040,
+                            "y": 0,
+                            "x": 0,
+                            "image": "image1"
+                          }
+                        ]
+                      }
+                    },
+                    "actions": {
+                      "action1": {
+                        "params": {
+                          "text": "1"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action0": {
+                        "params": {
+                          "text": "2"
+                        },
+                        "type": "sendMessage"
+                      },
+                        "action2": {
+                        "params": {
+                          "text": "3"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action3": {
+                        "params": {
+                          "text": "4"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action4": {
+                        "params": {
+                          "text": "5"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action5": {
+                        "params": {
+                          "text": "6"
+                        },
+                        "type": "sendMessage"
+                      },
+                        "action6": {
+                        "params": {
+                          "text": "7"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action7": {
+                        "params": {
+                          "text": "8"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action8": {
+                        "params": {
+                          "text": "9"
+                        },
+                        "type": "sendMessage"
+                      }
+
+                    },
+                    "images": {
+                      "image1": {
+                        "h": 1040,
+                        "w": 1040,
+                        "y": 0,
+                        "x": 0
+                      }
+                    },
+                    "canvas": {
+                      "height": 1040,
+                      "width": 1040,
+                      "initialScene": "scene1"
+                    }
+                  }
+    content = {
+        'contentType':12,
+        'toType':1,
+        'contentMetadata': {
+            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/yn',
+            'SPEC_REV': '1',
+            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'MARKUP_JSON':json.dumps(MARKUP_JSON9)
+
+            }# end copy
+        }
+    post_event(to,content)
+
+
 def get_translate(text):
 
     df=pd.read_csv("secret_bing_translate.csv", header=None)
@@ -326,6 +473,31 @@ class Task(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.task
 
+# 数字の問題
+class Problems(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    problem = db.Column(db.String(80))
+    answer= db.Column(db.Integer)
+
+    def __init__(self, task, user_id):
+        self.problem = problem
+        self.answer = answer
+
+    def __repr__(self):
+        return '<Problems %r>' % self.problem
+
+# Yes/Noの問題
+class Problems2(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    problem = db.Column(db.String(80))
+    answer= db.Column(db.Integer)
+
+    def __init__(self, task, user_id):
+        self.problem = problem
+        self.answer = answer
+
+    def __repr__(self):
+        return '<Problems2 %r>' % self.problem2
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -415,7 +587,7 @@ def callback():
             # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
             # post_rich_message(sender)
-            post_vote_message(sender)
+            post_9col_rich_message(sender)
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
             # if content_type==2:
