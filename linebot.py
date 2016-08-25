@@ -8,6 +8,8 @@ import requests
 import json
 import re
 from datetime import datetime
+import random
+
 
 LINEBOT_API_EVENT ='https://trialbot-api.line.me/v1/events'
 LINEBOT_API_IMAHE_VIDEO = 'https://trialbot-api.line.me/v1/bot/message/'
@@ -885,8 +887,8 @@ def callback():
         text = msg['content']['text']
         # ユーザー名を取得
         print("ユーザーネーム")
-        user__name = get_user_name(sender)
-        print(user__name)
+        user_name = get_user_name(sender)
+        print(user_name)
 
 
         if not db.session.query(User).filter(User.user_code == sender).count():
@@ -941,7 +943,17 @@ def callback():
         elif re.compile("location_").match(text):
             # TODO:タップされた場所に応じたメッセージ
             location_id=int(text.replace("location_",""))
-            post_text(sender,"よく起きれたね！すごいね！")
+            woman_message=["早起きできる"+user_name+"さん、ステキです！",
+                "早起き頑張った"+user_name+"さんの今日の運勢は大吉です",
+                user_name+"さんに会えてよかった！今日も一日頑張って",
+                user_name+"さん、いつも応援しています！",
+                user_name+"さん、今日も輝いてるね",
+                user_name+"さん，イキイキしてるね",
+                user_name+"さん，意志が強いね",
+                user_name+"さん，思い切りがいいね",
+                user_name+"さん，決断力があるね"]
+            random.shuffle(woman_message)
+            post_text(sender,woman_message[0])
 
         elif re.compile("メモ作成").match(text):
 
@@ -1017,7 +1029,9 @@ def callback():
                 print(status)
 
             elif status==3:
-                post_text(sender,user__name+"さん．美女をご紹介します．")
+
+                post_text(sender,user_name+"さん．美女をご紹介します．")
+
                 post_text(sender,"好きな場所をタップしてください")
                 woman_all = db.session.query(Woman).all()
                 woman_obj = woman_all[0]
