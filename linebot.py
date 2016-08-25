@@ -355,7 +355,7 @@ def post_9col_rich_message(to, womanurl,MARKUP_JSON9):
         }
     post_event(to,content)
 
-def post_4col_rich_message(to):
+def post_4col_rich_message(to,womanurl,MARKUP_JSON9):
     MARKUP_JSON4 = {
                     "scenes": {
                       "scene1": {
@@ -435,7 +435,7 @@ def post_4col_rich_message(to):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/9',
+            'DOWNLOAD_URL': womanurl,
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON9)
