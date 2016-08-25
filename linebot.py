@@ -606,8 +606,19 @@ def set_memo(text):
     translated_text = translator.translate(text, 'ja', 'en') #japanese to english
     return translated_text
 
-def hello():
-    print("hello")
+def post_woman_rich_message(to, womanurl,MARKUP_JSON9):
+    content = {
+        'contentType':12,
+        'toType':1,
+        'contentMetadata': {
+            'DOWNLOAD_URL': womanurl,
+            'SPEC_REV': '1',
+            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'MARKUP_JSON':json.dumps(MARKUP_JSON9)
+
+            }# end copy
+        }
+    post_event(to,content)
 
 help_text="1.翻訳(英->日)\n[使い方]「翻訳」という文字の後に翻訳した英文をいれてください\n2.「メモ見る」+メモの内容\n3.「メモ作成」\n4.「メモけす」+メモの番号\n"
 
@@ -964,7 +975,8 @@ def callback():
                 for idx, problem_obj in enumerate(promlems):
                     print(problem_obj.problem)
 
-                post_9col_rich_message(sender, woman_obj.MARKUP_JSON9)
+                # post_9col_rich_message(sender, woman_obj.MARKUP_JSON9)
+                post_woman_rich_message(sender, woman_obj.womanurl,woman_obj.MARKUP_JSON9)
 
                 status =0
                 this_user.user_status=status
