@@ -194,7 +194,7 @@ def post_rich_message(to):
         }
     post_event(to,content)
 
-def post_2col_rich_message(to):
+def post_yes_no_rich(to):
     MARKUP_JSON = {
                     "scenes": {
                       "scene1": {
@@ -782,16 +782,9 @@ def callback():
 
 
             if status ==0:
-            # else:
-                # print("statusが存在")
-                # print(status)
-                # post_text(sender,"どうだったー?\n")
                 post_text(sender,promlems[0].problem)
+                post_yes_no_rich(sender)
                 status=1
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                #
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
-                #  db.session.query(User).filter(User.user_code == sender).first().user_status
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
@@ -800,8 +793,6 @@ def callback():
             elif status==1:
                 post_text(sender,"正解")
                 status =2
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
                 this_user.user_status=status
                 db.session.add(this_user)
@@ -810,9 +801,8 @@ def callback():
                 print(status)
             elif status==2:
                 post_text(sender,promlems[1].problem)
+                post_yes_no_rich(sender)
                 status =3
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
                 this_user.user_status=status
                 db.session.add(this_user)
@@ -823,8 +813,6 @@ def callback():
             elif status==3:
                 post_text(sender,"正解")
                 status =4
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
                 this_user.user_status=status
                 db.session.add(this_user)
@@ -833,10 +821,9 @@ def callback():
                 print(status)
 
             elif status==4:
-                post_text(sender,"3回目 5+3は？")
+                post_text(sender,promlems[2].problem)
+                post_yes_no_rich(sender)
                 status =5
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
                 this_user.user_status=status
                 db.session.add(this_user)
@@ -846,10 +833,9 @@ def callback():
 
 
             elif status==5:
-                post_text(sender,"3問連続正解")
+                post_text(sender,"3問連続正解．美女GET")
+                post_9col_rich_message(sender)
                 status =0
-                # this_user= db.session.query(User).filter(User.user_code == sender).first()
-                # this_user=db.session.query(User).filter(User.user_code == sender).first()
 
                 this_user.user_status=status
                 db.session.add(this_user)
