@@ -629,7 +629,8 @@ def set_memo(text):
     translated_text = translator.translate(text, 'ja', 'en') #japanese to english
     return translated_text
 
-def post_woman_rich_message(to, woman_obj):
+
+def post_woman_rich_from_url(to, url):
     MARKUP_JSON9 = {
                 "scenes": {
                   "scene1": {
@@ -694,55 +695,55 @@ def post_woman_rich_message(to, woman_obj):
                 "actions": {
                   "action1": {
                     "params": {
-                      "text": woman_obj.comment2
+                      "text": "location_2"
                     },
                     "type": "sendMessage"
                   },
                   "action0": {
                     "params": {
-                      "text": woman_obj.comment1
+                      "text": "location_1"
                     },
                     "type": "sendMessage"
                   },
                     "action2": {
                     "params": {
-                      "text": woman_obj.comment3
+                      "text": "location_3"
                     },
                     "type": "sendMessage"
                   },
                   "action3": {
                     "params": {
-                      "text": woman_obj.comment4
+                      "text": "location_4"
                     },
                     "type": "sendMessage"
                   },
                   "action4": {
                     "params": {
-                      "text": woman_obj.comment5
+                      "text": "location_5"
                     },
                     "type": "sendMessage"
                   },
                   "action5": {
                     "params": {
-                      "text": woman_obj.comment6
+                      "text": "location_6"
                     },
                     "type": "sendMessage"
                   },
                     "action6": {
                     "params": {
-                      "text": woman_obj.comment7
+                      "text": "location_7"
                     },
                     "type": "sendMessage"
                   },
                   "action7": {
                     "params": {
-                      "text": woman_obj.comment8
+                      "text": "location_8"
                     },
                     "type": "sendMessage"
                   },
                   "action8": {
                     "params": {
-                      "text": woman_obj.comment9
+                      "text": "location_9"
                     },
                     "type": "sendMessage"
                   }
@@ -767,7 +768,7 @@ def post_woman_rich_message(to, woman_obj):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': woman_obj.womanurl,
+            'DOWNLOAD_URL': url,
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON9)
@@ -1104,6 +1105,8 @@ def callback():
                 elif text=="B":
                     post_text(sender,reply_b[nanmonme-1])
 
+
+
                 post_text(sender,user_name+"さんにぴったりの美女をご紹介します．")
 
                 post_text(sender,"好きな場所をタップして，美女からあなただけのメッセージをもらおう！")
@@ -1113,7 +1116,15 @@ def callback():
                     print(problem_obj.problem)
 
                 # post_9col_rich_message(sender, woman_obj.MARKUP_JSON9)
-                post_woman_rich_message(sender, woman_obj)
+
+                # 画像をきめる(4たく)
+                # static/4class/1~4/1~5
+                random_class=random.randint(1,4)
+                random_tekitou=random.randint(1,5)
+                random_url="https://translate-application.herokuapp.com/static/4class"+"/"+str(random_class)+"/"+str(random_tekitou)
+                print(random_url)
+                # post_woman_rich_message(sender, woman_obj)
+                post_woman_rich_from_url(sender,random_url)
 
                 status =0
                 this_user.user_status=status
