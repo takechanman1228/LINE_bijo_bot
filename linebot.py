@@ -37,7 +37,8 @@ def save_image(messageId):
 
     # binary dataをjpegにする必要あり
 
-def post_sticker( to,STKID,STKPKGID,STKVER)
+def post_sticker( to,STKID,STKPKGID,STKVER):
+      msg ={
         'to':[to],
         'toChannel':1383378250, # Fixed  value
         'eventType':"138311608800106203", # Fixed  value
@@ -46,6 +47,7 @@ def post_sticker( to,STKID,STKPKGID,STKVER)
           "STKPKGID":STKPKGID,
           "STKVER":STKVER
         }
+      }
         r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
 
 
