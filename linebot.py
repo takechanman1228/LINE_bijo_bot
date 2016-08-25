@@ -536,6 +536,7 @@ class Woman(db.Model):
         self.comment7 = comment7
         self.comment8 = comment8
         self.comment9 = comment9
+
     def __repr__(self):
         return '<User %r>' % self.username
 
@@ -792,7 +793,7 @@ def callback():
             # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
             # post_rich_message(sender)
-            post_9col_rich_message(sender)
+            post_9col_rich_message(sender,Woman.womanurl,Woman.MARKUP_JSON9)
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
             # if content_type==2:
