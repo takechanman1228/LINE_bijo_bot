@@ -874,8 +874,7 @@ def callback():
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video
     if content_type == 8:
-              print("sticker starts")
-              post_sticker(sender,'3','332','100')
+              post_sticker(sender,'18','2','100')
     else:
         if not db.session.query(User).filter(User.user_code == sender).count():
             reg = User('user_'+str(sender), sender)
