@@ -18,6 +18,7 @@ LINE_HEADERS = {
     'X-Line-Trusted-User-With-ACL':'u48d6abf59024909b4a3eae290539188e' # MID (of Channel)
 }
 
+
 def post_event( to, content):
     msg = {
         'to': [to],
@@ -524,7 +525,7 @@ class Woman(db.Model):
     comment8 = db.Column(db.String(120))
     comment9 = db.Column(db.String(120))
 
-    def __init__(self,username,womanurl,comment1,comment2,comment3,comment4,comment5,comment6,comment7,comment8,comment9)
+    def __init__(self,username,womanurl,comment1,comment2,comment3,comment4,comment5,comment6,comment7,comment8,comment9):
         self.username = username
         self.womanurl = womanurl
         self.comment1 = comment1
@@ -718,6 +719,7 @@ def callback():
         sender = msg['content']['from']
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video
+        post_text(sender,"tutorial")
         if not db.session.query(User).filter(User.user_code == sender).count():
             reg = User('user_'+str(sender), sender)
             db.session.add(reg)
@@ -793,7 +795,7 @@ def callback():
             # post_rich_text(sender) #TODO:リッチテキスト
             print("メイン")
             # post_rich_message(sender)
-            post_9col_rich_message(sender,Woman.womanurl,Woman.MARKUP_JSON9)
+            post_9col_rich_message(sender,woman.womanurl,woman.MARKUP_JSON9)
             # get_image('4804782161918')
             # post_image(sender, 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg', 'https://pbs.twimg.com/media/Ce3x_joUIAASsCo.jpg')
             # if content_type==2:
