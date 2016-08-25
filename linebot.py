@@ -788,11 +788,13 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True)
     user_code = db.Column(db.String(80), unique=True)
     user_status = db.Column(db.Integer)
+    user_completed_status = db.Column(db.Integer)
 
     def __init__(self, username, user_code):
         self.username = username
         self.user_code = user_code
         self.user_status = 0
+        self.user_completed_status = 0
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -872,7 +874,6 @@ def callback():
 
 
     msgs = request.json['result']
-
     # 0:初期問痔をだす
     # 1:成功した
     # status=0
@@ -909,7 +910,8 @@ def callback():
         # ユーザーの状態
         this_user = db.session.query(User).filter(User.user_code == sender).first()
         status = this_user.user_status
-        # user_status=this_user.user_status
+        completed_status = this_user.user_completed_status
+
         print("ユーザーの状態")
         print(status)
 
@@ -941,20 +943,34 @@ def callback():
             post_text(sender,get_translate(pre_translate_text))
 
         elif re.compile("location_").match(text):
-            # TODO:タップされた場所に応じたメッセージ
-            location_id=int(text.replace("location_",""))
-            print(location_id)
-            woman_message=["早起きできる"+user_name+"さん、ステキです！",
-                "早起き頑張った"+user_name+"さんの今日の運勢は大吉です",
-                user_name+"さんに会えてよかった！今日も一日頑張って",
-                user_name+"さん、いつも応援しています！",
-                user_name+"さん、今日も輝いてるね",
-                user_name+"さん，イキイキしてるね",
-                user_name+"さん，意志が強いね",
-                user_name+"さん，思い切りがいいね",
-                user_name+"さん，決断力があるね"]
-            random.shuffle(woman_message)
-            post_text(sender,woman_message[0])
+            # 本日成功したか
+            if completed_status==0:
+
+                location_id=int(text.replace("location_",""))
+                print(location_id)
+                woman_message=["早起きできる"+user_name+"さん、ステキです！",
+                    "早起き頑張った"+user_name+"さんの今日の運勢は大吉です",
+                    user_name+"さんに会えてよかった！今日も一日頑張って",
+                    user_name+"さん、いつも応援しています！",
+                    user_name+"さん、今日も輝いてるね",
+                    user_name+"さん，イキイキしてるね",
+                    user_name+"さん，意志が強いね",
+                    user_name+"さん，思い切りがいいね",
+                    user_name+"さん，決断力があるね"]
+                random.shuffle(woman_message)
+                post_text(sender,woman_message[location_id-1])
+
+                this_user.user_completed_status=1
+                db.session.add(this_user)
+                db.session.commit()
+
+            else: # 本日もう成功していた
+                print("もう成功")
+                post_text(sender,"一日に一回しかタップできないよ！！明日またタップしてね")
+
+
+
+
 
         elif re.compile("メモ作成").match(text):
 
