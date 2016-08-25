@@ -207,12 +207,12 @@ def post_yes_no_rich(to):
                           {
                             "type": "touch",
                             "action": "action1",
-                            "params": [520, 0, 520, 1040]
+                            "params": [129, 0, 520, 1040]
                           }
                         ],
                         "draws": [
                           {
-                            "h": 520,
+                            "h": 129,
                             "w": 1040,
                             "y": 0,
                             "x": 0,
@@ -237,14 +237,14 @@ def post_yes_no_rich(to):
                     },
                     "images": {
                       "image1": {
-                        "h": 520,
+                        "h": 129,
                         "w": 1040,
                         "y": 0,
                         "x": 0
                       }
                     },
                     "canvas": {
-                      "height": 520,
+                      "height": 129,
                       "width": 1040,
                       "initialScene": "scene1"
                     }
@@ -264,82 +264,82 @@ def post_yes_no_rich(to):
     post_event(to,content)
 
 
-    MARKUP_JSON4 = {
-                    "scenes": {
-                      "scene1": {
-                        "listeners": [
-                          {
-                            "type": "touch",
-                            "action": "action0",
-                            "params": [0, 0, 520, 520]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action1",
-                            "params": [520, 0, 520, 520]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action2",
-                            "params": [0, 520, 520, 520]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action3",
-                            "params": [520, 520, 520, 520]
-                          }
-                        ],
-                        "draws": [
-                          {
-                            "h": 1040,
-                            "w": 1040,
-                            "y": 0,
-                            "x": 0,
-                            "image": "image1"
-                          }
-                        ]
-                      }
-                    },
-                    "actions": {
-                      "action1": {
-                        "params": {
-                          "text": "1"
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action0": {
-                        "params": {
-                          "text": "2"
-                        },
-                        "type": "sendMessage"
-                      },
-                        "action2": {
-                        "params": {
-                          "text": "3"
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action3": {
-                        "params": {
-                          "text": "4"
-                        },
-                        "type": "sendMessage"
-                      }
-                    },
-                    "images": {
-                      "image1": {
-                        "h": 1040,
-                        "w": 1040,
-                        "y": 0,
-                        "x": 0
-                      }
-                    },
-                    "canvas": {
-                      "height": 1040,
-                      "width": 1040,
-                      "initialScene": "scene1"
-                    }
-                  }
+    # MARKUP_JSON4 = {
+    #                 "scenes": {
+    #                   "scene1": {
+    #                     "listeners": [
+    #                       {
+    #                         "type": "touch",
+    #                         "action": "action0",
+    #                         "params": [0, 0, 520, 520]
+    #                       },
+    #                       {
+    #                         "type": "touch",
+    #                         "action": "action1",
+    #                         "params": [520, 0, 520, 520]
+    #                       },
+    #                       {
+    #                         "type": "touch",
+    #                         "action": "action2",
+    #                         "params": [0, 520, 520, 520]
+    #                       },
+    #                       {
+    #                         "type": "touch",
+    #                         "action": "action3",
+    #                         "params": [520, 520, 520, 520]
+    #                       }
+    #                     ],
+    #                     "draws": [
+    #                       {
+    #                         "h": 1040,
+    #                         "w": 1040,
+    #                         "y": 0,
+    #                         "x": 0,
+    #                         "image": "image1"
+    #                       }
+    #                     ]
+    #                   }
+    #                 },
+    #                 "actions": {
+    #                   "action1": {
+    #                     "params": {
+    #                       "text": "1"
+    #                     },
+    #                     "type": "sendMessage"
+    #                   },
+    #                   "action0": {
+    #                     "params": {
+    #                       "text": "2"
+    #                     },
+    #                     "type": "sendMessage"
+    #                   },
+    #                     "action2": {
+    #                     "params": {
+    #                       "text": "3"
+    #                     },
+    #                     "type": "sendMessage"
+    #                   },
+    #                   "action3": {
+    #                     "params": {
+    #                       "text": "4"
+    #                     },
+    #                     "type": "sendMessage"
+    #                   }
+    #                 },
+    #                 "images": {
+    #                   "image1": {
+    #                     "h": 1040,
+    #                     "w": 1040,
+    #                     "y": 0,
+    #                     "x": 0
+    #                   }
+    #                 },
+    #                 "canvas": {
+    #                   "height": 1040,
+    #                   "width": 1040,
+    #                   "initialScene": "scene1"
+    #                 }
+    #               }
 
 def post_9col_rich_message(to, json_custom):
     MARKUP_JSON9 = {
