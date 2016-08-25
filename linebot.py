@@ -17,6 +17,7 @@ LINE_HEADERS = {
     'X-Line-ChannelSecret':'cadb3352a866e7811c1a5d8d655e3f91', # Channel secre
     'X-Line-Trusted-User-With-ACL':'u48d6abf59024909b4a3eae290539188e' # MID (of Channel)
 }
+LINEBOT_API_PROFILE = 'https://trialbot-api.line.me/v1/profiles?mids='
 
 def post_event( to, content):
     msg = {
@@ -37,7 +38,28 @@ def save_image(messageId):
 
     # binary dataをjpegにする必要あり
 
+def get_user_name(to):
+    profile_endpoint = LINEBOT_API_PROFILE+to
+    profile = json.loads(requests.get(profile_endpoint, headers=LINE_HEADERS).text)
+    print(profile_endpoint)
+    print(profile)
+    return profile['contacts'][0]['displayName']
 
+def post_sticker( to,STKID,STKPKGID,STKVER):
+      print("post_sticker")
+      msg ={
+        'to':[to],
+        'toChannel':1383378250, # Fixed  value
+        'eventType':'138311608800106203', # Fixed  value
+        'contentTyoe': 8,
+        'toType': 1,
+        'contentMetadata':{
+          'STKID':STKID,
+          'STKPKGID':STKPKGID,
+          'STKVER':STKVER
+        }
+      }
+      r = requests.post(LINEBOT_API_EVENT, headers=LINE_HEADERS, data=json.dumps(msg))
 
 def post_image( to, originalContentUrl, previewImageUrl):
     msg = {
@@ -860,8 +882,14 @@ def callback():
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video 10:友達追加
         # content_type = msg['content']['contentType']
-        if content_type==10:
-            post_text(to,"this is tutorial")
+        content_metadata = msg['content']['contentMetadata']
+        text = msg['content']['text']
+        # ユーザー名を取得
+        print("ユーザーネーム")
+        user__name = get_user_name(sender)
+        print(user__name)
+
+
         if not db.session.query(User).filter(User.user_code == sender).count():
             reg = User('user_'+str(sender), sender)
             db.session.add(reg)
@@ -870,9 +898,6 @@ def callback():
 
         else:
             print("ユーザー登録済み")
-        text = msg['content']['text']
-        # user_status=User.user_status
-
 
 
         # メッセージ送信者のユーザーid
@@ -887,7 +912,19 @@ def callback():
         print("ユーザーの状態")
         print(status)
 
-        if text == "text":
+        if content_type==10:
+            # content_displayname = msg['content']['contentMetadata']['displayName']
+            post_text(sender,"「ヘルプ」といれたらヘルプがでるよ")
+
+        elif content_type == 8:
+            print("スタンプ")
+            print(content_metadata)
+            print(content_metadata['STKID'])
+            print(content_metadata['STKPKGID'])
+            post_sticker(sender,'18','2','100')
+            text=""
+
+        elif text == "text":
             image = msg['content']['text']
             print("image")
             print(image)
@@ -981,7 +1018,7 @@ def callback():
                 print(status)
 
             elif status==3:
-                post_text(sender,"いいですね．美女をご紹介します．")
+                post_text(sender,user__name+"さん．美女をご紹介します．")
                 post_text(sender,"好きな場所をタップしてください")
                 woman_all = db.session.query(Woman).all()
                 woman_obj = woman_all[0]
