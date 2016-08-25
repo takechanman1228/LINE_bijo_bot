@@ -634,6 +634,18 @@ def callback():
                 print("1だったけどいまは")
                 print(status)
             elif status==2:
+                post_text(sender,"5+3は？")
+                status =0
+                # this_user= db.session.query(User).filter(User.user_code == sender).first()
+                # this_user=db.session.query(User).filter(User.user_code == sender).first()
+
+                this_user.user_status=status
+                db.session.add(this_user)
+                db.session.commit()
+                print("1だったけどいまは")
+                print(status)
+
+            elif status==3:
                 post_text(sender,"正解")
                 status =0
                 # this_user= db.session.query(User).filter(User.user_code == sender).first()
@@ -645,6 +657,42 @@ def callback():
                 print("1だったけどいまは")
                 print(status)
 
+            elif status==4:
+                post_text(sender,"5+3は？")
+                status =0
+                # this_user= db.session.query(User).filter(User.user_code == sender).first()
+                # this_user=db.session.query(User).filter(User.user_code == sender).first()
+
+                this_user.user_status=status
+                db.session.add(this_user)
+                db.session.commit()
+                print("1だったけどいまは")
+                print(status)
+
+
+            elif status==5:
+                post_text(sender,"正解")
+                status =0
+                # this_user= db.session.query(User).filter(User.user_code == sender).first()
+                # this_user=db.session.query(User).filter(User.user_code == sender).first()
+
+                this_user.user_status=status
+                db.session.add(this_user)
+                db.session.commit()
+                print("1だったけどいまは")
+                print(status)
+
+            # elif status==6:
+            #     post_text(sender,"正解")
+            #     status =0
+            #     # this_user= db.session.query(User).filter(User.user_code == sender).first()
+            #     # this_user=db.session.query(User).filter(User.user_code == sender).first()
+            #
+            #     this_user.user_status=status
+            #     db.session.add(this_user)
+            #     db.session.commit()
+            #     print("1だったけどいまは")
+            #     print(status)
 
 
         # this_user= db.session.query(User).filter(User.user_code == sender).first()
