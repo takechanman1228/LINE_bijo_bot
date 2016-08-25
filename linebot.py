@@ -58,7 +58,6 @@ def post_image( to, originalContentUrl, previewImageUrl):
 # 検索してきて，画像を取得
 def post_query_image(to, query):
 
-
     post_image(to, )
 
 def post_text( to, text ):
@@ -859,16 +858,18 @@ def callback():
         sender = msg['content']['from']
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video
-        if not db.session.query(User).filter(User.user_code == sender).count():
-            reg = User('user_'+str(sender), sender)
-            db.session.add(reg)
-            db.session.commit()
-            print("ユーザー登録完了",str(sender))
+        if content_type == 10
+          post_text(sender,"tutorial")
+          if not db.session.query(User).filter(User.user_code == sender).count():
+              reg = User('user_'+str(sender), sender)
+              db.session.add(reg)
+              db.session.commit()
+              print("ユーザー登録完了",str(sender))
 
-        else:
-            print("ユーザー登録済み")
-        text = msg['content']['text']
-        # user_status=User.user_status
+          else:
+              print("ユーザー登録済み")
+          text = msg['content']['text']
+          # user_status=User.user_status
 
 
 
