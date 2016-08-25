@@ -788,60 +788,53 @@ def callback():
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
-                print("0だったけどいまは")
-                print(status)
+                print("0->1 ")
             elif status==1:
-                post_text(sender,"正解")
-                status =2
+                # if :
+                post_text(sender,"いいですね")
+                status = 2
 
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
-                print("1だったけどいまは")
-                print(status)
-            elif status==2:
+            # elif status==2:
                 post_text(sender,promlems[1].problem)
+                post_yes_no_rich(sender)
+                # status =3
+
+                this_user.user_status=status
+                db.session.add(this_user)
+                db.session.commit()
+                print("1->2")
+                print(status)
+
+            elif status==2:
+                post_text(sender,"いいですね")
+                # status =4
+
+                this_user.user_status=status
+                db.session.add(this_user)
+                db.session.commit()
+
+            # elif status==4:
+                post_text(sender,promlems[2].problem)
                 post_yes_no_rich(sender)
                 status =3
 
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
-                print("1だったけどいまは")
-                print(status)
-
-            elif status==3:
-                post_text(sender,"正解")
-                status =4
-
-                this_user.user_status=status
-                db.session.add(this_user)
-                db.session.commit()
-                print("1だったけどいまは")
-                print(status)
-
-            elif status==4:
-                post_text(sender,promlems[2].problem)
-                post_yes_no_rich(sender)
-                status =5
-
-                this_user.user_status=status
-                db.session.add(this_user)
-                db.session.commit()
-                print("1だったけどいまは")
+                print("2->3")
                 print(status)
 
 
-            elif status==5:
-                post_text(sender,"3問連続正解．美女GET")
+                post_text(sender,"いいですね．美女をご紹介します")
                 post_9col_rich_message(sender)
                 status =0
 
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
-                print("1だったけどいまは")
-                print(status)
 
 
 
