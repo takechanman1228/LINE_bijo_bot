@@ -224,17 +224,17 @@ def post_yes_no_rich(to):
                           {
                             "type": "touch",
                             "action": "action0",
-                            "params": [0, 0, 520, 1040]
+                            "params": [0, 0, 520, 130]
                           },
                           {
                             "type": "touch",
                             "action": "action1",
-                            "params": [129, 0, 520, 1040]
+                            "params": [520, 0, 520, 130]
                           }
                         ],
                         "draws": [
                           {
-                            "h": 129,
+                            "h": 130,
                             "w": 1040,
                             "y": 0,
                             "x": 0,
@@ -259,19 +259,18 @@ def post_yes_no_rich(to):
                     },
                     "images": {
                       "image1": {
-                        "h": 129,
+                        "h": 1040,
                         "w": 1040,
                         "y": 0,
                         "x": 0
                       }
                     },
                     "canvas": {
-                      "height": 129,
+                      "height": 130,
                       "width": 1040,
                       "initialScene": "scene1"
                     }
                   }
-
     content = {
         'contentType':12,
         'toType':1,
