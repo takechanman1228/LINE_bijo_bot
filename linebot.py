@@ -263,6 +263,84 @@ def post_2col_rich_message(to):
         }
     post_event(to,content)
 
+
+    MARKUP_JSON4 = {
+                    "scenes": {
+                      "scene1": {
+                        "listeners": [
+                          {
+                            "type": "touch",
+                            "action": "action0",
+                            "params": [0, 0, 520, 520]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action1",
+                            "params": [520, 0, 520, 520]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action2",
+                            "params": [0, 520, 520, 520]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action3",
+                            "params": [520, 520, 520, 520]
+                          }
+                        ],
+                        "draws": [
+                          {
+                            "h": 1040,
+                            "w": 1040,
+                            "y": 0,
+                            "x": 0,
+                            "image": "image1"
+                          }
+                        ]
+                      }
+                    },
+                    "actions": {
+                      "action1": {
+                        "params": {
+                          "text": "1"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action0": {
+                        "params": {
+                          "text": "2"
+                        },
+                        "type": "sendMessage"
+                      },
+                        "action2": {
+                        "params": {
+                          "text": "3"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action3": {
+                        "params": {
+                          "text": "4"
+                        },
+                        "type": "sendMessage"
+                      }
+                    },
+                    "images": {
+                      "image1": {
+                        "h": 1040,
+                        "w": 1040,
+                        "y": 0,
+                        "x": 0
+                      }
+                    },
+                    "canvas": {
+                      "height": 1040,
+                      "width": 1040,
+                      "initialScene": "scene1"
+                    }
+                  }
+
 def post_9col_rich_message(to):
     MARKUP_JSON9 = {
                     "scenes": {
@@ -408,6 +486,96 @@ def post_9col_rich_message(to):
             }# end copy
         }
     post_event(to,content)
+
+def post_4col_rich_message(to):
+    MARKUP_JSON4 = {
+                    "scenes": {
+                      "scene1": {
+                        "listeners": [
+                          {
+                            "type": "touch",
+                            "action": "action0",
+                            "params": [0, 0, 520, 520]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action1",
+                            "params": [520, 0, 520, 520]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action2",
+                            "params": [0, 520, 520, 520]
+                          },
+                          {
+                            "type": "touch",
+                            "action": "action3",
+                            "params": [520, 520, 520, 520]
+                          }
+                        ],
+                        "draws": [
+                          {
+                            "h": 1040,
+                            "w": 1040,
+                            "y": 0,
+                            "x": 0,
+                            "image": "image1"
+                          }
+                        ]
+                      }
+                    },
+                    "actions": {
+                      "action1": {
+                        "params": {
+                          "text": "1"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action0": {
+                        "params": {
+                          "text": "2"
+                        },
+                        "type": "sendMessage"
+                      },
+                        "action2": {
+                        "params": {
+                          "text": "3"
+                        },
+                        "type": "sendMessage"
+                      },
+                      "action3": {
+                        "params": {
+                          "text": "4"
+                        },
+                        "type": "sendMessage"
+                      }
+                    },
+                    "images": {
+                      "image1": {
+                        "h": 1040,
+                        "w": 1040,
+                        "y": 0,
+                        "x": 0
+                      }
+                    },
+                    "canvas": {
+                      "height": 1040,
+                      "width": 1040,
+                      "initialScene": "scene1"
+                    }
+                  }    content = {
+        'contentType':12,
+        'toType':1,
+        'contentMetadata': {
+            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/9',
+            'SPEC_REV': '1',
+            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'MARKUP_JSON':json.dumps(MARKUP_JSON9)
+
+            }# end copy
+        }
+    post_event(to,content)
+
 
 
 def get_translate(text):
