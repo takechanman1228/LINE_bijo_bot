@@ -38,6 +38,7 @@ def save_image(messageId):
     # binary dataをjpegにする必要あり
 
 def post_sticker( to,STKID,STKPKGID,STKVER):
+      print("sticker")
       msg ={
         'to':[to],
         'toChannel':1383378250, # Fixed  value
@@ -872,6 +873,7 @@ def callback():
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video
     if content_type == 8:
+              print("sticker starts")
               post_sticker(sender,'100','1','100')
     else:
         if not db.session.query(User).filter(User.user_code == sender).count():
