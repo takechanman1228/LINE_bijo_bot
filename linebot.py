@@ -125,7 +125,7 @@ def post_vote_message(to):
         'contentMetadata': {
             'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/vote',
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': '美女がおたずねです',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
 
             }# end copy
