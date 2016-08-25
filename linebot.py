@@ -968,10 +968,12 @@ def callback():
                 this_user.user_completed_status=1
                 db.session.add(this_user)
                 db.session.commit()
+                post_text(sender,"[デモ用]なにか文字を入力すると，目覚ましの画面からスタートします")
 
             else: # 本日もう成功していた
                 print("もう成功")
                 post_text(sender,"一日に一回しかタップできないよ！！明日またタップしてね")
+                post_text(sender,"[デモ用]なにか文字を入力すると，目覚ましの画面からスタートします")
 
 
 
