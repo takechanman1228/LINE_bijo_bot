@@ -606,21 +606,155 @@ def set_memo(text):
     translated_text = translator.translate(text, 'ja', 'en') #japanese to english
     return translated_text
 
-def post_woman_rich_message(to, womanurl,MARKUP_JSON9):
+def post_woman_rich_message(to, woman_obj):
+    MARKUP_JSON9 = {
+                "scenes": {
+                  "scene1": {
+                    "listeners": [
+                      {
+                        "type": "touch",
+                        "action": "action0",
+                        "params": [0, 0, 346, 346]
+                      },
+                      {
+                        "type": "touch",
+                        "action": "action1",
+                        "params": [346, 0, 346, 346]
+                      },
+                      {
+                        "type": "touch",
+                        "action": "action2",
+                        "params": [692, 0, 346, 346]
+                      },
+                      {
+                        "type": "touch",
+                        "action": "action3",
+                        "params": [0, 346, 346, 346]
+                      },
+                      {
+                        "type": "touch",
+                        "action": "action4",
+                        "params": [346, 346, 346, 346]
+                      },
+                      {
+                        "type": "touch",
+                        "action": "action5",
+                        "params": [692, 346, 346, 346]
+                      },
+                      {
+                        "type": "touch",
+                        "action": "action6",
+                        "params": [0, 692, 346, 346]
+                      },
+                      {
+                        "type": "touch",
+                        "action": "action7",
+                        "params": [346, 692, 346, 346]
+                      },
+                      {
+                        "type": "touch",
+                        "action": "action8",
+                        "params": [692, 692, 346, 346]
+                      }
+                    ],
+                    "draws": [
+                      {
+                        "h": 1040,
+                        "w": 1040,
+                        "y": 0,
+                        "x": 0,
+                        "image": "image1"
+                      }
+                    ]
+                  }
+                },
+                "actions": {
+                  "action1": {
+                    "params": {
+                      "text": woman_obj.comment2
+                    },
+                    "type": "sendMessage"
+                  },
+                  "action0": {
+                    "params": {
+                      "text": woman_obj.comment1
+                    },
+                    "type": "sendMessage"
+                  },
+                    "action2": {
+                    "params": {
+                      "text": woman_obj.comment3
+                    },
+                    "type": "sendMessage"
+                  },
+                  "action3": {
+                    "params": {
+                      "text": woman_obj.comment4
+                    },
+                    "type": "sendMessage"
+                  },
+                  "action4": {
+                    "params": {
+                      "text": woman_obj.comment5
+                    },
+                    "type": "sendMessage"
+                  },
+                  "action5": {
+                    "params": {
+                      "text": woman_obj.comment6
+                    },
+                    "type": "sendMessage"
+                  },
+                    "action6": {
+                    "params": {
+                      "text": woman_obj.comment7
+                    },
+                    "type": "sendMessage"
+                  },
+                  "action7": {
+                    "params": {
+                      "text": woman_obj.comment8
+                    },
+                    "type": "sendMessage"
+                  },
+                  "action8": {
+                    "params": {
+                      "text": woman_obj.comment9
+                    },
+                    "type": "sendMessage"
+                  }
+
+                },
+                "images": {
+                  "image1": {
+                    "h": 1040,
+                    "w": 1040,
+                    "y": 0,
+                    "x": 0
+                  }
+                },
+                "canvas": {
+                  "height": 1040,
+                  "width": 1040,
+                  "initialScene": "scene1"
+                }
+              }
+
     content = {
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': womanurl,
+            'DOWNLOAD_URL': woman_obj.womanurl,
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON9)
 
-            }# end copy
+            }
         }
     post_event(to,content)
 
-help_text="1.翻訳(英->日)\n[使い方]「翻訳」という文字の後に翻訳した英文をいれてください\n2.「メモ見る」+メモの内容\n3.「メモ作成」\n4.「メモけす」+メモの番号\n"
+
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
@@ -692,7 +826,7 @@ class Woman(db.Model):
     comment7 = db.Column(db.String(120))
     comment8 = db.Column(db.String(120))
     comment9 = db.Column(db.String(120))
-    MARKUP_JSON9 = db.Column(db.String(120))
+    # MARKUP_JSON9 = db.Column(db.String(120))
 
     def __init__(self,username,womanurl,comment1,comment2,comment3,comment4,comment5,comment6,comment7,comment8,comment9):
         self.username = username
@@ -706,138 +840,138 @@ class Woman(db.Model):
         self.comment7 = comment7
         self.comment8 = comment8
         self.comment9 = comment9
-        self.MARKUP_JSON9 = {
-                    "scenes": {
-                      "scene1": {
-                        "listeners": [
-                          {
-                            "type": "touch",
-                            "action": "action0",
-                            "params": [0, 0, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action1",
-                            "params": [346, 0, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action2",
-                            "params": [692, 0, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action3",
-                            "params": [0, 346, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action4",
-                            "params": [346, 346, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action5",
-                            "params": [692, 346, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action6",
-                            "params": [0, 692, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action7",
-                            "params": [346, 692, 346, 346]
-                          },
-                          {
-                            "type": "touch",
-                            "action": "action8",
-                            "params": [692, 692, 346, 346]
-                          }
-                        ],
-                        "draws": [
-                          {
-                            "h": 1040,
-                            "w": 1040,
-                            "y": 0,
-                            "x": 0,
-                            "image": "image1"
-                          }
-                        ]
-                      }
-                    },
-                    "actions": {
-                      "action1": {
-                        "params": {
-                          "text": comment2
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action0": {
-                        "params": {
-                          "text": comment1
-                        },
-                        "type": "sendMessage"
-                      },
-                        "action2": {
-                        "params": {
-                          "text": comment3
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action3": {
-                        "params": {
-                          "text": comment4
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action4": {
-                        "params": {
-                          "text": comment5
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action5": {
-                        "params": {
-                          "text": comment6
-                        },
-                        "type": "sendMessage"
-                      },
-                        "action6": {
-                        "params": {
-                          "text": comment7
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action7": {
-                        "params": {
-                          "text": comment8
-                        },
-                        "type": "sendMessage"
-                      },
-                      "action8": {
-                        "params": {
-                          "text": comment9
-                        },
-                        "type": "sendMessage"
-                      }
-
-                    },
-                    "images": {
-                      "image1": {
-                        "h": 1040,
-                        "w": 1040,
-                        "y": 0,
-                        "x": 0
-                      }
-                    },
-                    "canvas": {
-                      "height": 1040,
-                      "width": 1040,
-                      "initialScene": "scene1"
-                    }
-                  }
+        # self.MARKUP_JSON9 = {
+        #             "scenes": {
+        #               "scene1": {
+        #                 "listeners": [
+        #                   {
+        #                     "type": "touch",
+        #                     "action": "action0",
+        #                     "params": [0, 0, 346, 346]
+        #                   },
+        #                   {
+        #                     "type": "touch",
+        #                     "action": "action1",
+        #                     "params": [346, 0, 346, 346]
+        #                   },
+        #                   {
+        #                     "type": "touch",
+        #                     "action": "action2",
+        #                     "params": [692, 0, 346, 346]
+        #                   },
+        #                   {
+        #                     "type": "touch",
+        #                     "action": "action3",
+        #                     "params": [0, 346, 346, 346]
+        #                   },
+        #                   {
+        #                     "type": "touch",
+        #                     "action": "action4",
+        #                     "params": [346, 346, 346, 346]
+        #                   },
+        #                   {
+        #                     "type": "touch",
+        #                     "action": "action5",
+        #                     "params": [692, 346, 346, 346]
+        #                   },
+        #                   {
+        #                     "type": "touch",
+        #                     "action": "action6",
+        #                     "params": [0, 692, 346, 346]
+        #                   },
+        #                   {
+        #                     "type": "touch",
+        #                     "action": "action7",
+        #                     "params": [346, 692, 346, 346]
+        #                   },
+        #                   {
+        #                     "type": "touch",
+        #                     "action": "action8",
+        #                     "params": [692, 692, 346, 346]
+        #                   }
+        #                 ],
+        #                 "draws": [
+        #                   {
+        #                     "h": 1040,
+        #                     "w": 1040,
+        #                     "y": 0,
+        #                     "x": 0,
+        #                     "image": "image1"
+        #                   }
+        #                 ]
+        #               }
+        #             },
+        #             "actions": {
+        #               "action1": {
+        #                 "params": {
+        #                   "text": comment2
+        #                 },
+        #                 "type": "sendMessage"
+        #               },
+        #               "action0": {
+        #                 "params": {
+        #                   "text": comment1
+        #                 },
+        #                 "type": "sendMessage"
+        #               },
+        #                 "action2": {
+        #                 "params": {
+        #                   "text": comment3
+        #                 },
+        #                 "type": "sendMessage"
+        #               },
+        #               "action3": {
+        #                 "params": {
+        #                   "text": comment4
+        #                 },
+        #                 "type": "sendMessage"
+        #               },
+        #               "action4": {
+        #                 "params": {
+        #                   "text": comment5
+        #                 },
+        #                 "type": "sendMessage"
+        #               },
+        #               "action5": {
+        #                 "params": {
+        #                   "text": comment6
+        #                 },
+        #                 "type": "sendMessage"
+        #               },
+        #                 "action6": {
+        #                 "params": {
+        #                   "text": comment7
+        #                 },
+        #                 "type": "sendMessage"
+        #               },
+        #               "action7": {
+        #                 "params": {
+        #                   "text": comment8
+        #                 },
+        #                 "type": "sendMessage"
+        #               },
+        #               "action8": {
+        #                 "params": {
+        #                   "text": comment9
+        #                 },
+        #                 "type": "sendMessage"
+        #               }
+        #
+        #             },
+        #             "images": {
+        #               "image1": {
+        #                 "h": 1040,
+        #                 "w": 1040,
+        #                 "y": 0,
+        #                 "x": 0
+        #               }
+        #             },
+        #             "canvas": {
+        #               "height": 1040,
+        #               "width": 1040,
+        #               "initialScene": "scene1"
+        #             }
+        #           }
 
 
     def __repr__(self):
@@ -978,7 +1112,7 @@ def callback():
                     print(problem_obj.problem)
 
                 # post_9col_rich_message(sender, woman_obj.MARKUP_JSON9)
-                post_woman_rich_message(sender, woman_obj.womanurl,woman_obj.MARKUP_JSON9)
+                post_woman_rich_message(sender, woman_obj)
 
                 status =0
                 this_user.user_status=status
