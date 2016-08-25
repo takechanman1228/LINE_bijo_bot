@@ -943,6 +943,7 @@ def callback():
         elif re.compile("location_").match(text):
             # TODO:タップされた場所に応じたメッセージ
             location_id=int(text.replace("location_",""))
+            print(location_id)
             woman_message=["早起きできる"+user_name+"さん、ステキです！",
                 "早起き頑張った"+user_name+"さんの今日の運勢は大吉です",
                 user_name+"さんに会えてよかった！今日も一日頑張って",
