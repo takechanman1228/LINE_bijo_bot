@@ -125,7 +125,7 @@ def post_vote_message(to):
         'contentMetadata': {
             'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/vote',
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': '美女がおたずねです',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
 
             }# end copy
@@ -900,6 +900,7 @@ def callback():
             post_text(sender,get_translate(pre_translate_text))
 
         elif re.compile("location_").match(text):
+            # TODO:タップされた場所に応じたメッセージ
             location_id=int(text.replace("location_",""))
             post_text(sender,"よく起きれたね！すごいね！")
 
@@ -941,6 +942,7 @@ def callback():
                 print(problem_obj.problem)
 
             if status ==0:
+                # TODO:問題をランダムに
                 post_text(sender,promlems[0].problem)
                 post_yes_no_rich(sender)
                 status=1
@@ -949,10 +951,8 @@ def callback():
                 db.session.commit()
                 print("0->1 ")
             elif status==1:
-                # if :
                 post_text(sender,"いいですね")
-
-
+                # TODO:問題をランダムに
                 post_text(sender,promlems[1].problem)
                 post_yes_no_rich(sender)
 
@@ -965,6 +965,7 @@ def callback():
 
             elif status==2:
                 post_text(sender,"いいですね")
+                # TODO:問題をランダムに
 
                 post_text(sender,promlems[2].problem)
                 post_yes_no_rich(sender)
@@ -991,14 +992,7 @@ def callback():
                 this_user.user_status=status
                 db.session.add(this_user)
                 db.session.commit()
-            # elif status==4:
-                # TODO:ここでタップされた場所を表す投稿内容をうけとってそれに応じたメッセージ表示
-                # post_text(sender,"よく起きれたね！すごいね！")
-                #
-                # status =0
-                # this_user.user_status=status
-                # db.session.add(this_user)
-                # db.session.commit()
+
 
 
         print(msgs)
