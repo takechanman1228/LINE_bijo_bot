@@ -254,7 +254,7 @@ def post_yes_no_rich(to):
         'contentType':12,
         'toType':1,
         'contentMetadata': {
-            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/yes_no_image',
+            'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/iamge_yes_no',
             'SPEC_REV': '1',
             'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
@@ -860,7 +860,7 @@ def callback():
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video 10:友達追加
         content_type = msg['content']['contentType']
-        if content_type==10:
+        # if content_type==10:
 
         if not db.session.query(User).filter(User.user_code == sender).count():
             reg = User('user_'+str(sender), sender)
