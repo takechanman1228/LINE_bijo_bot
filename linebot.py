@@ -37,6 +37,13 @@ def save_image(messageId):
 
     # binary dataをjpegにする必要あり
 
+def post_sticker( to,STKID,STKPKGID,STKVER)
+    "contentType":8,
+        "contentMetadata":{
+          "STKID":STKID,
+          "STKPKGID":STKPKGID,
+          "STKVER":STKVER
+        }
 
 
 def post_image( to, originalContentUrl, previewImageUrl):
@@ -858,8 +865,9 @@ def callback():
         sender = msg['content']['from']
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video
-        if content_type == 10:
-            post_text(sender,"tutorial")
+    if content_type == 8:
+              post_sticker(sender,"100","1","100")
+    else:
         if not db.session.query(User).filter(User.user_code == sender).count():
             reg = User('user_'+str(sender), sender)
             db.session.add(reg)
