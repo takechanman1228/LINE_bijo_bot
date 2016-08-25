@@ -432,7 +432,7 @@ def post_4col_rich_message(to,womanurl,MARKUP_JSON9):
                       "initialScene": "scene1"
                     }
                   }  
-          content = {
+    content = {
         'contentType':12,
         'toType':1,
         'contentMetadata': {
