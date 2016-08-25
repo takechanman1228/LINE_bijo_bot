@@ -526,7 +526,7 @@ class Woman(db.Model):
 
     def __init__(self,username,womanurl,comment1,comment2,comment3,comment4,comment5,comment6,comment7,comment8,comment9)
         self.username = username
-        self.beauty = beauty
+        self.womanurl = womanurl
         self.comment1 = comment1
         self.comment2 = comment2
         self.comment3 = comment3
