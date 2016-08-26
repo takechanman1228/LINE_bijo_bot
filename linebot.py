@@ -211,7 +211,7 @@ def post_rich_message(to):
         'contentMetadata': {
             'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static',
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': 'リッチ画像が送られました。',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
 
             }# end copy
@@ -279,7 +279,7 @@ def post_yes_no_rich(to):
         'contentMetadata': {
             'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/image_ab',
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': 'リッチ画像が送られました。',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
 
             }# end copy
@@ -503,7 +503,7 @@ def post_9col_rich_message(to, json_custom,height):
         'contentMetadata': {
             'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/woman_test',
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': 'リッチ画像が送られました',
             'MARKUP_JSON':json.dumps(json_custom)
 
             }# end copy
@@ -593,7 +593,7 @@ def post_4col_rich_message(to):
         'contentMetadata': {
             'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/9',
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': 'リッチ画像が送られました。',
             'MARKUP_JSON':json.dumps(MARKUP_JSON9)
 
             }# end copy
@@ -770,7 +770,7 @@ def post_woman_rich_from_url(to, url,height):
         'contentMetadata': {
             'DOWNLOAD_URL': url,
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': 'リッチ画像が送られました。',
             'MARKUP_JSON':json.dumps(MARKUP_JSON9)
 
             }
@@ -1037,7 +1037,7 @@ def callback():
                 # TODO:問題をランダムに
                 # random_i=random.randint(0,5)
                 # post_text(sender,promlems[nanmonme].problem)
-                post_text(sender,"じりりりりじりりりり\n8時です起きて！！！\n8時です起きて！！！\nあなたが気持ちよく目覚めるのをサポートします")
+                post_text(sender,"じりりりりじりりりり\n8時です起きて！！！\n8時です起きて！！！\nあなたが気持ちよく目覚めるのをサポートします")	
                 post_text(sender,"あなたの今日の好みはどっち？？(１問目(計３問))")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
