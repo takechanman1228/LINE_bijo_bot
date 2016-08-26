@@ -922,7 +922,7 @@ def callback():
         # ユーザーの状態
         this_user = db.session.query(User).filter(User.user_code == sender).first()
         status = this_user.user_status
-        completed_status = this_user.user_completed_status
+        completed_status = 0
         nanmonme = this_user.nanmonme
         waiting = this_user.waiting
 
