@@ -1048,7 +1048,7 @@ def callback():
                 now = datetime.now()
                 now_string=str(now.hour+9)+"時"+str(now.minute)+"分"
                 post_text(sender,"じりりりりじりりりり\n"+now_string+"です起きて！！！\n"+now_string+"です起きて！！！\nあなたが気持ちよく目覚めるのをサポートします。わたしが3つ尋ねるから，それに答えてね！")
-                post_text(sender,"あなたの今日の好みはどっち？？(1/3)")
+                post_text(sender,"一つ目！あなたの今日の好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
                 status=1
@@ -1068,7 +1068,7 @@ def callback():
                     post_text(sender,reply_b[nanmonme-1])
                 # TODO:問題をランダムに
                 # post_text(sender,promlems[nanmonme].problem)
-                post_text(sender,"今日の好みはどっち？？(2/3)")
+                post_text(sender,"二つ目！今日の好みはどっち？？(2/3)")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
 
@@ -1092,7 +1092,7 @@ def callback():
                 # TODO:問題をランダムに
 
                 # post_text(sender,promlems[nanmonme].problem)
-                post_text(sender,"今日の好みはどっち？？(3/3)")
+                post_text(sender,"三つ目！今日の好みはどっち？？(3/3)")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
 
