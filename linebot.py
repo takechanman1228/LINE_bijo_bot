@@ -934,6 +934,8 @@ def callback():
         if content_type==10:
             # content_displayname = msg['content']['contentMetadata']['displayName']
             post_text(sender,"はじめまして！スタンプをおすとヘルプがでるよ")
+            post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きよう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたを呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
+
 
         elif content_type == 8:
             print("スタンプ")
@@ -942,6 +944,10 @@ def callback():
             print(content_metadata['STKPKGID'])
             post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きよう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたを呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
             text=""
+            status =0
+            this_user.user_status=status
+            db.session.add(this_user)
+            db.session.commit()
 
         elif text == "text":
             image = msg['content']['text']
@@ -1020,6 +1026,13 @@ def callback():
 
             print(task_to_delete)
             post_text(sender,"メモを消去しました\n"+str(task_deleted))
+        elif re.compile("起きたい").match(text):
+            post_text(sender,"時間を入力してください（例、8時）")
+
+        elif re.compile("月|日|時|分"):
+            post_text(sender, "ありがとうございます！私が起きるのを助けるね！")
+
+
         else:
 
             print("メイン")
@@ -1047,7 +1060,7 @@ def callback():
                 # post_text(sender,promlems[nanmonme].problem)
                 now = datetime.now()
                 now_string=str(now.hour+9)+"時"+str(now.minute)+"分"
-                post_text(sender,"じりりりりじりりりり\n"+now_string+"です起きて！！！\n"+now_string+"です起きて！！！\nあなたが気持ちよく目覚めるのをサポートします。わたしが3つ尋ねるから，それに答えてね！")
+                post_text(sender,"じりりりりじりりりり\n"+now_string+"だよ！起きて！起きて！\nあなたが気持ちよく目覚めるのをサポートするよ。わたしが3つ尋ねるから，それに答えてね！")
                 post_text(sender,"一つ目！あなたの今日の好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
@@ -1068,7 +1081,7 @@ def callback():
                     post_text(sender,reply_b[nanmonme-1])
                 # TODO:問題をランダムに
                 # post_text(sender,promlems[nanmonme].problem)
-                post_text(sender,"二つ目！今日の好みはどっち？？(2/3)")
+                post_text(sender,"二つ目！今日の好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
 
@@ -1092,7 +1105,7 @@ def callback():
                 # TODO:問題をランダムに
 
                 # post_text(sender,promlems[nanmonme].problem)
-                post_text(sender,"三つ目！今日の好みはどっち？？(3/3)")
+                post_text(sender,"最後の問題！今日の好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
 
@@ -1128,8 +1141,7 @@ def callback():
 
 
 
-                post_text(sender,user_name+"くんにぴったりの美女をご紹介します．")
-                post_text(sender,user_name+"くん、ファイト、ファイト、ファイト！！！！！")
+                post_text(sender,user_name+"くんが好きそうな美女をご紹介します．")
 
                 woman_all = db.session.query(Woman).all()
                 woman_obj = woman_all[0]
@@ -1146,6 +1158,8 @@ def callback():
                 print(random_url)
                 # post_woman_rich_message(sender, woman_obj)
                 post_woman_rich_from_url(sender,random_url)
+                post_text(sender,user_name+"くん、ファイト、ファイト、ファイト！！！！！")
+
                 post_text(sender,"好きな場所をタップして，美女からあなただけのメッセージをもらおう！")
 
                 status =4
