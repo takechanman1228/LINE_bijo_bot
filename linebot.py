@@ -685,8 +685,8 @@ def post_woman_rich_from_url(to, url):
                       {
                         "h": 1040,
                         # "h": 700,
-                        # "w": 1040,
-                        "w": 700,
+                        "w": 1040,
+                        # "w": 700,
                         "y": 0,
                         "x": 0,
                         "image": "image1"
@@ -761,8 +761,8 @@ def post_woman_rich_from_url(to, url):
                   }
                 },
                 "canvas": {
-                #   "height": 1040,
-                  "height": 700,
+                  "height": 1040,
+                #   "height": 700,
                   "width": 1040,
                   "initialScene": "scene1"
                 }
