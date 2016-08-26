@@ -364,7 +364,7 @@ def post_yes_no_rich(to):
     #                 }
     #               }
 
-def post_9col_rich_message(to, json_custom):
+def post_9col_rich_message(to, json_custom,height):
     MARKUP_JSON9 = {
                     "scenes": {
                       "scene1": {
@@ -417,7 +417,7 @@ def post_9col_rich_message(to, json_custom):
                         ],
                         "draws": [
                           {
-                            "h": 1040,
+                            "h": height,
                             "w": 1040,
                             "y": 0,
                             "x": 0,
@@ -485,14 +485,14 @@ def post_9col_rich_message(to, json_custom):
                     },
                     "images": {
                       "image1": {
-                        "h": 1040,
+                        "h": height,
                         "w": 1040,
                         "y": 0,
                         "x": 0
                       }
                     },
                     "canvas": {
-                      "height": 1040,
+                      "height": height,
                       "width": 1040,
                       "initialScene": "scene1"
                     }
@@ -630,7 +630,7 @@ def set_memo(text):
     return translated_text
 
 
-def post_woman_rich_from_url(to, url):
+def post_woman_rich_from_url(to, url,height):
     MARKUP_JSON9 = {
                 "scenes": {
                   "scene1": {
@@ -683,7 +683,7 @@ def post_woman_rich_from_url(to, url):
                     ],
                     "draws": [
                       {
-                        "h": 1040,
+                        "h": height,
                         "w": 1040,
                         "y": 0,
                         "x": 0,
@@ -751,14 +751,14 @@ def post_woman_rich_from_url(to, url):
                 },
                 "images": {
                   "image1": {
-                    "h": 1040,
+                    "h": height,
                     "w": 1040,
                     "y": 0,
                     "x": 0
                   }
                 },
                 "canvas": {
-                  "height": 1040,
+                  "height": height,
                   "width": 1040,
                   "initialScene": "scene1"
                 }
@@ -895,7 +895,6 @@ def callback():
         user_name = get_user_name(sender)
         print(user_name)
 
-
         if not db.session.query(User).filter(User.user_code == sender).count():
             reg = User('user_'+str(sender), sender)
             db.session.add(reg)
@@ -926,12 +925,8 @@ def callback():
             post_text(sender,"スタンプをおすとヘルプがでるよ")
 
         elif content_type == 8:
-            print("スタンプ")
-            print(content_metadata)
-            print(content_metadata['STKID'])
-            print(content_metadata['STKPKGID'])
-            post_sticker(sender,'18','2','100')
-            text=""
+          post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きよう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたと呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
+
 
         elif text == "text":
             image = msg['content']['text']
@@ -947,6 +942,12 @@ def callback():
             print("翻訳に反応")
             print(pre_translate_text)
             post_text(sender,get_translate(pre_translate_text))
+
+        elif text == "朝起きたい"
+            post_text(sender,"時間を入力してください（例、８月２６日１６時２５分）")
+
+        elif re.compile("月|日|時|分")
+            post_text(sender, "ありがとうございます！！一緒に起きましょう！！")
 
         elif re.compile("location_").match(text):
             # 本日成功したか
@@ -1115,7 +1116,7 @@ def callback():
                 for idx, problem_obj in enumerate(promlems):
                     print(problem_obj.problem)
 
-                # post_9col_rich_message(sender, woman_obj.MARKUP_JSON9)
+                 # post_9col_rich_message(sender, woman_obj.MARKUP_JSON9, 700)
 
                 # 画像をきめる(4たく)
                 # static/4class/1~4/1~5
@@ -1124,7 +1125,7 @@ def callback():
                 random_url="https://translate-application.herokuapp.com/static/4class"+"/"+str(random_class)+"/"+str(random_tekitou)
                 print(random_url)
                 # post_woman_rich_message(sender, woman_obj)
-                post_woman_rich_from_url(sender,random_url)
+                post_woman_rich_from_url(sender,random_url,700)
 
                 status =0
                 this_user.user_status=status
