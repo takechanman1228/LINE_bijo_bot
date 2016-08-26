@@ -699,55 +699,55 @@ def post_woman_rich_from_url(to, url):
                 "actions": {
                   "action1": {
                     "params": {
-                      "text": "location_2"
+                      "text": "起きたよ！"
                     },
                     "type": "sendMessage"
                   },
                   "action0": {
                     "params": {
-                      "text": "location_1"
+                      "text": "おはよう！"
                     },
                     "type": "sendMessage"
                   },
                     "action2": {
                     "params": {
-                      "text": "location_3"
+                      "text": "今日の運勢は？"
                     },
                     "type": "sendMessage"
                   },
                   "action3": {
                     "params": {
-                      "text": "location_4"
+                      "text": "起こしてくれてありがとう！"
                     },
                     "type": "sendMessage"
                   },
                   "action4": {
                     "params": {
-                      "text": "location_5"
+                      "text": "やっほ〜"
                     },
                     "type": "sendMessage"
                   },
                   "action5": {
                     "params": {
-                      "text": "location_6"
+                      "text": "頑張って起きたよ！"
                     },
                     "type": "sendMessage"
                   },
                     "action6": {
                     "params": {
-                      "text": "location_7"
+                      "text": "グッドモーニング"
                     },
                     "type": "sendMessage"
                   },
                   "action7": {
                     "params": {
-                      "text": "location_8"
+                      "text": "すっきり！"
                     },
                     "type": "sendMessage"
                   },
                   "action8": {
                     "params": {
-                      "text": "location_9"
+                      "text": "いいね！"
                     },
                     "type": "sendMessage"
                   }
@@ -933,14 +933,14 @@ def callback():
 
         if content_type==10:
             # content_displayname = msg['content']['contentMetadata']['displayName']
-            post_text(sender,"スタンプをおすとヘルプがでるよ")
+            post_text(sender,"はじめまして！スタンプをおすとヘルプがでるよ")
 
         elif content_type == 8:
             print("スタンプ")
             print(content_metadata)
             print(content_metadata['STKID'])
             print(content_metadata['STKPKGID'])
-            post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きよう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたと呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
+            post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きよう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたを呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
             text=""
 
         elif text == "text":
@@ -1047,7 +1047,7 @@ def callback():
                 # post_text(sender,promlems[nanmonme].problem)
                 now = datetime.now()
                 now_string=str(now.hour+9)+"時"+str(now.minute)+"分"
-                post_text(sender,"じりりりりじりりりり\n"+now_string+"です起きて！！！\n"+now_string+"です起きて！！！\nあなたが気持ちよく目覚めるのをサポートします")
+                post_text(sender,"じりりりりじりりりり\n"+now_string+"です起きて！！！\n"+now_string+"です起きて！！！\nあなたが気持ちよく目覚めるのをサポートします。わたしが3つ尋ねるから，それに答えてね！")
                 post_text(sender,"あなたの今日の好みはどっち？？(1/3)")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
@@ -1131,7 +1131,6 @@ def callback():
                 post_text(sender,user_name+"くんにぴったりの美女をご紹介します．")
                 post_text(sender,user_name+"くん、ファイト、ファイト、ファイト！！！！！")
 
-                post_text(sender,"好きな場所をタップして，美女からあなただけのメッセージをもらおう！")
                 woman_all = db.session.query(Woman).all()
                 woman_obj = woman_all[0]
                 # for idx, problem_obj in enumerate(promlems):
@@ -1147,6 +1146,42 @@ def callback():
                 print(random_url)
                 # post_woman_rich_message(sender, woman_obj)
                 post_woman_rich_from_url(sender,random_url)
+                post_text(sender,"好きな場所をタップして，美女からあなただけのメッセージをもらおう！")
+
+                status =4
+                this_user.user_status=status
+                db.session.add(this_user)
+                db.session.commit()
+
+
+            elif status==4:
+                # 本日成功したか
+                if completed_status==0:
+
+                    # location_id=int(text.replace("location_",""))
+                    location_id=random.randint(1,9)
+                    print(location_id)
+                    woman_message=["早起きできる"+user_name+"さん、ステキです！",
+                        "早起き頑張った"+user_name+"さんの今日の運勢は大吉です",
+                        user_name+"さんに会えてよかった！今日も一日頑張って",
+                        user_name+"さん、いつも応援しています！",
+                        user_name+"さん、今日も輝いてるね",
+                        user_name+"さん，イキイキしてるね",
+                        user_name+"さん，意志が強いね",
+                        user_name+"さん，思い切りがいいね",
+                        user_name+"さん，決断力があるね"]
+                    random.shuffle(woman_message)
+                    post_text(sender,woman_message[location_id-1])
+
+                    this_user.user_completed_status=1
+                    db.session.add(this_user)
+                    db.session.commit()
+                    post_text(sender,"[デモ用]なにか文字を入力すると，目覚ましの画面からスタートします")
+
+                else: # 本日もう成功していた
+                    print("もう成功")
+                    post_text(sender,"一日に一回しかタップできないよ！！また明日のお楽しみにね！")
+                    # post_text(sender,"[デモ用]なにか文字を入力すると，目覚ましの画面からスタートするよ")
 
                 status =0
                 this_user.user_status=status
