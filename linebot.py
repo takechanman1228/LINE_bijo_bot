@@ -683,7 +683,8 @@ def post_woman_rich_from_url(to, url):
                     ],
                     "draws": [
                       {
-                        "h": 1040,
+                        # "h": 1040,
+                        "h": 700,
                         "w": 1040,
                         "y": 0,
                         "x": 0,
@@ -751,14 +752,16 @@ def post_woman_rich_from_url(to, url):
                 },
                 "images": {
                   "image1": {
-                    "h": 1040,
+                    # "h": 1040,
+                    "h": 700,
                     "w": 1040,
                     "y": 0,
                     "x": 0
                   }
                 },
                 "canvas": {
-                  "height": 1040,
+                #   "height": 1040,
+                  "height": 700,
                   "width": 1040,
                   "initialScene": "scene1"
                 }
@@ -1118,7 +1121,7 @@ def callback():
                         woman_class=random.randint(1,2)*2-1
                     elif text=="B": #ちゃ
                         post_text(sender,reply_b[nanmonme-1])
-                        woman_class=random.randint(1,2)*2 
+                        woman_class=random.randint(1,2)*2
 
 
 
