@@ -1046,6 +1046,7 @@ def callback():
                 post_text(sender,"じりりりりじりりりり")
                 post_text(sender,"8時です起きて！！！")
                 post_text(sender,"あなたが気持ちよく目覚めるのをサポートします")
+                post_text(sender,"(スタンプを送信するとヘルプが表示されます)")
                 post_text(sender,"あなたの今日の好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
