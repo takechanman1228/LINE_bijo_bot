@@ -1150,11 +1150,12 @@ def callback():
 
                 random_tekitou=random.randint(1,5)
                 random_url="https://translate-application.herokuapp.com/static/4class"+"/"+str(woman_class)+"/"+str(random_tekitou)
-                post_text(sender,user_name+"くん、ファイト、ファイト、ファイト！！！！！")
-                post_text(sender,"好きな場所をタップしてね！あなたにメッセージをおくるよ！")
+
                 print(random_url)
                 # post_woman_rich_message(sender, woman_obj)
                 post_woman_rich_from_url(sender,random_url)
+                post_text(sender,user_name+"くん、ファイト、ファイト、ファイト！！！！！")
+                post_text(sender,"好きな場所をタップしてね！あなたにメッセージをおくるよ！")
 
                 status =0
                 this_user.user_status=status
