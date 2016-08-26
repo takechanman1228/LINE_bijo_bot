@@ -753,8 +753,8 @@ def post_woman_rich_from_url(to, url):
                 "images": {
                   "image1": {
                     # "h": 1040,
-                    "h": 700,
-                    "w": 1040,
+                    "h": 300,
+                    "w": 600,
                     "y": 0,
                     "x": 0
                   }
