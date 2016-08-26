@@ -942,7 +942,8 @@ def callback():
             print(content_metadata)
             print(content_metadata['STKID'])
             print(content_metadata['STKPKGID'])
-            post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きよう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたを呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
+            post_text(sender,"使い方：起きる時間を設定して、朝起きよう！\n「起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたを呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
+            post_text(sender,"わからなくなったらスタンプをおしてね！")
             text=""
             status =0
             this_user.user_status=status
@@ -1029,7 +1030,7 @@ def callback():
         elif re.compile("起きたい").match(text):
             post_text(sender,"時間を入力してください（例、8時）")
 
-        elif re.compile("月|日|時|分"):
+        elif re.compile("月|日|時|分").match(text):
             post_text(sender, "ありがとうございます！私が起きるのを助けるね！")
 
 
