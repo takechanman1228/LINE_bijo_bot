@@ -1179,10 +1179,10 @@ def callback():
                     # location_id=int(text.replace("location_",""))
                     location_id=random.randint(1,9)
                     print(location_id)
-                    woman_message=["早起きできる"+user_name+"さん、ステキです！",
-                        "早起き頑張った"+user_name+"さんの今日の運勢は大吉です",
+                    woman_message=["早起きできる"+user_name+"さん、ステキ！",
+                        "早起き頑張った"+user_name+"さんの今日の運勢は大吉だよ",
                         user_name+"さんに会えてよかった！今日も一日頑張って",
-                        user_name+"さん、いつも応援しています！",
+                        user_name+"さん、いつも応援してるよ！",
                         user_name+"さん、今日も輝いてるね",
                         user_name+"さん，イキイキしてるね",
                         user_name+"さん，意志が強いね",
