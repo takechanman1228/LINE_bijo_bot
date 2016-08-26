@@ -1054,7 +1054,7 @@ def callback():
                 # TODO:問題をランダムに
                 # random_i=random.randint(0,5)
                 # post_text(sender,promlems[nanmonme].problem)
-                post_text(sender,"じりりりりじりりりり\n8時です！起きてください！！！\nあなたが気持ちよく目覚めるのをサポートします．3つの質問に答えてください！")
+                post_text(sender,"じりりりりじりりりり\n8時です！起きてください！！！\n"+user_name+"さんが気持ちよく目覚めるのをサポートします．3つの質問に答えてください！")
                 post_text(sender,"一つ目。あなたの好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
@@ -1136,7 +1136,7 @@ def callback():
 
 
 
-                post_text(sender,user_name+"くんにぴったりの美女をご紹介します．")
+                post_text(sender,user_name+"さんにぴったりの美女をご紹介します．")
 
                 woman_all = db.session.query(Woman).all()
                 woman_obj = woman_all[0]
@@ -1154,7 +1154,7 @@ def callback():
                 print(random_url)
                 # post_woman_rich_message(sender, woman_obj)
                 post_woman_rich_from_url(sender,random_url)
-                post_text(sender,user_name+"くん、ファイト、ファイト、ファイト！！！！！")
+                post_text(sender,user_name+"さん、よく起きれたね")
                 post_text(sender,"好きな場所をタップしてね！あなたにメッセージをおくるよ！")
 
                 status =0
