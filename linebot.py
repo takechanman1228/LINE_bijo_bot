@@ -931,8 +931,9 @@ def callback():
 
         if content_type==10:
             # content_displayname = msg['content']['contentMetadata']['displayName']
+            post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きましょう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたと呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
+            post_text(sender,"スタンプをおすとヘルプがでます。([デモ用]なにか話しかけると目覚ましがなり始めます)")
 
-            post_text(sender,"スタンプをおすとヘルプがでるよ")
 
         elif content_type == 8:
             print("スタンプ")
@@ -940,7 +941,7 @@ def callback():
             print(content_metadata['STKID'])
             print(content_metadata['STKPKGID'])
             post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きましょう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたと呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
-            post_text(sender,"[デモ用]なにか話しかけると目覚ましがなり始めます")
+            post_text(sender,"スタンプをおすとヘルプがでます。([デモ用]なにか話しかけると目覚ましがなり始めます)")
 
             text=""
             status =0
@@ -1116,7 +1117,7 @@ def callback():
                 print(status)
 
             elif status==3:
-                woman_class=1
+                woman_class=random.randint(1,4)
                 if nanmonme ==0:
                     print("ろんぐ/しょーと")
                     if text=="A":#ろんぐ
