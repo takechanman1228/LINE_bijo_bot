@@ -1115,10 +1115,10 @@ def callback():
                     print("黒/茶")
                     if text=="A":#くろ
                         post_text(sender,reply_a[nanmonme-1])
-                        woman_class=random.randint(1,2)*2
+                        woman_class=random.randint(1,2)*2-1
                     elif text=="B": #ちゃ
                         post_text(sender,reply_b[nanmonme-1])
-                        woman_class=random.randint(1,2)*2 -1
+                        woman_class=random.randint(1,2)*2 
 
 
 
