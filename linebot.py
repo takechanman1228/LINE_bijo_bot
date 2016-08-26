@@ -1017,9 +1017,6 @@ def callback():
         else:
 
             print("メイン")
-            promlems = db.session.query(Problem2).all()
-            for idx, problem_obj in enumerate(promlems):
-                print(problem_obj.problem)
 
             questions = ["A.大人っぽい B.幼い","A.癒やし B.元気","A.黒髪 B.茶髪","A.かわいい B.きれい","A.アウトドア B.インドア","A.ロング B.ショート"]
             reply_a = [
@@ -1108,12 +1105,20 @@ def callback():
             elif status==3:
                 if nanmonme ==0:
                     print("ろんぐ/しょーと")
+                    if text=="A":#ろんぐ
+                        post_text(sender,reply_a[nanmonme-1])
+                        woman_class=random.randint(1,2)
+                    elif text=="B":#しょーと
+                        post_text(sender,reply_b[nanmonme-1])
+                        woman_class=random.randint(3,4)
                 if nanmonme ==3:
                     print("黒/茶")
-                if text=="A":
-                    post_text(sender,reply_a[nanmonme-1])
-                elif text=="B":
-                    post_text(sender,reply_b[nanmonme-1])
+                    if text=="A":#くろ
+                        post_text(sender,reply_a[nanmonme-1])
+                        woman_class=random.randint(1,2)*2
+                    elif text=="B": #ちゃ
+                        post_text(sender,reply_b[nanmonme-1])
+                        woman_class=random.randint(1,2)*2 -1
 
 
 
@@ -1122,16 +1127,16 @@ def callback():
                 post_text(sender,"好きな場所をタップして，美女からあなただけのメッセージをもらおう！")
                 woman_all = db.session.query(Woman).all()
                 woman_obj = woman_all[0]
-                for idx, problem_obj in enumerate(promlems):
-                    print(problem_obj.problem)
+                # for idx, problem_obj in enumerate(promlems):
+                #     print(problem_obj.problem)
 
                 # post_9col_rich_message(sender, woman_obj.MARKUP_JSON9)
 
                 # 画像をきめる(4たく)
                 # static/4class/1~4/1~5
-                random_class=random.randint(1,4)
+
                 random_tekitou=random.randint(1,5)
-                random_url="https://translate-application.herokuapp.com/static/4class"+"/"+str(random_class)+"/"+str(random_tekitou)
+                random_url="https://translate-application.herokuapp.com/static/4class"+"/"+str(woman_class)+"/"+str(random_tekitou)
                 print(random_url)
                 # post_woman_rich_message(sender, woman_obj)
                 post_woman_rich_from_url(sender,random_url)
