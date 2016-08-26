@@ -9,6 +9,8 @@ import json
 import re
 from datetime import datetime
 import random
+import schedule
+import time
 
 
 LINEBOT_API_EVENT ='https://trialbot-api.line.me/v1/events'
@@ -1043,7 +1045,9 @@ def callback():
                 # TODO:問題をランダムに
                 # random_i=random.randint(0,5)
                 # post_text(sender,promlems[nanmonme].problem)
-                post_text(sender,"じりりりりじりりりり\n8時です起きて！！！\n8時です起きて！！！\nあなたが気持ちよく目覚めるのをサポートします")
+                now = datetime.now()
+                now_string=str(now.hour+9)+"時"+str(now.minute)+"分"
+                post_text(sender,"じりりりりじりりりり\n"+now_string+"です起きて！！！\n"+now_string+"です起きて！！！\nあなたが気持ちよく目覚めるのをサポートします")
                 post_text(sender,"あなたの今日の好みはどっち？？(1/3)")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
