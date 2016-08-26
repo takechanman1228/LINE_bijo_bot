@@ -683,9 +683,10 @@ def post_woman_rich_from_url(to, url):
                     ],
                     "draws": [
                       {
-                        # "h": 1040,
-                        "h": 700,
-                        "w": 1040,
+                        "h": 1040,
+                        # "h": 700,
+                        # "w": 1040,
+                        "w": 700,
                         "y": 0,
                         "x": 0,
                         "image": "image1"
@@ -752,9 +753,9 @@ def post_woman_rich_from_url(to, url):
                 },
                 "images": {
                   "image1": {
-                    # "h": 1040,
-                    "h": 300,
-                    "w": 600,
+                    "h": 1040,
+                    # "h": 700,
+                    "w": 1040,
                     "y": 0,
                     "x": 0
                   }
