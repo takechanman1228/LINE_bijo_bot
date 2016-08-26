@@ -792,6 +792,8 @@ class User(db.Model):
     user_completed_status = db.Column(db.Integer)
     nanmonme = db.Column(db.Integer)
     waiting = db.Column(db.Integer)
+    is_long = db.Column(db.Integer)
+    is_black = db.Column(db.Integer)
 
     def __init__(self, username, user_code):
         self.username = username
@@ -799,6 +801,8 @@ class User(db.Model):
         self.user_status = 0
         self.user_completed_status = 0
         self.nanmonme = 0
+        self.is_long = 0
+        self.is_black = 0
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -1017,17 +1021,19 @@ def callback():
             for idx, problem_obj in enumerate(promlems):
                 print(problem_obj.problem)
 
-            questions = ["A.大人っぽい B.幼い","A.黒髪 B.茶髪","A.癒やし B.元気","A.かわいい B.きれい","A.アウトドア B.インドア","A.ロング B.ショート"]
-            reply_a = ["大人っぽい人いいですよね！",
-            "黒髪いいですのう",
+            questions = ["A.大人っぽい B.幼い","A.癒やし B.元気","A.黒髪 B.茶髪","A.かわいい B.きれい","A.アウトドア B.インドア","A.ロング B.ショート"]
+            reply_a = [
+            "大人っぽい人いいですよね！",
             "癒やし分かります！",
+            "黒髪いいですのう",
             "かわいいは正義",
             "アウトドア、健康ですね〜",
             "ロングいいですね〜"]
 
-            reply_b = ["ロリいいですよね！",
-            "ブラウン可愛いですよね",
+            reply_b = [
+            "ロリいいですよね！",
             "元気が一番！",
+            "ブラウン可愛いですよね",
             "ゴージャスですね！",
             "家の居心地最高〜〜",
             "ショート、似合う人本当に似合いますよね！"]
@@ -1100,6 +1106,10 @@ def callback():
                 print(status)
 
             elif status==3:
+                if nanmonme ==0:
+                    print("ろんぐ/しょーと")
+                if nanmonme ==3:
+                    print("黒/茶")
                 if text=="A":
                     post_text(sender,reply_a[nanmonme-1])
                 elif text=="B":
