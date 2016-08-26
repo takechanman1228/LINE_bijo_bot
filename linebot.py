@@ -943,10 +943,10 @@ def callback():
             print(pre_translate_text)
             post_text(sender,get_translate(pre_translate_text))
 
-        elif text == "朝起きたい"
+        elif text == "朝起きたい":
             post_text(sender,"時間を入力してください（例、８月２６日１６時２５分）")
 
-        elif re.compile("月|日|時|分")
+        elif re.compile("月|日|時|分"):
             post_text(sender, "ありがとうございます！！一緒に起きましょう！！")
 
         elif re.compile("location_").match(text):
