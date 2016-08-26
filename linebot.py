@@ -1105,6 +1105,7 @@ def callback():
                 print(status)
 
             elif status==3:
+                woman_class=1
                 if nanmonme ==0:
                     print("ろんぐ/しょーと")
                     if text=="A":#ろんぐ
