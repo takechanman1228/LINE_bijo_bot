@@ -211,7 +211,7 @@ def post_rich_message(to):
         'contentMetadata': {
             'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static',
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': 'リッチメッセージが送信されました。',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
 
             }# end copy
@@ -279,7 +279,7 @@ def post_yes_no_rich(to):
         'contentMetadata': {
             'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/image_ab',
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': 'リッチメッセージが送信されました。',
             'MARKUP_JSON':json.dumps(MARKUP_JSON)
 
             }# end copy
@@ -503,7 +503,7 @@ def post_9col_rich_message(to, json_custom):
         'contentMetadata': {
             'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/woman_test',
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': 'リッチメッセージが送信されました。',
             'MARKUP_JSON':json.dumps(json_custom)
 
             }# end copy
@@ -593,7 +593,7 @@ def post_4col_rich_message(to):
         'contentMetadata': {
             'DOWNLOAD_URL': 'https://translate-application.herokuapp.com/static/9',
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': 'リッチメッセージが送信されました。',
             'MARKUP_JSON':json.dumps(MARKUP_JSON9)
 
             }# end copy
@@ -774,7 +774,7 @@ def post_woman_rich_from_url(to, url):
         'contentMetadata': {
             'DOWNLOAD_URL': url,
             'SPEC_REV': '1',
-            'ALT_TEXT': 'Please visit our homepage and the item page you wish.',
+            'ALT_TEXT': 'リッチメッセージが送信されました。',
             'MARKUP_JSON':json.dumps(MARKUP_JSON9)
 
             }
@@ -1043,11 +1043,8 @@ def callback():
                 # TODO:問題をランダムに
                 # random_i=random.randint(0,5)
                 # post_text(sender,promlems[nanmonme].problem)
-                post_text(sender,"じりりりりじりりりり")
-                post_text(sender,"8時です起きて！！！")
-                post_text(sender,"あなたが気持ちよく目覚めるのをサポートします")
-                post_text(sender,"(スタンプを送信するとヘルプが表示されます)")
-                post_text(sender,"あなたの今日の好みはどっち？？")
+                post_text(sender,"じりりりりじりりりり\n8時です起きて！！！\n8時です起きて！！！\nあなたが気持ちよく目覚めるのをサポートします")
+                post_text(sender,"あなたの今日の好みはどっち？？(1/3)")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
                 status=1
@@ -1067,7 +1064,7 @@ def callback():
                     post_text(sender,reply_b[nanmonme-1])
                 # TODO:問題をランダムに
                 # post_text(sender,promlems[nanmonme].problem)
-                post_text(sender,"あなたの今日の好みはどっち？？")
+                post_text(sender,"今日の好みはどっち？？(2/3)")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
 
@@ -1091,7 +1088,7 @@ def callback():
                 # TODO:問題をランダムに
 
                 # post_text(sender,promlems[nanmonme].problem)
-                post_text(sender,"あなたの今日の好みはどっち？？")
+                post_text(sender,"今日の好みはどっち？？(3/3)")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
 
@@ -1127,7 +1124,8 @@ def callback():
 
 
 
-                post_text(sender,user_name+"さんにぴったりの美女をご紹介します．")
+                post_text(sender,user_name+"くんにぴったりの美女をご紹介します．")
+                post_text(sender,user_name+"くん、ファイト、ファイト、ファイト！！！！！")
 
                 post_text(sender,"好きな場所をタップして，美女からあなただけのメッセージをもらおう！")
                 woman_all = db.session.query(Woman).all()
