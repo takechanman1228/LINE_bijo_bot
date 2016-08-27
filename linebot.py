@@ -892,6 +892,18 @@ def callback():
 
     for msg in msgs:
 
+        onType = msg['content']['opType']
+        sender = msg['content']['params'][0]
+
+        print(msg)
+        if onType==4:
+            print("友達追加")
+            post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きましょう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたと呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
+            post_text(sender,"スタンプをおすとヘルプがでます。([デモ用]なにか話しかけると目覚ましがなり始めます)")
+            post_text(sender,"一日に一回しかタップできないよ！！明日またタップしてね")
+            continue
+
+
         sender = msg['content']['from']
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video 10:友達追加
