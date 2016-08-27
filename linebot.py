@@ -960,7 +960,7 @@ def callback():
         print(status)
 
 
-        elif content_type == 8:
+        if content_type == 8:
             print("スタンプ")
             print(content_metadata)
             print(content_metadata['STKID'])
