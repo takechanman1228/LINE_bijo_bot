@@ -1058,6 +1058,10 @@ def callback():
         elif re.compile("朝起きたい").match(text):
             post_text(sender,"時間を入力してください（例:8時）[現在はデモモードで，未実装]")
 
+        # elif re.compile("朝起きたい").match(text):
+        elif re.search('\d\d:\d\d$' , text):
+            post_text(sender,"時間を入力してください（例:8時）[現在はデモモードで，未実装]")
+
         else:
 
             print("メイン")
