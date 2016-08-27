@@ -1052,10 +1052,9 @@ def callback():
             "ショート、似合う人本当に似合いますよね！"]
 
             if status ==0:
-                # TODO:問題をランダムに
-                # random_i=random.randint(0,5)
-                # post_text(sender,promlems[nanmonme].problem)
+
                 post_text(sender,"じりりりりじりりりり\n8時です！起きてください！！！\n"+user_name+"さんが気持ちよく目覚めるのをサポートします．3つの質問に答えてください！")
+                post_text(sender,"ヘルプを見るにはスタンプをおしてください。")
                 post_text(sender,"一つ目。あなたの好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
@@ -1074,8 +1073,7 @@ def callback():
                     post_text(sender,reply_a[nanmonme-1])
                 elif text=="B":
                     post_text(sender,reply_b[nanmonme-1])
-                # TODO:問題をランダムに
-                # post_text(sender,promlems[nanmonme].problem)
+
                 post_text(sender,"二つ目，あなたの好みはどっち？？")
                 post_text(sender,questions[nanmonme])
                 post_yes_no_rich(sender)
@@ -1156,7 +1154,7 @@ def callback():
                 # post_woman_rich_message(sender, woman_obj)
                 post_woman_rich_from_url(sender,random_url)
                 post_text(sender,user_name+"さん、よく起きれたね")
-                post_text(sender,"好きな場所をタップしてね！あなたにメッセージをおくるよ！")
+                post_text(sender,"私の好きな場所をタップしてね！あなたにメッセージをおくるよ！")
 
                 status =0
                 this_user.user_status=status
