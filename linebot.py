@@ -919,7 +919,7 @@ def callback():
 
             user_obj = db.session.query(User).filter(User.user_code == sender).first()
             set_user_status(user_obj, 0)
-            continue
+            break
 
 
         # sender = msg['content']['from']
@@ -958,11 +958,6 @@ def callback():
 
         print("ユーザーの状態")
         print(status)
-
-        if content_type==10:
-            # content_displayname = msg['content']['contentMetadata']['displayName']
-            post_text(sender,"このbotはあなたのつらい朝をハッピーにするお手伝いをします。\n[使い方]\n「朝起きたい」,「時刻設定」と入力したら、起きたい時刻を設定出来ます。\n設定した時刻になったら，メッセージが来ます。\n あなたの好みを3回答えたら、お好みの美女が現れます。\nあとは、美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
-            post_text(sender,"スタンプをおすとヘルプがでます。([デモ用]なにか話しかけると目覚ましがなり始めます)")
 
 
         elif content_type == 8:
