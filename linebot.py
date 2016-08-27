@@ -896,13 +896,14 @@ def callback():
     for msg in msgs:
 
         print(type(msg))
-
+        # 友達追加
         if 'opType' in msg['content']:
             print("ontypeあり")
             onType = msg['content']['opType']
         else:
             onType = 0
 
+        # アクションを起こしたユーザー
         if 'from' in msg['content']:
             print("fromあり")
             sender = msg['content']['from']
@@ -913,7 +914,7 @@ def callback():
         if onType==4:
             print("友達追加")
             sender = msg['content']['params'][0]
-            post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きましょう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたと呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
+            post_text(sender,"このbotはあなたのつらい朝をハッピーにするお手伝いをします。\n[使い方]\n「朝起きたい」,「時刻設定」と入力したら、起きたい時刻を設定出来ます。\n設定した時刻になったら，メッセージが来ます。\n あなたの好みを3回答えたら、お好みの美女が現れます。\nあとは、美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
             post_text(sender,"スタンプをおすとヘルプがでます。([デモ用]なにか話しかけると目覚ましがなり始めます)")
 
             user_obj = db.session.query(User).filter(User.user_code == sender).first()
@@ -960,7 +961,7 @@ def callback():
 
         if content_type==10:
             # content_displayname = msg['content']['contentMetadata']['displayName']
-            post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きましょう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたと呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
+            post_text(sender,"このbotはあなたのつらい朝をハッピーにするお手伝いをします。\n[使い方]\n「朝起きたい」,「時刻設定」と入力したら、起きたい時刻を設定出来ます。\n設定した時刻になったら，メッセージが来ます。\n あなたの好みを3回答えたら、お好みの美女が現れます。\nあとは、美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
             post_text(sender,"スタンプをおすとヘルプがでます。([デモ用]なにか話しかけると目覚ましがなり始めます)")
 
 
@@ -969,7 +970,7 @@ def callback():
             print(content_metadata)
             print(content_metadata['STKID'])
             print(content_metadata['STKPKGID'])
-            post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きましょう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたと呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
+            post_text(sender,"このbotはあなたのつらい朝をハッピーにするお手伝いをします。\n[使い方]\n「朝起きたい」,「時刻設定」と入力したら、起きたい時刻を設定出来ます。\n設定した時刻になったら，メッセージが来ます。\n あなたの好みを3回答えたら、お好みの美女が現れます。\nあとは、美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
             post_text(sender,"スタンプをおすとヘルプがでます。([デモ用]なにか話しかけると目覚ましがなり始めます)")
 
             text=""
