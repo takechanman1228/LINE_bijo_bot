@@ -9,6 +9,7 @@ import json
 import re
 from datetime import datetime
 import random
+import mojimoji
 
 
 LINEBOT_API_EVENT ='https://trialbot-api.line.me/v1/events'
@@ -958,6 +959,8 @@ def callback():
         print("ユーザーの状態")
         print(status)
 
+        text_hankaku=mojimoji.zen_to_han(text)
+
 
         if content_type == 8  or "ヘルプ" in text:
             print("スタンプ,ヘルプ")
@@ -1008,12 +1011,12 @@ def callback():
                 user_name+"さん，思い切りがいいね",
                 user_name+"さん，決断力があるね"]
             random.shuffle(woman_message)
-            post_text(sender,woman_message[location_id-1])
+            post_text(sender,"美女:"+woman_message[location_id-1])
 
             this_user.user_completed_status=1
             db.session.add(this_user)
             db.session.commit()
-            post_text(sender,"また明日も"+user_name+"さんに会えるといいな。明日も早起き応援してるよ！")
+            post_text(sender,"美女:"+"また明日も"+user_name+"さんに会えるといいな。明日も早起き応援してるよ！")
             post_text(sender,"[デモ用]なにか文字を入力すると，目覚ましの画面からスタートします")
 
             # else: # 本日もう成功していた
@@ -1055,12 +1058,24 @@ def callback():
 
             print(task_to_delete)
             post_text(sender,"メモを消去しました\n"+str(task_deleted))
-        elif re.compile("朝起きたい").match(text):
-            post_text(sender,"時間を入力してください（例:8時）[現在はデモモードで，未実装]")
+
+        elif re.compile("朝起きたい|時刻設定").match(text):
+            post_text(sender,"時間を入力してください（例:8:30）")
 
         # elif re.compile("朝起きたい").match(text):
-        elif re.search('\d\d:\d\d$' , text):
-            post_text(sender,"時間を入力してください（例:8時）[現在はデモモードで，未実装]")
+
+        elif re.search('\d\d:\d\d$' , text_hankaku) or re.search('\d:\d\d$' , text_hankaku):
+
+            print(text_hankaku)
+            m = re.search('\d+:\d\d$' , text_hankaku)
+            # print(m.groups())
+            print(m.group(0))
+            matched = m.group(0)
+            # text="12:23"
+            # m = re.search('\d\d:\d\d$' , text)
+            print(m)
+            # print(m.groups())
+            post_text(sender,matched+"に時刻が設定せれました")
 
         else:
 
