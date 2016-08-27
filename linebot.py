@@ -781,7 +781,10 @@ def post_woman_rich_from_url(to, url):
         }
     post_event(to,content)
 
-
+def set_user_status(user_obj, status):
+    user_obj.user_status=status
+    db.session.add(user_obj)
+    db.session.commit()
 
 
 app = Flask(__name__)
@@ -892,19 +895,33 @@ def callback():
 
     for msg in msgs:
 
-        onType = msg['content']['opType']
-        sender = msg['content']['params'][0]
+        print(type(msg))
+
+        if 'opType' in msg['content']:
+            print("ontypeあり")
+            onType = msg['content']['opType']
+        else:
+            onType = 0
+
+        if 'from' in msg['content']:
+            print("fromあり")
+            sender = msg['content']['from']
+        else:
+            sender = 0
 
         print(msg)
         if onType==4:
             print("友達追加")
+            sender = msg['content']['params'][0]
             post_text(sender,"使い方：夜に起きたい時間を設定して、朝起きましょう！\n「朝起きたい」と入力したら、時間を設定出来るよ！！\n時間になったら、私があなたと呼ぶよ！\n３回だけ簡単な質問をするから、それに答えたら、あなたのお好みの美女が現れるよ！\nあとは、その美女を触るも、起きて働くもあり！\n最高の一日にしましょう！\n")
             post_text(sender,"スタンプをおすとヘルプがでます。([デモ用]なにか話しかけると目覚ましがなり始めます)")
-            post_text(sender,"一日に一回しかタップできないよ！！明日またタップしてね")
+
+            user_obj = db.session.query(User).filter(User.user_code == sender).first()
+            set_user_status(user_obj, 0)
             continue
 
 
-        sender = msg['content']['from']
+        # sender = msg['content']['from']
         content_id = msg['content']['id']
         content_type = msg['content']['contentType'] #1:text 2:image 3:video 10:友達追加
         # content_type = msg['content']['contentType']
