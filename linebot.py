@@ -1064,7 +1064,7 @@ def callback():
 
         # elif re.compile("朝起きたい").match(text):
 
-        elif re.search('\d\d:\d\d$' , text_hankaku) or re.search('\d:\d\d$' , text_hankaku):
+        elif re.search('\d+:\d\d$' , text_hankaku):
 
             print(text_hankaku)
             m = re.search('\d+:\d\d$' , text_hankaku)
@@ -1075,7 +1075,7 @@ def callback():
             # m = re.search('\d\d:\d\d$' , text)
             print(m)
             # print(m.groups())
-            post_text(sender,matched+"に時刻が設定せれました")
+            post_text(sender,matched+"に起床時刻が設定されました")
 
         else:
 
@@ -1201,7 +1201,7 @@ def callback():
                 # post_woman_rich_message(sender, woman_obj)
                 post_woman_rich_from_url(sender,random_url)
                 post_text(sender,user_name+"さん、よく起きれたね")
-                post_text(sender,"私の好きな場所をタップしてね！場所に応じてあなたにメッセージをおくるよ！")
+                post_text(sender,"私の好きな場所をタッチしてね！場所に応じてあなたにメッセージをおくるよ！")
 
                 status =0
                 this_user.user_status=status
